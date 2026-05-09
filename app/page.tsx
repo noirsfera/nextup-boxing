@@ -1,9 +1,11 @@
-import { HeroSection } from "@/components/HeroSection"
+import { SplashSection } from "@/components/SplashSection"
+import { ContentSection } from "@/components/ContentSection"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
-      <HeroSection />
+    <main className="bg-white">
+      <SplashSection />
+      <ContentSection />
     </main>
   )
 }
