@@ -8,22 +8,22 @@ const features = [
   {
     icon: Play,
     title: "HD Livestream",
-    description: "Crystal clear 4K streaming with multiple camera angles",
+    description: "Crystal clear 4K streaming with multiple camera angles and zero-lag delivery",
   },
   {
     icon: Trophy,
     title: "Championship Bouts",
-    description: "Watch rising stars compete for glory in the ring",
+    description: "Watch rising stars compete for glory in ten elite championship bouts",
   },
   {
     icon: Users,
     title: "Exclusive Access",
-    description: "Behind-the-scenes content and fighter interviews",
+    description: "Behind-the-scenes content, fighter interviews, and locker room access",
   },
   {
     icon: Zap,
     title: "Real-Time Updates",
-    description: "Live stats, scores, and instant notifications",
+    description: "Live stats, round-by-round scoring, and instant push notifications",
   },
 ]
 
@@ -32,58 +32,70 @@ export function ContentSection() {
   const isInView = useInView(ref, { once: true, margin: "-50px" })
 
   return (
-    <section 
-      id="content" 
-      className="relative bg-background py-12 sm:py-16"
-    >
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-      </div>
+    <section id="content" className="relative bg-white py-16 sm:py-20 overflow-hidden">
+      {/* Top decorative line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1e2d5e]/10 to-transparent" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6" ref={ref}>
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-12"
+          className="flex items-center justify-between mb-12"
         >
-          <p className="text-xs sm:text-sm font-semibold text-secondary uppercase tracking-widest mb-2">
-            What You Get
-          </p>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-primary">
-            PREMIUM EXPERIENCE
-          </h2>
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="h-px w-10 bg-[#c5203a]" />
+              <span className="text-[#c5203a] text-[10px] font-bold uppercase tracking-[0.35em]">
+                What You Get
+              </span>
+            </div>
+            <h2
+              className="uppercase leading-[0.9] text-[#1e2d5e]"
+              style={{
+                fontFamily: 'var(--font-bebas), Impact, sans-serif',
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+              }}
+            >
+              Premium Experience
+            </h2>
+          </div>
         </motion.div>
 
         {/* Features grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 border border-[#1e2d5e]/8 rounded-sm overflow-hidden">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.15 + index * 0.05 }}
-              className="glass-strong rounded-xl p-4 sm:p-6 text-center group hover:scale-[1.02] transition-transform duration-300"
+              transition={{ duration: 0.5, delay: 0.1 + index * 0.08 }}
+              className={`group relative p-6 sm:p-8 hover:bg-[#1e2d5e]/[0.025] transition-colors duration-300 ${
+                index < 3 ? "border-r border-[#1e2d5e]/8" : ""
+              } ${index < 4 ? "sm:border-b-0" : ""}`}
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center mx-auto mb-3 group-hover:from-secondary/30 group-hover:to-secondary/10 transition-colors">
-                <feature.icon className="w-5 h-5 sm:w-6 sm:h-6 text-secondary" />
+              {/* Icon */}
+              <div
+                className="w-10 h-10 flex items-center justify-center mb-5 rounded-sm border border-[#1e2d5e]/10 group-hover:border-[#b8962e]/40 group-hover:bg-[#b8962e]/5 transition-all duration-300"
+              >
+                <feature.icon className="w-4.5 h-4.5 text-[#b8962e] group-hover:scale-110 transition-transform duration-300"
+                  style={{ width: '1.1rem', height: '1.1rem' }}
+                />
               </div>
-              <h3 className="text-sm sm:text-base font-bold text-primary mb-1">{feature.title}</h3>
-              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+
+              {/* Gold rule on hover */}
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#b8962e] scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
+
+              <h3 className="text-sm font-bold text-[#0d1124] mb-2 uppercase tracking-wide">{feature.title}</h3>
+              <p className="text-xs text-[#1e2d5e]/50 leading-relaxed">{feature.description}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
+      {/* Bottom rule */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1e2d5e]/10 to-transparent" />
     </section>
   )
 }
