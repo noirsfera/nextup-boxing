@@ -6,6 +6,7 @@ import { LiveStreamPromo } from "@/components/LiveStreamPromo"
 import { Rankings } from "@/components/Rankings"
 import { SponsorsStrip } from "@/components/SponsorsStrip"
 import { Footer } from "@/components/Footer"
+import { MagazineSection } from "@/components/magazine/magaine-section"
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <HeroSection />
       <EventBanner />
       <LiveStreamPromo />
+      <MagazineSection />
       <Rankings />
       <SponsorsStrip />
       <Footer />
