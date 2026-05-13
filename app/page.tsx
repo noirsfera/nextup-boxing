@@ -1,4 +1,3 @@
-import { SplashSection } from "@/components/SplashSection"
 import { Navbar } from "@/components/Navbar"
 import { HeroSection } from "@/components/HeroSection"
 import { EventBanner } from "@/components/EventBanner"

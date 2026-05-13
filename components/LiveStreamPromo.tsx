@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import Image from "next/image"
-import { Play, Monitor, Wifi, Globe } from "lucide-react"
+import { Play } from "lucide-react"
 
 const factoids = [
   { label: "4K Ultra HD", detail: "Crystal clear" },

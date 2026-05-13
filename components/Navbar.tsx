@@ -71,12 +71,6 @@ export function Navbar() {
           >
             Fight Night &nbsp;·&nbsp; June 6, 2026 &nbsp;·&nbsp; Madison Square Garden &nbsp;·&nbsp; 7:00 PM EST
           </span>
-          <span
-            className="text-[10px] font-bold uppercase tracking-[0.3em] transition-colors duration-500"
-            style={{ color: scrolled ? 'rgba(184, 150, 46, 0.7)' : 'rgba(30, 45, 94, 0.6)' }}
-          >
-            Vol. I · Est. 2026
-          </span>
         </div>
       </div>
 
@@ -92,7 +86,7 @@ export function Navbar() {
               height={60}
               className="w-[90px] sm:w-[110px] h-auto transition-all duration-500 group-hover:scale-105"
               style={{
-                filter: scrolled ? 'brightness(1)' : 'brightness(0.15)',
+                filter: scrolled ? 'brightness(1)' : 'brightness(0.5)',
               }}
             />
           </a>

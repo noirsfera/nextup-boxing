@@ -20,6 +20,16 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Environment Setup
+
+Create a `.env.local` file from `.env.example` and set:
+
+- `DATABASE_URL` to your Neon connection string.
+- `YOUTUBE_CHANNEL_URL` to the public channel URL you want to surface.
+- `YOUTUBE_CHANNEL_ID` optionally, if you want to skip channel ID detection and use a fixed YouTube channel ID.
+
+The email signup flow automatically creates an `email_subscribers` table on the first successful request and stores each email once.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

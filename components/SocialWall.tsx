@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { ExternalLink, Heart, MessageCircle, Play } from "lucide-react"
 
-const INSTAGRAM_HANDLE = "kristiandvasquez"
+const INSTAGRAM_HANDLE = "nextupboxingleague"
 const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}`
 
 // Curated reel data — these represent the latest posts from @kristiandvasquez
@@ -165,7 +165,7 @@ export function SocialWall() {
                   className="text-xl font-bold text-white"
                   style={{ fontFamily: 'var(--font-bebas), Impact, sans-serif' }}
                 >
-                  KV
+                  NUB
                 </span>
               </div>
             </div>
@@ -182,7 +182,7 @@ export function SocialWall() {
                   Reels
                 </span>
               </div>
-              <p className="text-white/35 text-xs mt-0.5">Next Up Boxing · Content Creator</p>
+              <p className="text-white/35 text-xs mt-0.5">Next Up Boxing · Official League Account</p>
             </div>
           </div>
 
@@ -360,7 +360,7 @@ export function SocialWall() {
 
             <p className="text-white/35 text-sm max-w-sm mb-8 leading-relaxed">
               Follow @{INSTAGRAM_HANDLE} for exclusive behind-the-scenes content, 
-              fight highlights, training footage, and real-time updates.
+              fight night announcements, fighter profiles, and real-time updates.
             </p>
 
             <a
