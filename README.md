@@ -27,8 +27,37 @@ Create a `.env.local` file from `.env.example` and set:
 - `DATABASE_URL` to your Neon connection string.
 - `YOUTUBE_CHANNEL_URL` to the public channel URL you want to surface.
 - `YOUTUBE_CHANNEL_ID` optionally, if you want to skip channel ID detection and use a fixed YouTube channel ID.
+- `INSTAGRAM_HANDLE` to the public Instagram username you want to display.
+- `INSTAGRAM_BUSINESS_ACCOUNT_ID` to the connected Instagram Business/Creator account ID.
+- `INSTAGRAM_ACCESS_TOKEN` to a valid Instagram Graph API access token with permission to read that account's media.
+- `RESEND_API_KEY` to your Resend API key.
+- `RESEND_FROM_EMAIL` to a verified sender on your Resend domain.
+- `SITE_URL` to your production site URL so reminder emails link back correctly.
+- `CRON_SECRET` to protect the scheduled reminder route.
 
 The email signup flow automatically creates an `email_subscribers` table on the first successful request and stores each email once.
+
+If you prefer to create the table manually in Neon, copy the SQL from [scripts/001_create_email_subscribers.sql](/C:/Users/gamerrdotcom/Desktop/nextup-boxing/scripts/001_create_email_subscribers.sql:1) into the Neon SQL editor first.
+
+## Event Reminders
+
+The reminder system uses:
+
+- `Neon` to store subscribers and reminder timestamps
+- `Resend` to send reminder emails
+- `Vercel Cron` to trigger the reminder route once per day
+
+Setup checklist:
+
+- Verify a sending domain in Resend and set `RESEND_FROM_EMAIL`
+- Add `RESEND_API_KEY`, `SITE_URL`, and `CRON_SECRET` to your deployment environment
+- If the `email_subscribers` table already exists, run [scripts/002_add_event_reminder_columns.sql](/C:/Users/gamerrdotcom/Desktop/nextup-boxing/scripts/002_add_event_reminder_columns.sql:1)
+- Deploy with [vercel.json](/C:/Users/gamerrdotcom/Desktop/nextup-boxing/vercel.json:1) so the cron schedule is active
+
+The current setup sends up to two reminder emails per subscriber:
+
+- an upcoming-event reminder during the final week
+- a final reminder during the last 24 hours before the event
 
 ## Learn More
 

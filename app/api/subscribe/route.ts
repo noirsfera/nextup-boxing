@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     await addEmailSubscriber(email)
 
     return NextResponse.json(
-      { message: "You're on the list. We'll notify you first." },
+      { message: "You're on the list. We'll email you before fight night." },
       { status: 201 }
     )
   } catch (error) {

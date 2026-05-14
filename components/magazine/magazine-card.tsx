@@ -24,97 +24,59 @@ export function MagazineCard({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Card Container */}
-      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-card border border-border transition-all duration-500 ease-out group-hover:scale-[1.02] group-hover:border-primary/50">
-        {/* Magazine Cover */}
-        <Image
-          src={coverImage}
-          alt={issueName}
-          fill
-          className="object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-50"
-        />
+      <div className="absolute -inset-6 rounded-[2rem] bg-[radial-gradient(circle,rgba(184,150,46,0.18),transparent_62%)] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
 
-        {/* Futuristic Grid Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      <div
+        className={`relative transition-transform duration-500 ease-out ${
+          isHovered ? "-translate-y-2 rotate-[1deg]" : ""
+        }`}
+      >
+        <div className="absolute -right-4 top-5 hidden h-[88%] w-full rounded-[1.75rem] border border-[#0d1124]/10 bg-white/35 lg:block" />
 
-        {/* Scanline Effect */}
-        <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.1)_2px,rgba(0,0,0,0.1)_4px)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="relative overflow-hidden rounded-[1.75rem] border border-[#0d1124]/12 bg-white p-4 shadow-[0_30px_80px_rgba(13,17,36,0.18)]">
+          <div className="relative aspect-[0.74] overflow-hidden rounded-[1.1rem] bg-[#ddd6ca]">
+            <Image
+              src={coverImage}
+              alt={issueName}
+              fill
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/12 via-transparent to-white/6" />
 
-        {/* Coming Soon Overlay */}
-        <div
-          className={`absolute inset-0 flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm transition-all duration-500 ${
-            isHovered ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          {/* Animated Ring */}
-          <div className="relative mb-6">
-            <div className="absolute -inset-4 animate-spin rounded-full border-2 border-transparent border-t-primary" style={{ animationDuration: "3s" }} />
-            <div className="absolute -inset-8 animate-spin rounded-full border border-transparent border-b-accent" style={{ animationDuration: "5s", animationDirection: "reverse" }} />
-            <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-primary bg-background">
-              <svg
-                className="h-8 w-8 text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            <div className="absolute left-4 top-4 z-10 rounded-full bg-[#c5203a] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-white shadow-lg">
+              {issueNumber}
+            </div>
+
+            <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#0d1124]/85 via-[#0d1124]/35 to-transparent px-5 pb-5 pt-12 text-white">
+              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#e7c868]">
+                Next Up Magazine
+              </p>
+              <h3
+                className="mt-2 text-[clamp(2rem,5vw,2.7rem)] uppercase leading-[0.92]"
+                style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+                {issueName}
+              </h3>
             </div>
           </div>
 
-          {/* Coming Soon Text */}
-          <div className="text-center">
-            <p className="mt-3 text-sm text-muted-foreground">
-              Stay tuned for the release
-            </p>
-          </div>
+          <div className="mt-5 text-center">
+            <div className="mb-3 flex items-center gap-3">
+              <span className="h-px flex-1 bg-gradient-to-r from-transparent via-[#0d1124]/18 to-[#0d1124]/12" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#0d1124]/42">
+                Featured Cover
+              </span>
+              <span className="h-px flex-1 bg-gradient-to-l from-transparent via-[#0d1124]/18 to-[#0d1124]/12" />
+            </div>
 
-          {/* Corner Accents */}
-          <div className="absolute left-4 top-4 h-8 w-8 border-l-2 border-t-2 border-primary/50" />
-          <div className="absolute right-4 top-4 h-8 w-8 border-r-2 border-t-2 border-primary/50" />
-          <div className="absolute bottom-4 left-4 h-8 w-8 border-b-2 border-l-2 border-primary/50" />
-          <div className="absolute bottom-4 right-4 h-8 w-8 border-b-2 border-r-2 border-primary/50" />
-        </div>
-
-        {/* Issue Number Badge */}
-        <div className="absolute left-3 top-3 z-10">
-          <div className="flex items-center gap-1 rounded bg-primary px-2 py-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary-foreground">
-              {issueNumber}
-            </span>
+            {releaseDate ? (
+              <p className="text-sm uppercase tracking-[0.18em] text-[#0d1124]/52">
+                {releaseDate}
+              </p>
+            ) : null}
           </div>
         </div>
-
-        {/* Bottom Gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/80 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-0" />
       </div>
-
-      {/* Card Info */}
-      <div className="mt-4 space-y-2">
-        <div className="flex items-center gap-2">
-          <div className="h-px flex-1 bg-gradient-to-r from-primary/50 to-transparent" />
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-            Issue
-          </span>
-          <div className="h-px flex-1 bg-gradient-to-l from-primary/50 to-transparent" />
-        </div>
-        <h3 className="text-center text-lg font-bold uppercase tracking-wide text-foreground transition-colors duration-300 group-hover:text-primary">
-          {issueName}
-        </h3>
-        {releaseDate && (
-          <p className="text-center text-xs text-muted-foreground">
-            {releaseDate}
-          </p>
-        )}
-      </div>
-
-      {/* Hover Glow Effect */}
-      <div className="absolute -inset-px rounded-lg bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" style={{ zIndex: -1 }} />
     </div>
   )
 }
