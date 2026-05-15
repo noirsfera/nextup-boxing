@@ -17,12 +17,12 @@ export function MagazineSection() {
   return (
     <section
       id="magazine"
-      className="relative overflow-hidden bg-[#f3ede3] px-4 py-20 text-[#0d1124] sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-white px-4 py-20 text-[#0d1124] sm:px-6 lg:px-8"
     >
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#c5203a]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(197,32,58,0.06),transparent_38%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(30,45,94,0.08),transparent_42%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(13,17,36,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(13,17,36,0.04)_1px,transparent_1px)] bg-[size:38px_38px] opacity-35" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(197,32,58,0.04),transparent_38%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(30,45,94,0.05),transparent_42%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(13,17,36,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(13,17,36,0.03)_1px,transparent_1px)] bg-[size:38px_38px] opacity-25" />
 
       <div className="relative mx-auto max-w-6xl">
         <div className="mx-auto max-w-3xl text-center">
