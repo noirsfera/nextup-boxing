@@ -1,125 +1,12 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion"
+import { useRef, useState } from "react"
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
-import { ChevronLeft, ChevronRight, Play, Ticket } from "lucide-react"
+import { Play, Ticket } from "lucide-react"
 
 import { EmailSignup } from "@/components/email-signup"
-
-type HeroSlide = {
-  id: string
-  eyebrow: string
-  label: string
-  title: [string, string, string]
-  accentLine: number
-  description: string
-  image:
-    | {
-        kind: "single"
-        src: string
-        alt: string
-        className: string
-      }
-    | {
-        kind: "duo"
-        backgroundSrc: string
-        leftSrc: string
-        rightSrc: string
-        alt: string
-      }
-  primaryCta: {
-    href: string
-    label: string
-    icon: "ticket" | "play"
-  }
-  secondaryCta: {
-    href: string
-    label: string
-  }
-}
-
-const heroSlides: HeroSlide[] = [
-  {
-    id: "main-event",
-    eyebrow: "Main Event - June 6, 2026",
-    label: "Fight Night",
-    title: ["June 6", "Fight Night", "Starts Here"],
-    accentLine: 2,
-    description:
-      "June 6 at Madison Square Garden. A stacked NextUp card, title pressure, and a main event built for a sold-out night.",
-    image: {
-      kind: "single",
-      src: "/hero-boxers.png",
-      alt: "Two boxers in an intense match",
-      className: "object-cover object-center",
-    },
-    primaryCta: {
-      href: "#events",
-      label: "Get Tickets",
-      icon: "ticket",
-    },
-    secondaryCta: {
-      href: "#livestream",
-      label: "Watch Live",
-    },
-  },
-  {
-    id: "broadcast",
-    eyebrow: "Global Livestream - June 6, 2026",
-    label: "Livestream",
-    title: ["From The Ring", "To Every", "Screen"],
-    accentLine: 1,
-    description:
-      "Catch the full June 6 card live with sharp production, live commentary, and every shift in momentum from first bell to final result.",
-    image: {
-      kind: "single",
-      src: "/broadcast-scene.png",
-      alt: "A boxing ring under bright lights with live production cameras nearby",
-      className: "object-cover object-center",
-    },
-    primaryCta: {
-      href: "#livestream",
-      label: "Watch Live",
-      icon: "play",
-    },
-    secondaryCta: {
-      href: "#magazine",
-      label: "Read Preview",
-    },
-  },
-  {
-    id: "prospects",
-    eyebrow: "Prospect Showcase - Next Up On June 6",
-    label: "Prospects",
-    title: ["The Next", "Up", "Takes Over"],
-    accentLine: 0,
-    description:
-      "Before the headliners take over, the next wave of contenders steps in with rankings on the line and everything to prove.",
-    image: {
-      kind: "duo",
-      backgroundSrc: "/hero-bg.png",
-      leftSrc: "/fighter-1.png",
-      rightSrc: "/fighter-2.png",
-      alt: "Two rising boxing stars posing ahead of a major event",
-    },
-    primaryCta: {
-      href: "#rankings",
-      label: "View Rankings",
-      icon: "ticket",
-    },
-    secondaryCta: {
-      href: "#social-wall",
-      label: "Follow Build-Up",
-    },
-  },
-]
+import { ScrollIndicator } from "@/components/scroll-indicator"
 
 const fightPreview = [
   { division: "Heavyweight", matchup: "Adebayo vs Cole", slot: "Main Event" },
@@ -128,12 +15,9 @@ const fightPreview = [
   { division: "Lightweight", matchup: "King vs Alvarez", slot: "Prospect Clash" },
 ]
 
-const autoplayDelayMs = 6500
-
 export function HeroSection() {
   const ref = useRef<HTMLElement | null>(null)
   const shouldReduceMotion = useReducedMotion()
-  const [currentSlide, setCurrentSlide] = useState(0)
   const [isSignupFocused, setIsSignupFocused] = useState(false)
 
   const { scrollYProgress } = useScroll({
@@ -145,200 +29,86 @@ export function HeroSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0, 1, 1, 0.35])
   const scale = useTransform(scrollYProgress, [0, 0.3], [1.08, 1])
 
-  const autoplayEnabled = !shouldReduceMotion && !isSignupFocused
-
-  useEffect(() => {
-    if (!autoplayEnabled || heroSlides.length < 2) {
-      return
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      setCurrentSlide((index) => (index + 1) % heroSlides.length)
-    }, autoplayDelayMs)
-
-    return () => window.clearTimeout(timeoutId)
-  }, [autoplayEnabled, currentSlide])
-
-  const activeSlide = heroSlides[currentSlide]
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-  }
-
-  const advanceSlide = (direction: 1 | -1) => {
-    setCurrentSlide((index) => {
-      const nextIndex = index + direction
-      if (nextIndex < 0) {
-        return heroSlides.length - 1
-      }
-      return nextIndex % heroSlides.length
-    })
-  }
-
   return (
     <section
       ref={ref}
       id="hero"
-      className="relative flex min-h-screen items-center overflow-hidden bg-[#0d1124]"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0d1124]"
     >
       <motion.div className="absolute inset-0" style={{ scale }}>
-        {heroSlides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-[1400ms] ease-out ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            {slide.image.kind === "single" ? (
-              <Image
-                src={slide.image.src}
-                alt={slide.image.alt}
-                fill
-                className={slide.image.className}
-                priority={index === 0}
-                sizes="100vw"
-              />
-            ) : (
-              <>
-                <Image
-                  src={slide.image.backgroundSrc}
-                  alt={slide.image.alt}
-                  fill
-                  className="object-cover object-center"
-                  priority={index === 0}
-                  sizes="100vw"
-                />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,174,68,0.16),_transparent_52%)]" />
-                <div className="absolute inset-x-[8%] bottom-0 top-[16%] hidden items-end justify-between lg:flex">
-                  <div
-                    className={`relative h-[78%] w-[36%] transition-all duration-[1400ms] ${
-                      index === currentSlide
-                        ? "translate-x-0 opacity-100"
-                        : "-translate-x-8 opacity-0"
-                    }`}
-                  >
-                    <Image
-                      src={slide.image.leftSrc}
-                      alt=""
-                      fill
-                      className="object-contain object-bottom"
-                      sizes="36vw"
-                    />
-                  </div>
-                  <div
-                    className={`relative h-[88%] w-[40%] transition-all duration-[1400ms] ${
-                      index === currentSlide
-                        ? "translate-x-0 opacity-100"
-                        : "translate-x-8 opacity-0"
-                    }`}
-                  >
-                    <Image
-                      src={slide.image.rightSrc}
-                      alt=""
-                      fill
-                      className="object-contain object-bottom"
-                      sizes="40vw"
-                    />
-                  </div>
-                </div>
-              </>
-            )}
-
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0d1124]/98 via-[#0d1124]/74 to-[#0d1124]/18" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0d1124] via-[#0d1124]/20 to-[#0d1124]/54" />
-          </div>
-        ))}
+        <div className="absolute inset-0">
+          <Image
+            src="/hero-boxers.png"
+            alt="Main Event"
+            fill
+            className="object-cover object-top"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0d1124]/70 via-[#0d1124]/30 to-[#0d1124]/90" />
+        </div>
       </motion.div>
 
       <div
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 mix-blend-overlay opacity-30"
         style={{
           backgroundImage:
-            'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 512 512\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.75\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.035\'/%3E%3C/svg%3E")',
+            'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 512 512\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.75\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.1\'/%3E%3C/svg%3E")',
           backgroundRepeat: "repeat",
           backgroundSize: "256px",
-          mixBlendMode: "overlay",
         }}
       />
 
-      <div className="absolute left-6 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-4 xl:flex">
-        <div className="h-20 w-px bg-gradient-to-b from-transparent via-[#b8962e]/40 to-transparent" />
-        <span
-          className="section-eyebrow text-white/25"
-          style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center px-4 pt-32 pb-48 sm:px-8 lg:px-16 text-center">
+        <motion.div 
+          style={{ y, opacity }} 
+          className="flex w-full max-w-5xl flex-col items-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          Fight Night - June 6, 2026
-        </span>
-        <div className="h-20 w-px bg-gradient-to-b from-transparent via-[#b8962e]/40 to-transparent" />
-      </div>
-
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-48 pt-32 sm:px-8 lg:px-16">
-        <motion.div style={{ y, opacity }} className="max-w-3xl">
-          <div className="mb-8 flex items-center gap-3">
-            <span className="h-px w-10 bg-[#c5203a]" />
-            <span className="section-eyebrow text-[#c5203a]">{activeSlide.eyebrow}</span>
+          
+          <div className="mb-4 flex items-center justify-center gap-4">
+            <span className="text-sm font-bold tracking-[0.2em] text-white/80 drop-shadow-md">MAIN EVENT</span>
+            <span className="h-1 w-1 rounded-full bg-[#c5203a]" />
+            <span className="text-sm font-bold tracking-[0.2em] text-white/80 drop-shadow-md">12 ROUNDS</span>
           </div>
 
-          <div className="mb-6 flex flex-wrap items-center gap-3">
-            <span className="rounded-full border border-white/10 bg-white/8 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-white/62 backdrop-blur-sm">
-              {activeSlide.label}
+          <h1
+            className="mb-6 uppercase leading-[0.85] text-white drop-shadow-2xl"
+            style={{
+              fontFamily: "var(--font-bebas), Impact, sans-serif",
+              fontSize: "clamp(6rem, 15vw, 14rem)",
+            }}
+          >
+            <span className="block text-white" style={{ textShadow: "0 10px 40px rgba(0,0,0,0.5)" }}>ADEBAYO</span>
+            <span className="block text-[#c5203a] text-[0.4em] leading-tight my-2 drop-shadow-lg">VS</span>
+            <span className="block text-white" style={{ textShadow: "0 10px 40px rgba(0,0,0,0.5)" }}>COLE</span>
+          </h1>
+
+          <div className="mt-4 mb-10 flex flex-col items-center justify-center gap-3">
+            <span className="text-3xl font-bold uppercase tracking-widest text-white drop-shadow-lg" style={{ fontFamily: "var(--font-bebas)" }}>
+              JUNE 6 <span className="mx-3 text-[#c5203a]">|</span> MADISON SQUARE GARDEN
             </span>
-            <span className="editorial-meta text-white/30">June 6 | Madison Square Garden</span>
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeSlide.id}
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -24 }}
-              transition={{ duration: shouldReduceMotion ? 0.2 : 0.55, ease: "easeOut" }}
+          <div className="flex flex-wrap items-center justify-center gap-6 mt-4">
+            <a
+              href="#events"
+              className="editorial-button inline-flex items-center justify-center gap-3 bg-[#1e9b46] px-10 py-5 text-white transition-all duration-300 hover:bg-[#157a35] text-lg font-bold shadow-[0_10px_30px_rgba(30,155,70,0.3)] hover:-translate-y-1"
             >
-              <h1
-                className="mb-6 uppercase leading-[0.85]"
-                style={{
-                  fontFamily: "var(--font-bebas), Impact, sans-serif",
-                  fontSize: "clamp(4.6rem, 11vw, 10rem)",
-                }}
-              >
-                {activeSlide.title.map((line, index) => (
-                  <span
-                    key={line}
-                    className={index === activeSlide.accentLine ? "hero-gradient-text block" : "block text-white"}
-                  >
-                    {line}
-                  </span>
-                ))}
-              </h1>
-
-              <p className="editorial-body mb-8 max-w-xl text-base text-white/62 sm:text-lg">
-                {activeSlide.description}
-              </p>
-
-              <div className="flex flex-wrap items-center gap-5">
-                <a
-                  href={activeSlide.primaryCta.href}
-                  className="editorial-button inline-flex items-center justify-center gap-3 rounded-full bg-[#c5203a] px-8 py-4 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#a01830] hover:shadow-[0_24px_54px_rgba(197,32,58,0.32)]"
-                >
-                  {activeSlide.primaryCta.icon === "ticket" ? (
-                    <Ticket className="h-4 w-4" />
-                  ) : (
-                    <Play className="h-4 w-4" />
-                  )}
-                  {activeSlide.primaryCta.label}
-                </a>
-                <a
-                  href={activeSlide.secondaryCta.href}
-                  className="editorial-button text-[#d4ae44] transition-colors duration-300 hover:text-white"
-                >
-                  {activeSlide.secondaryCta.label}
-                </a>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+              GET TICKETS
+            </a>
+            <a
+              href="#livestream"
+              className="editorial-button inline-flex items-center justify-center gap-3 bg-white px-10 py-5 text-[#0d1124] transition-all duration-300 hover:bg-gray-100 text-lg font-bold shadow-[0_10px_30px_rgba(255,255,255,0.2)] hover:-translate-y-1"
+            >
+              WATCH ON NEXTUP
+            </a>
+          </div>
 
           <div
-            className="mt-8 max-w-2xl"
+            className="mt-16 w-full max-w-lg"
             onFocusCapture={() => setIsSignupFocused(true)}
             onBlurCapture={(event) => {
               if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
@@ -349,45 +119,6 @@ export function HeroSection() {
             <EmailSignup variant="hero" />
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() => advanceSlide(-1)}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/6 text-white/70 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/12 hover:text-white"
-                aria-label="Show previous hero slide"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => advanceSlide(1)}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/6 text-white/70 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/12 hover:text-white"
-                aria-label="Show next hero slide"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              {heroSlides.map((slide, index) => (
-                <button
-                  key={slide.id}
-                  type="button"
-                  onClick={() => goToSlide(index)}
-                  className={`rounded-full border px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.2em] transition-all duration-300 ${
-                    index === currentSlide
-                      ? "border-[#b8962e]/45 bg-white/10 text-white"
-                      : "border-white/8 bg-white/[0.03] text-white/45 hover:border-white/18 hover:text-white/72"
-                  }`}
-                  aria-label={`Show ${slide.label} slide`}
-                  aria-pressed={index === currentSlide}
-                >
-                  {slide.label}
-                </button>
-              ))}
-            </div>
-          </div>
         </motion.div>
       </div>
 

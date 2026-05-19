@@ -6,9 +6,10 @@ import Image from "next/image"
 import { Menu, X } from "lucide-react"
 
 const navLinks = [
+  { label: "Home", href: "#hero" },
   { label: "Fights", href: "#events" },
+  { label: "Stream", href: "#livestream" },
   { label: "Rankings", href: "#rankings" },
-  { label: "Live", href: "#livestream" },
   { label: "Magazine", href: "#magazine" },
   { label: "Social", href: "#social-wall" },
 ]
@@ -16,26 +17,52 @@ const navLinks = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState("hero")
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      const scrollTop = window.scrollY
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+
+      setScrolled(scrollTop > 50)
+      setScrollProgress(maxScroll > 0 ? scrollTop / maxScroll : 0)
     }
 
+    const sections = navLinks
+      .map((link) => document.querySelector<HTMLElement>(link.href))
+      .filter((section): section is HTMLElement => Boolean(section))
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((entryA, entryB) => entryB.intersectionRatio - entryA.intersectionRatio)
+
+        const nextActive = visibleEntries[0]?.target.id
+
+        if (nextActive) {
+          setActiveSection(nextActive)
+        }
+      },
+      {
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: [0.2, 0.35, 0.55],
+      }
+    )
+
+    sections.forEach((section) => observer.observe(section))
     window.addEventListener("scroll", handleScroll, { passive: true })
     handleScroll()
 
-    return () => window.removeEventListener("scroll", handleScroll)
+    return () => {
+      observer.disconnect()
+      window.removeEventListener("scroll", handleScroll)
+    }
   }, [])
 
-  const shellClass = scrolled ? "navbar-editorial text-white" : "navbar-white text-[#0d1124]"
-  const brandTone = scrolled ? "text-[#b8962e]/70" : "text-[#1e2d5e]/65"
-  const metaTone = scrolled ? "text-white/35" : "text-[#0d1124]/40"
-  const linkTone = scrolled ? "text-white/65 hover:text-white" : "text-[#0d1124]/65 hover:text-[#0d1124]"
-  const logoFilter = scrolled ? "brightness(1)" : "brightness(0.5)"
-  const ctaClass = scrolled
-    ? "bg-[#c5203a] text-white hover:bg-[#a01830] hover:shadow-[0_18px_40px_rgba(197,32,58,0.28)]"
-    : "bg-[#1e2d5e] text-white hover:bg-[#141f45] hover:shadow-[0_18px_40px_rgba(30,45,94,0.24)]"
+  const shellClass = scrolled ? "navbar-editorial text-white" : "bg-transparent text-white"
+  const ctaClass = "bg-[#c5203a] text-white hover:bg-[#a01830] hover:shadow-[0_18px_40px_rgba(197,32,58,0.28)]"
 
   return (
     <nav
@@ -44,53 +71,52 @@ export function Navbar() {
     >
       <div
         className={`h-[3px] transition-all duration-500 ${
-          scrolled ? "bg-[#c5203a]" : "bg-gradient-to-r from-[#1e2d5e] via-[#c5203a] to-[#b8962e]"
+          scrolled ? "bg-[#c5203a]" : "bg-transparent"
         }`}
       />
 
-      <div
-        className={`hidden overflow-hidden transition-all duration-500 lg:block ${
-          scrolled ? "border-b border-white/6" : "border-b border-black/6"
-        }`}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-2">
-          <span className={`section-eyebrow ${brandTone}`}>Next Up Boxing League</span>
-          <span className={`text-[0.72rem] font-medium uppercase tracking-[0.2em] ${metaTone}`}>
-            Fight Night | June 6, 2026 | Madison Square Garden | 7:00 PM EST
-          </span>
-        </div>
-      </div>
-
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <a href="#hero" className="group flex items-center">
-            <Image
-              src="/logo.png"
-              alt="NextUp Boxing"
-              width={120}
-              height={60}
-              className="h-auto w-[92px] transition-transform duration-500 group-hover:scale-[1.03] sm:w-[112px]"
-              style={{ filter: logoFilter }}
-            />
-          </a>
+        <div className={`relative flex transition-all duration-500 ${scrolled ? "h-20 flex-row items-center justify-between" : "flex-col items-center pt-8 pb-6"}`}>
+          
+          {/* Logo */}
+          <div className={`transition-all duration-500 z-10 ${scrolled ? "flex-shrink-0" : "w-full flex justify-center mb-6"}`}>
+            <a href="#hero" className="group flex items-center">
+              <Image
+                src="/logo.png"
+                alt="NextUp Boxing"
+                width={scrolled ? 112 : 160}
+                height={scrolled ? 56 : 80}
+                className={`h-auto transition-all duration-500 group-hover:scale-[1.03] ${scrolled ? "w-[100px] sm:w-[120px]" : "w-[130px] sm:w-[160px]"}`}
+                style={{ filter: "brightness(1) drop-shadow(0 4px 6px rgba(0,0,0,0.3))" }}
+                priority
+              />
+            </a>
+          </div>
 
-          <div className="hidden items-center gap-1 md:flex">
+          {/* Nav Links */}
+          <div className={`hidden items-center transition-all duration-500 md:flex z-10 ${scrolled ? "gap-6" : "gap-10"}`}>
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className={`group relative rounded-full px-5 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] transition-all duration-300 ${linkTone}`}
+                className="group relative py-2 text-[0.8rem] font-semibold uppercase tracking-[0.2em] transition-all duration-300 text-white drop-shadow-md hover:text-white/80"
+                aria-current={activeSection === link.href.slice(1) ? "page" : undefined}
               >
                 {link.label}
-                <span className="absolute inset-x-5 bottom-1 h-px origin-left scale-x-0 bg-[#c5203a] transition-transform duration-300 group-hover:scale-x-100" />
+                <span
+                  className={`absolute inset-x-0 bottom-0 h-[2px] origin-left bg-[#c5203a] transition-transform duration-300 ${
+                    activeSection === link.href.slice(1) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                />
               </a>
             ))}
           </div>
 
-          <div className="flex items-center gap-3">
+          {/* Right Actions */}
+          <div className={`flex items-center gap-3 z-10 ${scrolled ? "" : "absolute right-0 top-8"}`}>
             <a
               href="#livestream"
-              className={`editorial-button hidden items-center gap-2 rounded-full px-5 py-2.5 transition-all duration-300 hover:-translate-y-0.5 sm:inline-flex ${ctaClass}`}
+              className={`editorial-button hidden items-center gap-2 rounded-full px-6 py-2.5 transition-all duration-300 hover:-translate-y-0.5 sm:inline-flex ${ctaClass}`}
             >
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-70" />
@@ -101,12 +127,10 @@ export function Navbar() {
 
             <button
               onClick={() => setMobileOpen((open) => !open)}
-              className={`rounded-full p-2 transition-colors duration-300 md:hidden ${
-                scrolled ? "text-white/75 hover:text-white" : "text-[#0d1124]/70 hover:text-[#0d1124]"
-              }`}
+              className="rounded-full p-2 text-white/90 transition-colors duration-300 hover:text-white md:hidden drop-shadow-md"
               aria-label="Toggle menu"
             >
-              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {mobileOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
             </button>
           </div>
         </div>
@@ -119,9 +143,7 @@ export function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className={`overflow-hidden border-t md:hidden ${
-              scrolled ? "border-white/8 bg-[#0d1124]/98" : "border-black/6 bg-white/98"
-            }`}
+            className="overflow-hidden border-t border-white/10 bg-[#0d1124]/98 md:hidden backdrop-blur-xl"
           >
             <div className="space-y-1 px-4 py-4">
               {navLinks.map((link) => (
@@ -129,11 +151,12 @@ export function Navbar() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`block rounded-2xl px-4 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.24em] transition-colors duration-300 ${
-                    scrolled
-                      ? "text-white/70 hover:bg-white/5 hover:text-white"
-                      : "text-[#0d1124]/70 hover:bg-[#1e2d5e]/5 hover:text-[#0d1124]"
+                  className={`block rounded-xl px-4 py-3 text-[0.8rem] font-semibold uppercase tracking-[0.2em] transition-colors duration-300 ${
+                    activeSection === link.href.slice(1)
+                      ? "bg-white/10 text-white"
+                      : "text-white/70 hover:bg-white/5 hover:text-white"
                   }`}
+                  aria-current={activeSection === link.href.slice(1) ? "page" : undefined}
                 >
                   {link.label}
                 </a>
@@ -153,6 +176,15 @@ export function Navbar() {
           </motion.div>
         ) : null}
       </AnimatePresence>
+
+      <div className="h-px bg-white/5">
+        <motion.div
+          className="h-full origin-left bg-gradient-to-r from-[#1e2d5e] via-[#c5203a] to-[#d4ae44]"
+          animate={{ scaleX: Math.max(scrollProgress, 0.02) }}
+          transition={{ duration: 0.15, ease: "easeOut" }}
+        />
+      </div>
     </nav>
   )
 }
+

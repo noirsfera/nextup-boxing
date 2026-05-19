@@ -80,7 +80,7 @@
 }
 
 @theme inline {
-  --font-sans:    var(--font-sora), system-ui, sans-serif;
+  --font-sans:    "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono:    'Geist Mono', monospace;
   --font-display: var(--font-bebas), 'Impact', 'Arial Narrow Bold', sans-serif;
 
@@ -130,6 +130,9 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+  section[id] {
+    scroll-margin-top: 7.5rem;
   }
   body {
     @apply bg-white text-foreground;
@@ -425,4 +428,48 @@
   );
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
+}
+
+/* Futuristic motion surfaces */
+.futuristic-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.95), transparent 88%);
+}
+
+.scanline-overlay {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    transparent 22%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  background-size: 100% 6px;
+  mix-blend-mode: screen;
+}
+
+.story-glow {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(197, 32, 58, 0.18), transparent 40%),
+    radial-gradient(circle at 80% 18%, rgba(184, 150, 46, 0.2), transparent 34%),
+    radial-gradient(circle at 50% 100%, rgba(30, 45, 94, 0.28), transparent 50%);
+  filter: blur(46px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-gradient-text,
+  .marquee-track,
+  .marquee-track-reverse,
+  .animated-gradient,
+  .pulse-glow,
+  .scroll-glow-indicator::after {
+    animation: none;
+  }
 }

@@ -1,0 +1,39 @@
+
+> nextup-boxing@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.191:3000
+- Environments: .env.local
+✓ Ready in 6.1s
+
+ GET / 200 in 3.5s (next.js: 1180ms, application-code: 2.3s)
+ GET /api/instagram/reels 503 in 2.8s (next.js: 1279ms, application-code: 1521ms)
+ GET /api/instagram/reels 503 in 928ms (next.js: 183ms, application-code: 745ms)
+ GET /api/youtube 503 in 3.0s (next.js: 81ms, application-code: 2.9s)
+ GET /api/youtube 503 in 6.5s (next.js: 330ms, application-code: 6.2s)
+✓ Compiled in 5.9s
+○ Compiling / ...
+✓ Finished writing to filesystem cache in 19.9s
+✓ Compiled in 30.4s
+✓ Finished writing to filesystem cache in 21.0s
+ GET / 200 in 5.3min (next.js: 91s, application-code: 3.8min)
+ GET / 200 in 5.2min (next.js: 2.4min, application-code: 2.7min)
+ GET / 200 in 5.2min (next.js: 2.2min, application-code: 3.0min)
+ GET / 200 in 5.1min (next.js: 2.6min, application-code: 2.5min)
+ GET / 200 in 5.2min (next.js: 118s, application-code: 3.2min)
+ GET / 500 in 110s (next.js: 9.7s, application-code: 100s)
+✓ Compiled in 731ms
+ GET / 200 in 4.8s (next.js: 1349ms, application-code: 3.4s)
+ GET /api/instagram/reels 503 in 5.7s (next.js: 1841ms, application-code: 3.9s)
+ GET /api/instagram/reels 503 in 3.9s (next.js: 105ms, application-code: 3.8s)
+ GET /api/youtube 503 in 22.4s (next.js: 355ms, application-code: 22.0s)
+ GET /api/youtube 503 in 19.9s (next.js: 74ms, application-code: 19.9s)
+✓ Compiled in 1971ms
+ GET / 200 in 8.9s (next.js: 4.8s, application-code: 4.1s)
+ GET / 200 in 11.1s (next.js: 514ms, application-code: 10.6s)
+ GET /api/instagram/reels 503 in 2.8s (next.js: 1617ms, application-code: 1183ms)
+ GET /api/instagram/reels 503 in 1325ms (next.js: 90ms, application-code: 1235ms)
+ GET /api/youtube 503 in 5.9s (next.js: 869ms, application-code: 5.0s)
+ GET /api/youtube 503 in 3.8s (next.js: 26ms, application-code: 3.8s)

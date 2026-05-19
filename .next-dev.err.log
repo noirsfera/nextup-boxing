@@ -1,0 +1,385 @@
+[browser] Image with src "/logo.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+Failed to load Instagram reels: Error: Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID.
+    at fetchInstagramReels (lib\instagram.ts:63:11)
+    at GET (app\api\instagram\reels\route.ts:13:46)
+  61 |
+  62 |   if (!accessToken || !businessAccountId) {
+> 63 |     throw new Error(
+     |           ^
+  64 |       "Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCO...
+  65 |     )
+  66 |   }
+Failed to load Instagram reels: Error: Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID.
+    at fetchInstagramReels (lib\instagram.ts:63:11)
+    at GET (app\api\instagram\reels\route.ts:13:46)
+  61 |
+  62 |   if (!accessToken || !businessAccountId) {
+> 63 |     throw new Error(
+     |           ^
+  64 |       "Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCO...
+  65 |     )
+  66 |   }
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="page.tsx">
+      <SegmentTrieNode>
+      <Home>
+        <main className="bg-white">
+          <Navbar>
+          <HeroSection>
+          <EventBanner>
+            <section id="events" ref={{current:null}} className="relative o...">
+              <div>
+              <div className="mx-auto ma...">
+                <motion.div>
+                <div className="grid items...">
+                  <div>
+                    <motion.div>
+                    <motion.h2>
+                    <motion.p>
+                    <motion.div>
+                    <motion.div initial={{opacity:0,y:20}} animate={{}} transition={{duration:0.7, ...}} ...>
+                      <div className="mb-10" style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                        <div>
+                        <div className="flex gap-4...">
+                          <div>
+                          <div>
+                          <div>
+                          <div className="flex items...">
+                            <div className="text-center">
+                              <div
+                                className="tabular-nums leading-none text-[#1e2d5e]"
+                                style={{fontFamily:"var(--font...",fontSize:"clamp(2.6r..."}}
+                              >
++                               52
+-                               54
+                              ...
+                    ...
+                  ...
+              ...
+          ...
+    ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at <unknown> (components/EventBanner.tsx:115:23)
+    at Array.map (<anonymous>)
+    at EventBanner (components/EventBanner.tsx:112:28)
+    at Home (app\page.tsx:17:7)
+  113 |                   <div key={unit.label} className="flex items-end gap-1">
+  114 |                     <div className="text-center">
+> 115 |                       <div
+      |                       ^
+  116 |                         className="tabular-nums leading-none text-[#1e2d5e]"
+  117 |                         style={{
+  118 |                           fontFamily: "var(--font-bebas), Impact, sans-serif",
+[browser] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. (<anonymous>)
+Failed to load YouTube feed: TypeError: fetch failed
+    at async resolveChannelId (lib\youtube.ts:66:20)
+    at async fetchYoutubeFeed (lib\youtube.ts:114:21)
+    at async GET (app\api\youtube\route.ts:12:21)
+  64 |   }
+  65 |
+> 66 |   const response = await fetch(channelUrl, {
+     |                    ^
+  67 |     headers: {
+  68 |       "user-agent":
+  69 |         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) ... {
+  [cause]: Error: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+      at ignore-listed frames {
+    code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'
+  }
+}
+Failed to load YouTube feed: TypeError: fetch failed
+    at async resolveChannelId (lib\youtube.ts:66:20)
+    at async fetchYoutubeFeed (lib\youtube.ts:114:21)
+    at async GET (app\api\youtube\route.ts:12:21)
+  64 |   }
+  65 |
+> 66 |   const response = await fetch(channelUrl, {
+     |                    ^
+  67 |     headers: {
+  68 |       "user-agent":
+  69 |         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) ... {
+  [cause]: Error: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+      at ignore-listed frames {
+    code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'
+  }
+}
+[browser] Image with src "/nextupmagcover.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⨯ ReferenceError: label is not defined
+    at ScrollIndicator (components\scroll-indicator.tsx:38:8)
+  36 |       aria-label="Scroll to learn more"
+  37 |     >
+> 38 |       {label ? (
+     |        ^
+  39 |         <span className="section-eyebrow text-[0.65rem] text-white/42 transition-colors gr...
+  40 |           {label}
+  41 |         </span> {
+  digest: '183882464'
+}
+[browser] Uncaught ReferenceError: label is not defined
+    at ScrollIndicator (components/scroll-indicator.tsx:38:8)
+    at HeroSection (components/HeroSection.tsx:395:7)
+    at Home (app\page.tsx:17:7)
+  36 |       aria-label="Scroll to learn more"
+  37 |     >
+> 38 |       {label ? (
+     |        ^
+  39 |         <span className="section-eyebrow text-[0.65rem] text-white/42 transition-colors gr...
+  40 |           {label}
+  41 |         </span>
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[browser] Image with src "/logo.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+Failed to load Instagram reels: Error: Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID.
+    at fetchInstagramReels (lib\instagram.ts:63:11)
+    at GET (app\api\instagram\reels\route.ts:13:46)
+  61 |
+  62 |   if (!accessToken || !businessAccountId) {
+> 63 |     throw new Error(
+     |           ^
+  64 |       "Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCO...
+  65 |     )
+  66 |   }
+Failed to load Instagram reels: Error: Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID.
+    at fetchInstagramReels (lib\instagram.ts:63:11)
+    at GET (app\api\instagram\reels\route.ts:13:46)
+  61 |
+  62 |   if (!accessToken || !businessAccountId) {
+> 63 |     throw new Error(
+     |           ^
+  64 |       "Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCO...
+  65 |     )
+  66 |   }
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="page.tsx">
+      <SegmentTrieNode>
+      <Home>
+        <main className="bg-white">
+          <Navbar>
+          <HeroSection>
+          ...
+            <EventBanner>
+              <section id="events" ref={{current:null}} className="relative o...">
+                <div>
+                <div className="mx-auto ma...">
+                  <motion.div>
+                  <div className="grid items...">
+                    <div>
+                      <motion.div>
+                      <motion.h2>
+                      <motion.p>
+                      <motion.div>
+                      <motion.div initial={{opacity:0,y:20}} animate={{}} transition={{duration:0.7, ...}} ...>
+                        <div className="mb-10" style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                          <div>
+                          <div className="flex gap-4...">
+                            <div>
+                            <div>
+                            <div>
+                            <div className="flex items...">
+                              <div className="text-center">
+                                <div
+                                  className="tabular-nums leading-none text-[#1e2d5e]"
+                                  style={{fontFamily:"var(--font...",fontSize:"clamp(2.6r..."}}
+                                >
++                                 06
+-                                 11
+                                ...
+                      ...
+                    ...
+                ...
+          ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at <unknown> (components/EventBanner.tsx:115:23)
+    at Array.map (<anonymous>)
+    at EventBanner (components/EventBanner.tsx:112:28)
+    at Home (app\page.tsx:19:9)
+  113 |                   <div key={unit.label} className="flex items-end gap-1">
+  114 |                     <div className="text-center">
+> 115 |                       <div
+      |                       ^
+  116 |                         className="tabular-nums leading-none text-[#1e2d5e]"
+  117 |                         style={{
+  118 |                           fontFamily: "var(--font-bebas), Impact, sans-serif",
+[browser] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. (<anonymous>)
+Failed to load YouTube feed: TypeError: fetch failed
+    at async resolveChannelId (lib\youtube.ts:66:20)
+    at async fetchYoutubeFeed (lib\youtube.ts:114:21)
+    at async GET (app\api\youtube\route.ts:12:21)
+  64 |   }
+  65 |
+> 66 |   const response = await fetch(channelUrl, {
+     |                    ^
+  67 |     headers: {
+  68 |       "user-agent":
+  69 |         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) ... {
+  [cause]: Error: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+      at ignore-listed frames {
+    code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'
+  }
+}
+Failed to load YouTube feed: TypeError: fetch failed
+    at async resolveChannelId (lib\youtube.ts:66:20)
+    at async fetchYoutubeFeed (lib\youtube.ts:114:21)
+    at async GET (app\api\youtube\route.ts:12:21)
+  64 |   }
+  65 |
+> 66 |   const response = await fetch(channelUrl, {
+     |                    ^
+  67 |     headers: {
+  68 |       "user-agent":
+  69 |         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) ... {
+  [cause]: Error: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+      at ignore-listed frames {
+    code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'
+  }
+}
+[browser] Image with src "/nextupmagcover.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+Failed to load Instagram reels: Error: Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID.
+    at fetchInstagramReels (lib\instagram.ts:63:11)
+    at GET (app\api\instagram\reels\route.ts:13:46)
+  61 |
+  62 |   if (!accessToken || !businessAccountId) {
+> 63 |     throw new Error(
+     |           ^
+  64 |       "Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCO...
+  65 |     )
+  66 |   }
+Failed to load Instagram reels: Error: Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID.
+    at fetchInstagramReels (lib\instagram.ts:63:11)
+    at GET (app\api\instagram\reels\route.ts:13:46)
+  61 |
+  62 |   if (!accessToken || !businessAccountId) {
+> 63 |     throw new Error(
+     |           ^
+  64 |       "Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCO...
+  65 |     )
+  66 |   }
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="page.tsx">
+      <SegmentTrieNode>
+      <Home>
+        <main className="bg-white">
+          <Navbar>
+          <HeroSection>
+          ...
+            <EventBanner>
+              <section id="events" ref={{current:null}} className="relative o...">
+                <div>
+                <div className="mx-auto ma...">
+                  <motion.div>
+                  <div className="grid items...">
+                    <div>
+                      <motion.div>
+                      <motion.h2>
+                      <motion.p>
+                      <motion.div>
+                      <motion.div initial={{opacity:0,y:20}} animate={{}} transition={{duration:0.7, ...}} ...>
+                        <div className="mb-10" style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                          <div>
+                          <div className="flex gap-4...">
+                            <div>
+                            <div>
+                            <div>
+                            <div className="flex items...">
+                              <div className="text-center">
+                                <div
+                                  className="tabular-nums leading-none text-[#1e2d5e]"
+                                  style={{fontFamily:"var(--font...",fontSize:"clamp(2.6r..."}}
+                                >
++                                 55
+-                                 59
+                                ...
+                      ...
+                    ...
+                ...
+          ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at <unknown> (components/EventBanner.tsx:115:23)
+    at Array.map (<anonymous>)
+    at EventBanner (components/EventBanner.tsx:112:28)
+    at Home (app\page.tsx:19:9)
+  113 |                   <div key={unit.label} className="flex items-end gap-1">
+  114 |                     <div className="text-center">
+> 115 |                       <div
+      |                       ^
+  116 |                         className="tabular-nums leading-none text-[#1e2d5e]"
+  117 |                         style={{
+  118 |                           fontFamily: "var(--font-bebas), Impact, sans-serif",
+[browser] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. (<anonymous>)
+Failed to load YouTube feed: TypeError: fetch failed
+    at async resolveChannelId (lib\youtube.ts:66:20)
+    at async fetchYoutubeFeed (lib\youtube.ts:114:21)
+    at async GET (app\api\youtube\route.ts:12:21)
+  64 |   }
+  65 |
+> 66 |   const response = await fetch(channelUrl, {
+     |                    ^
+  67 |     headers: {
+  68 |       "user-agent":
+  69 |         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) ... {
+  [cause]: Error: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+      at ignore-listed frames {
+    code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'
+  }
+}
+Failed to load YouTube feed: TypeError: fetch failed
+    at async resolveChannelId (lib\youtube.ts:66:20)
+    at async fetchYoutubeFeed (lib\youtube.ts:114:21)
+    at async GET (app\api\youtube\route.ts:12:21)
+  64 |   }
+  65 |
+> 66 |   const response = await fetch(channelUrl, {
+     |                    ^
+  67 |     headers: {
+  68 |       "user-agent":
+  69 |         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) ... {
+  [cause]: Error: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+      at ignore-listed frames {
+    code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'
+  }
+}
+[browser] Image with src "/nextupmagcover.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
