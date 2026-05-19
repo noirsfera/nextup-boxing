@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
-import { Menu, X } from "lucide-react"
+import { Menu, X, User } from "lucide-react"
 
 const navLinks = [
   { label: "Home", href: "#hero" },
@@ -76,10 +76,10 @@ export function Navbar() {
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className={`relative flex transition-all duration-500 ${scrolled ? "h-20 flex-row items-center justify-between" : "flex-col items-center pt-8 pb-6"}`}>
+        <motion.div className="relative flex h-20 flex-row items-center justify-between transition-all duration-500">
           
           {/* Logo */}
-          <div className={`transition-all duration-500 z-10 ${scrolled ? "flex-shrink-0" : "w-full flex justify-center mb-6"}`}>
+          <div className="z-10 flex-shrink-0 transition-all duration-500">
             <a href="#hero" className="group flex items-center">
               <Image
                 src="/logo.png"
@@ -113,16 +113,13 @@ export function Navbar() {
           </div>
 
           {/* Right Actions */}
-          <div className={`flex items-center gap-3 z-10 ${scrolled ? "" : "absolute right-0 top-8"}`}>
+          <div className="z-10 flex flex-shrink-0 items-center gap-3">
             <a
-              href="#livestream"
-              className={`editorial-button hidden items-center gap-2 rounded-full px-6 py-2.5 transition-all duration-300 hover:-translate-y-0.5 sm:inline-flex ${ctaClass}`}
+              href="#signin"
+              className={`editorial-button hidden items-center gap-2 rounded-full bg-white px-5 py-2.5 text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 sm:inline-flex shadow-sm`}
             >
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-70" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
-              </span>
-              Watch Live
+              <User className="h-4 w-4" />
+              Sign in
             </a>
 
             <button
@@ -133,7 +130,7 @@ export function Navbar() {
               {mobileOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <AnimatePresence>

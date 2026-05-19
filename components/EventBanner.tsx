@@ -28,7 +28,7 @@ export function EventBanner() {
   ]
 
   return (
-    <section id="events" ref={ref} className="relative overflow-hidden bg-white py-20 sm:py-28">
+    <section id="event-banner" ref={ref} className="relative overflow-hidden bg-white py-20 sm:py-28">
       <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-[#b8962e]/30 to-transparent" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

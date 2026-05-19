@@ -25,15 +25,15 @@ export function HeroSection() {
     offset: ["start end", "end start"],
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], [80, -80])
-  const opacity = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0, 1, 1, 0.35])
-  const scale = useTransform(scrollYProgress, [0, 0.3], [1.08, 1])
+  const y = useTransform(scrollYProgress, [0, 1], [40, -40])
+  const opacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 1, 0.6])
+  const scale = useTransform(scrollYProgress, [0, 0.3], [1.06, 1])
 
   return (
     <section
       ref={ref}
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0d1124]"
+      className="relative flex min-h-[700px] h-[85vh] flex-col overflow-hidden bg-[#0d1124]"
     >
       <motion.div className="absolute inset-0" style={{ scale }}>
         <div className="absolute inset-0">
@@ -45,7 +45,7 @@ export function HeroSection() {
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0d1124]/70 via-[#0d1124]/30 to-[#0d1124]/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0d1124]/55 via-[#0d1124]/20 to-[#0d1124]/85" />
         </div>
       </motion.div>
 
@@ -59,7 +59,7 @@ export function HeroSection() {
         }}
       />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center px-4 pt-32 pb-48 sm:px-8 lg:px-16 text-center">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 pt-16 pb-3 text-center sm:px-8 lg:px-16">
         <motion.div 
           style={{ y, opacity }} 
           className="flex w-full max-w-5xl flex-col items-center"
@@ -75,10 +75,10 @@ export function HeroSection() {
           </div>
 
           <h1
-            className="mb-6 uppercase leading-[0.85] text-white drop-shadow-2xl"
+            className="mb-4 uppercase leading-[0.88] text-white drop-shadow-2xl"
             style={{
               fontFamily: "var(--font-bebas), Impact, sans-serif",
-              fontSize: "clamp(6rem, 15vw, 14rem)",
+              fontSize: "clamp(4.25rem, 11vw, 9.5rem)",
             }}
           >
             <span className="block text-white" style={{ textShadow: "0 10px 40px rgba(0,0,0,0.5)" }}>ADEBAYO</span>
@@ -86,43 +86,33 @@ export function HeroSection() {
             <span className="block text-white" style={{ textShadow: "0 10px 40px rgba(0,0,0,0.5)" }}>COLE</span>
           </h1>
 
-          <div className="mt-4 mb-10 flex flex-col items-center justify-center gap-3">
-            <span className="text-3xl font-bold uppercase tracking-widest text-white drop-shadow-lg" style={{ fontFamily: "var(--font-bebas)" }}>
-              JUNE 6 <span className="mx-3 text-[#c5203a]">|</span> MADISON SQUARE GARDEN
+          <div className="mt-2 mb-5 flex flex-col items-center justify-center gap-3">
+            <span
+              className="text-xl font-bold uppercase tracking-widest text-white drop-shadow-lg sm:text-2xl lg:text-3xl"
+              style={{ fontFamily: "var(--font-bebas)" }}
+            >
+              JUNE 6 <span className="mx-2 text-[#c5203a] sm:mx-3">|</span> MADISON SQUARE GARDEN
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-6 mt-4">
+          <div className="mt-2 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <a
               href="#events"
-              className="editorial-button inline-flex items-center justify-center gap-3 bg-[#1e9b46] px-10 py-5 text-white transition-all duration-300 hover:bg-[#157a35] text-lg font-bold shadow-[0_10px_30px_rgba(30,155,70,0.3)] hover:-translate-y-1"
+              className="editorial-button inline-flex items-center justify-center gap-3 bg-[#1e9b46] px-8 py-4 text-base font-bold text-white transition-all duration-300 hover:bg-[#157a35] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(30,155,70,0.3)] sm:px-10 sm:py-5 sm:text-lg"
             >
               GET TICKETS
             </a>
             <a
               href="#livestream"
-              className="editorial-button inline-flex items-center justify-center gap-3 bg-white px-10 py-5 text-[#0d1124] transition-all duration-300 hover:bg-gray-100 text-lg font-bold shadow-[0_10px_30px_rgba(255,255,255,0.2)] hover:-translate-y-1"
+              className="editorial-button inline-flex items-center justify-center gap-3 bg-white px-8 py-4 text-base font-bold text-[#0d1124] transition-all duration-300 hover:bg-gray-100 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(255,255,255,0.2)] sm:px-10 sm:py-5 sm:text-lg"
             >
               WATCH ON NEXTUP
             </a>
           </div>
-
-          <div
-            className="mt-16 w-full max-w-lg"
-            onFocusCapture={() => setIsSignupFocused(true)}
-            onBlurCapture={(event) => {
-              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-                setIsSignupFocused(false)
-              }
-            }}
-          >
-            <EmailSignup variant="hero" />
-          </div>
-
         </motion.div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-[#b8962e]/20 bg-[#1e2d5e] shadow-[0_-10px_30px_rgba(0,0,0,0.16)]">
+      <div className="relative z-20 shrink-0 border-t border-[#b8962e]/20 bg-[#1e2d5e] shadow-[0_-10px_30px_rgba(0,0,0,0.16)]">
         <div className="flex h-auto flex-col items-stretch md:h-[92px] md:flex-row">
           <div className="relative shrink-0 overflow-hidden bg-[#c5203a] px-6 py-4 text-white md:w-[220px] md:py-0">
             <div className="relative z-10 flex h-full flex-col justify-center">

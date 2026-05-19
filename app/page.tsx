@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar"
 import { HeroSection } from "@/components/HeroSection"
 import { EventsSection } from "@/components/EventsSection"
+import { ChampionsSection } from "@/components/ChampionsSection"
 import { EventBanner } from "@/components/EventBanner"
 import { LiveStreamPromo } from "@/components/LiveStreamPromo"
 import { YoutubeSection } from "@/components/YoutubeSection"
@@ -17,6 +18,7 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <EventsSection />
+      <ChampionsSection />
       <ScrollReveal>
         <EventBanner />
       </ScrollReveal>
