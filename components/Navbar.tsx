@@ -96,7 +96,7 @@ export function Navbar() {
         <motion.div 
           layout
           className={`relative w-full transition-all duration-500 ease-in-out ${
-            scrolled ? "h-16 md:h-20" : "h-28 md:h-36"
+            scrolled ? "h-14 md:h-16" : "h-20 md:h-24"
           }`}
         >
           {/* Logo (centered top, or left middle) */}
@@ -106,7 +106,7 @@ export function Navbar() {
             className={`absolute transition-all duration-500 ease-in-out z-20 ${
               scrolled
                 ? "left-0 top-1/2 -translate-y-1/2"
-                : "left-1/2 -translate-x-1/2 top-4"
+                : "left-1/2 -translate-x-1/2 top-2"
             }`}
           >
             <Link href="/#hero" className="group flex items-center">
@@ -117,8 +117,8 @@ export function Navbar() {
                 height={80}
                 className={`h-auto transition-all duration-500 ease-in-out group-hover:scale-[1.03] ${
                   scrolled 
-                    ? "w-[95px] sm:w-[110px]" 
-                    : "w-[130px] sm:w-[160px]"
+                    ? "w-[95px] sm:w-[100px]" 
+                    : "w-[115px] sm:w-[135px]"
                 }`}
                 style={{ filter: "brightness(1) drop-shadow(0 4px 6px rgba(0,0,0,0.3))" }}
                 priority
@@ -132,8 +132,8 @@ export function Navbar() {
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
             className={`hidden md:flex absolute items-center transition-all duration-500 ease-in-out z-10 ${
               scrolled
-                ? "left-[140px] lg:left-[170px] top-1/2 -translate-y-1/2 gap-4 lg:gap-8"
-                : "left-1/2 -translate-x-1/2 bottom-3 gap-8"
+                ? "left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 gap-4 lg:gap-8"
+                : "left-1/2 -translate-x-1/2 bottom-1.5 gap-8"
             }`}
           >
             {navLinks.map((link) => (
@@ -160,7 +160,7 @@ export function Navbar() {
             className={`absolute flex items-center gap-3 z-20 ${
               scrolled
                 ? "right-0 top-1/2 -translate-y-1/2"
-                : "right-0 top-4 sm:top-6"
+                : "right-0 top-2 sm:top-2.5"
             }`}
           >
             <a href="#signin" className={signInClass}>

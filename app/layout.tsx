@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Sora, Geist_Mono, Bebas_Neue } from 'next/font/google'
+import { Sora, Geist_Mono, Bebas_Neue, Montserrat, Oswald } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
@@ -18,6 +18,20 @@ const bebasNeue = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-bebas",
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  weight: ["800", "900"],
+  display: "swap",
+});
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  variable: "--font-oswald",
+  weight: ["600", "700"],
   display: "swap",
 });
 
@@ -49,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${sora.variable} ${geistMono.variable} ${bebasNeue.variable} bg-white`}>
+    <html lang="en" className={`${sora.variable} ${geistMono.variable} ${bebasNeue.variable} ${montserrat.variable} ${oswald.variable} bg-white`}>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

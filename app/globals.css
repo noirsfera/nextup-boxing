@@ -80,9 +80,9 @@
 }
 
 @theme inline {
-  --font-sans:    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans:    "Helvetica Neue", Helvetica, "Helvetica Now", Arial, sans-serif;
   --font-mono:    'Geist Mono', monospace;
-  --font-display: var(--font-bebas), 'Impact', 'Arial Narrow Bold', sans-serif;
+  --font-display: var(--font-bebas), var(--font-oswald), var(--font-montserrat), 'Impact', 'Arial Narrow Bold', sans-serif;
 
   --color-background:  var(--background);
   --color-foreground:  var(--foreground);
@@ -137,10 +137,16 @@
   body {
     @apply bg-white text-foreground;
     font-feature-settings: "kern" 1, "liga" 1;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
   }
   html {
     scroll-behavior: smooth;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    font-weight: 800;
   }
 }
 

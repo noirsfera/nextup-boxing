@@ -19,23 +19,23 @@ export default function Home() {
       <HeroSection />
       <EventsSection />
       <ChampionsSection />
-      <LiveStreamPromo />
       <ScrollReveal delay={0.04}>
+        <SocialWall />
+      </ScrollReveal>
+      <LiveStreamPromo />
+      <ScrollReveal delay={0.06}>
         <YoutubeSection />
       </ScrollReveal>
       <ScrollReveal delay={0.08}>
         <MagazineSection />
       </ScrollReveal>
       <ScrollReveal delay={0.1}>
-        <SocialWall />
-      </ScrollReveal>
-      <ScrollReveal delay={0.12}>
         <Rankings />
       </ScrollReveal>
-      <ScrollReveal delay={0.14}>
+      <ScrollReveal delay={0.12}>
         <SponsorsStrip />
       </ScrollReveal>
-      <ScrollReveal delay={0.16}>
+      <ScrollReveal delay={0.14}>
         <Footer />
       </ScrollReveal>
     </main>
