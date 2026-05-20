@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Trophy, ChevronRight, ChevronLeft, Users } from "lucide-react"
 
 const champions = [
@@ -158,10 +159,14 @@ export function ChampionsSection() {
               <Users className="h-7 w-7" />
               <span className="text-4xl font-bold uppercase tracking-wider" style={{ fontFamily: "var(--font-bebas), sans-serif" }}>FIGHTERS</span>
             </div>
-            <button className="flex items-center gap-2 bg-[#0a0a0a] px-6 py-2.5 text-[13px] font-bold text-white transition-colors hover:bg-[#c5203a] uppercase tracking-wider shadow-md">
+            <Link 
+              id="view-all-fighters-btn"
+              href="/boxers" 
+              className="flex items-center gap-2 bg-[#0a0a0a] px-6 py-2.5 text-[13px] font-bold text-white transition-colors hover:bg-[#c5203a] uppercase tracking-wider shadow-md"
+            >
               <ChevronRight className="h-4 w-4" />
               VIEW ALL
-            </button>
+            </Link>
           </div>
 
           <div className="relative z-10 flex w-full md:w-auto items-end justify-between md:justify-end gap-2 md:gap-8 overflow-x-auto pb-1 scrollbar-hide">
