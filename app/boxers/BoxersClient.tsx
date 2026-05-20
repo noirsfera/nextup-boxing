@@ -359,92 +359,193 @@ export function BoxersClient() {
     })
   }, [searchTerm, selectedWeight, selectedDivision])
 
+  // Filter champions dynamically (active champions, filtering out former or silver titles)
+  const champions = useMemo(() => {
+    return boxersData.filter((fighter) => 
+      fighter.titles.length > 0 && 
+      !fighter.titles.some((t) => t.toLowerCase().includes("former") || t.toLowerCase().includes("silver"))
+    )
+  }, [])
+
   return (
     <main className="relative min-h-screen bg-white text-[#0d1124] overflow-x-hidden">
       <Navbar />
 
-      {/* Header Container */}
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-28 md:pt-44 pb-12 z-10">
-        
-        {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#b8962e] mb-6">
-          <Link href="/" className="hover:text-[#1e2d5e] transition-colors">Home</Link>
-          <ChevronRight className="h-3 w-3 text-gray-400" />
-          <span className="text-gray-400">Boxers Directory</span>
-        </div>
-
-        {/* Title Section matching matchroomboxing.com layout */}
-        <div className="flex flex-col mb-12 border-b border-gray-100 pb-8">
-          <span className="section-eyebrow text-[#c5203a] mb-2">Stable Profiles</span>
-          <h1 
-            className="text-6xl md:text-8xl font-black uppercase tracking-tight text-[#0d1124] mb-2 leading-none"
-            style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}
-          >
-            THE <span className="text-transparent" style={{ WebkitTextStroke: "2px #1e2d5e" }}>FIGHTERS</span>
-          </h1>
-          <p className="max-w-2xl text-gray-500 text-sm md:text-base leading-relaxed">
-            The official roster directory of NextUp Boxing stable champions and top-tier contenders. Browse records, divisions, and complete career history.
-          </p>
-        </div>
-
-        {/* Search & Filter Bar - White Minimalist Style */}
-        <div className="bg-[#f9fafb] border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm mb-12 flex flex-col gap-6">
+      {/* 1. WORLD CHAMPIONS SECTION */}
+      <section className="world-champions pt-28 md:pt-36">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
-          {/* Top row: Search input & Division picker */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Breadcrumbs aligned with the dark theme */}
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#b8962e] mb-8">
+            <Link href="/" className="hover:text-white/80 transition-colors">Home</Link>
+            <ChevronRight className="h-3 w-3 text-gray-500" />
+            <span className="text-gray-500">Boxers Directory</span>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
             
-            {/* Search */}
-            <div className="relative md:col-span-2">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                id="boxers-search-input"
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search boxers..."
-                className="w-full pl-12 pr-10 py-3 bg-white border border-gray-200 rounded-xl text-sm font-semibold tracking-wide text-black placeholder-gray-400 focus:outline-none focus:border-[#1e2d5e] focus:ring-1 focus:ring-[#1e2d5e] transition-all"
-              />
-              {searchTerm && (
-                <button 
-                  onClick={() => setSearchTerm("")}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-black rounded-full bg-gray-100 transition-colors"
-                >
-                  <X className="h-3 w-3" />
-                </button>
-              )}
+            {/* Vertical outline title rotated on desktop */}
+            <div className="vertical-title-container shrink-0 justify-start lg:justify-center py-4">
+              <h2 className="text-5xl lg:text-7xl font-black uppercase tracking-tight text-white flex gap-4 lg:gap-0 lg:flex-col leading-none">
+                <span>WORLD</span>
+                <span className="text-outline-white-heavy">CHAMPIONS</span>
+              </h2>
             </div>
 
-            {/* Division Filter */}
-            <div className="flex bg-white border border-gray-200 rounded-xl p-1 justify-between items-center">
-              {divisions.map((div) => (
-                <button
-                  key={div}
-                  onClick={() => setSelectedDivision(div)}
-                  className={`flex-1 text-center py-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider rounded-lg transition-all ${
-                    selectedDivision === div
-                      ? "bg-[#1e2d5e] text-white shadow-sm"
-                      : "text-gray-500 hover:text-black"
-                  }`}
-                >
-                  {div}
-                </button>
-              ))}
+            {/* Champions Grid */}
+            <div className="flex-grow">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {champions.map((fighter) => (
+                  <div 
+                    key={`champ-${fighter.id}`} 
+                    className="boxer-card-mr group"
+                    onClick={() => setActiveFighter(fighter)}
+                  >
+                    {/* Image wrap */}
+                    <div className="image-wrap">
+                      <Image
+                        src={fighter.image}
+                        alt={`${fighter.firstName} ${fighter.lastName}`}
+                        fill
+                        className="object-cover object-top"
+                        sizes="(max-w-768px) 100vw, (max-w-1200px) 50vw, 33vw"
+                        priority
+                      />
+                    </div>
+                    {/* Gradient Overlay */}
+                    <div className="gradient-overlay" />
+                    
+                    {/* Default card text */}
+                    <div className="card-text">
+                      <h2>
+                        {fighter.firstName}
+                        <br />
+                        {fighter.lastName}
+                      </h2>
+                      <p className="weight-cat">{fighter.weightClass}</p>
+                    </div>
+
+                    {/* Hover Card Overlay */}
+                    <div className="hover-overlay">
+                      <p className="trophy-text">
+                        {fighter.titles[0]}
+                      </p>
+                      <button>
+                        <span>See Profile</span>
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
           </div>
+        </div>
+      </section>
 
-          {/* Bottom row: Weight class filters */}
-          <div className="flex flex-col gap-3">
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 flex items-center gap-1.5">
+      {/* 2. MIDDLE BANNER SECTION */}
+      <section className="hero-new-banner">
+        {/* Dark theme background image */}
+        <div className="banner-bg-image">
+          <Image
+            src="https://images.pexels.com/photos/4753996/pexels-photo-4753996.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            alt="Extraordinary Talent"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+        <div className="banner-overlay" />
+        <div className="hero-new-content">
+          <span className="preheading">Ordinary People.</span>
+          <h1 className="heading">Extraordinary Talent</h1>
+        </div>
+      </section>
+
+      {/* 3. ALL BOXERS SECTION */}
+      <section className="all-boxers">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          
+          {/* Header block with search & filter bar */}
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 pb-6 border-b border-gray-200">
+            <div>
+              <h3 className="text-4xl font-black uppercase tracking-tight text-[#0d1124] leading-none mb-2">
+                All Boxers
+              </h3>
+              <p className="text-gray-500 text-xs sm:text-sm font-semibold uppercase tracking-wider">
+                Roster Stable: <span className="text-[#c5203a] font-bold">{filteredBoxers.length}</span> fighters listed
+              </p>
+            </div>
+            
+            {/* Filters Row */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full lg:w-auto">
+              
+              {/* Search Box */}
+              <div className="relative min-w-[240px]">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <input
+                  id="boxers-search-input"
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Search fighters..."
+                  className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-lg text-xs font-bold tracking-wide text-black placeholder-gray-400 focus:outline-none focus:border-[#1e2d5e] focus:ring-1 focus:ring-[#1e2d5e] transition-all"
+                />
+                {searchTerm && (
+                  <button 
+                    onClick={() => setSearchTerm("")}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-0.5 text-gray-400 hover:text-black rounded-full bg-gray-100 transition-colors"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                )}
+              </div>
+
+              {/* Division selector */}
+              <div className="flex bg-white border border-gray-200 rounded-lg p-0.5 max-w-xs">
+                {divisions.map((div) => (
+                  <button
+                    key={div}
+                    onClick={() => setSelectedDivision(div)}
+                    className={`px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider rounded transition-all ${
+                      selectedDivision === div
+                        ? "bg-[#1e2d5e] text-white shadow-sm"
+                        : "text-gray-500 hover:text-black"
+                    }`}
+                  >
+                    {div}
+                  </button>
+                ))}
+              </div>
+
+              {/* Clear filters button */}
+              {(searchTerm || selectedWeight !== "ALL" || selectedDivision !== "ALL") && (
+                <button
+                  onClick={() => {
+                    setSearchTerm("")
+                    setSelectedWeight("ALL")
+                    setSelectedDivision("ALL")
+                  }}
+                  className="text-[10px] font-black tracking-wider text-[#c5203a] uppercase hover:underline py-2"
+                >
+                  Clear Filters
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Weight class quick tags */}
+          <div className="flex flex-col gap-2.5 mb-8">
+            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-500 flex items-center gap-1.5">
               <Scale className="h-3.5 w-3.5 text-[#b8962e]" />
               Filter by Weight Class
             </span>
-            <div className="flex flex-wrap gap-2 overflow-x-auto pb-1 scrollbar-hide">
+            <div className="flex flex-wrap gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
               {weightClasses.map((weight) => (
                 <button
                   key={weight}
                   onClick={() => setSelectedWeight(weight)}
-                  className={`px-4 py-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest border rounded-full transition-all shrink-0 ${
+                  className={`px-3 py-1.5 text-[9px] font-bold uppercase tracking-widest border rounded transition-all shrink-0 ${
                     selectedWeight === weight
                       ? "bg-[#b8962e] text-[#0d1124] border-[#b8962e] shadow-sm"
                       : "bg-white border-gray-200 text-gray-600 hover:border-gray-300 hover:text-black"
@@ -456,114 +557,58 @@ export function BoxersClient() {
             </div>
           </div>
 
-        </div>
-
-        {/* Results Counter */}
-        <div className="flex justify-between items-center mb-8">
-          <span className="text-xs font-semibold tracking-wider text-gray-500 uppercase">
-            Roster stable: <span className="text-black font-bold">{filteredBoxers.length}</span> boxers
-          </span>
-          { (searchTerm || selectedWeight !== "ALL" || selectedDivision !== "ALL") && (
-            <button
-              onClick={() => {
-                setSearchTerm("")
-                setSelectedWeight("ALL")
-                setSelectedDivision("ALL")
-              }}
-              className="text-xs font-bold tracking-wider text-[#c5203a] uppercase hover:underline"
-            >
-              Clear Filters
-            </button>
-          )}
-        </div>
-
-        {/* Empty State */}
-        {filteredBoxers.length === 0 ? (
-          <div className="bg-[#f9fafb] border border-gray-200 rounded-2xl p-16 text-center shadow-inner">
-            <Trophy className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-xl font-bold uppercase mb-2 tracking-wider text-[#0d1124]">No Boxers Found</h3>
-            <p className="text-gray-500 max-w-md mx-auto text-sm">
-              We couldn't find any fighters matching your search parameters. Try expanding your weight class or search keyword filters.
-            </p>
-          </div>
-        ) : (
-          /* Fighters Grid - Simulating matchroomboxing.com layout exactly */
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {filteredBoxers.map((fighter) => (
-              <motion.div
-                key={fighter.id}
-                layout
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="group flex flex-col bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-[#1e2d5e]/40 hover:shadow-2xl transition-all duration-300"
-              >
-                {/* Fighter Image Container */}
+          {/* Grid of Boxer Cards */}
+          {filteredBoxers.length === 0 ? (
+            <div className="bg-white border border-gray-200 rounded-xl p-16 text-center shadow-sm">
+              <Trophy className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-lg font-bold uppercase mb-2 tracking-wider text-[#0d1124]">No Boxers Found</h3>
+              <p className="text-gray-500 max-w-md mx-auto text-xs">
+                We couldn't find any fighters matching your search parameters. Try expanding your weight class or search keyword filters.
+              </p>
+            </div>
+          ) : (
+            <div className="boxer-grid-layout">
+              {filteredBoxers.map((fighter) => (
                 <div 
+                  key={`all-${fighter.id}`} 
+                  className="boxer-card-mr group"
                   onClick={() => setActiveFighter(fighter)}
-                  className="relative h-[360px] w-full bg-[#f3f4f6] overflow-hidden cursor-pointer"
                 >
-                  <Image
-                    src={fighter.image}
-                    alt={`${fighter.firstName} ${fighter.lastName}`}
-                    fill
-                    className="object-cover object-top hover:scale-[1.04] transition-all duration-500"
-                    sizes="(max-w-768px) 100vw, (max-w-1200px) 50vw, 25vw"
-                    priority={fighter.id <= 4}
-                  />
+                  {/* Image wrap */}
+                  <div className="image-wrap">
+                    <Image
+                      src={fighter.image}
+                      alt={`${fighter.firstName} ${fighter.lastName}`}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-w-768px) 100vw, (max-w-1200px) 50vw, 33vw"
+                    />
+                  </div>
+                  {/* Gradient Overlay */}
+                  <div className="gradient-overlay" />
                   
-                  {/* Division / Weight Badges */}
-                  <div className="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
-                    <span className="bg-[#1e2d5e] text-white text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded shadow-sm">
-                      {fighter.weightClass}
-                    </span>
-                    {fighter.titles.length > 0 && (
-                      <span className="bg-[#b8962e] text-[#0d1124] text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded flex items-center gap-1 shadow-sm">
-                        <Trophy className="h-2.5 w-2.5 text-[#c5203a]" />
-                        CHAMPION
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Stats Summary Panel */}
-                <div className="p-5 flex flex-col justify-between flex-1 bg-white">
-                  <div>
-                    <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#c5203a] block mb-1">
-                      {fighter.weightClass}
-                    </span>
-                    <h3 
-                      className="text-2xl font-black uppercase tracking-tight text-[#0d1124] leading-none mb-1.5"
-                      style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}
-                    >
-                      {fighter.firstName} <span className="text-[#1e2d5e]">{fighter.lastName}</span>
-                    </h3>
-                    {fighter.nickname && (
-                      <span className="text-[10px] font-medium text-gray-500 italic block mb-3">
-                        "{fighter.nickname}"
-                      </span>
-                    )}
+                  {/* Card text */}
+                  <div className="card-text">
+                    <h2>
+                      {fighter.firstName}
+                      <br />
+                      {fighter.lastName}
+                    </h2>
                   </div>
 
-                  <div className="flex items-center justify-between mt-2 pt-3 border-t border-gray-100">
-                    <span className="text-xs font-semibold text-gray-500">
-                      Record: <strong className="text-black font-extrabold">{fighter.record.win}-{fighter.record.loss}-{fighter.record.draw}</strong>
-                    </span>
-                    <button
-                      onClick={() => setActiveFighter(fighter)}
-                      className="text-[10px] font-black uppercase tracking-wider text-[#b8962e] hover:text-[#1e2d5e] transition-colors flex items-center gap-0.5"
-                    >
-                      VIEW PROFILE
-                      <ChevronRight className="h-3 w-3" />
+                  {/* Hover Overlay */}
+                  <div className="hover-overlay">
+                    <button>
+                      <span>See Profile</span>
                     </button>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
 
-      </div>
+        </div>
+      </section>
 
       {/* Dynamic Profile Side Drawer */}
       <AnimatePresence>

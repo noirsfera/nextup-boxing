@@ -479,3 +479,265 @@
     animation: none;
   }
 }
+
+/* ═══════════════════════════════════════════════════════
+   MATCHROOM BOXING STYLE LAYOUT
+   ═══════════════════════════════════════════════════════ */
+
+/* Section Layouts */
+.world-champions {
+  background-color: #05070f;
+  color: #ffffff;
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.all-boxers {
+  background-color: #f9fafb;
+  color: #0d1124;
+  padding: 5rem 0;
+}
+
+/* Vertical Title rotated for World Champions */
+.vertical-title-container {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .vertical-title-container {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+  }
+}
+
+.text-outline-white-heavy {
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.18);
+  color: transparent;
+}
+
+.text-outline-navy-heavy {
+  -webkit-text-stroke: 2px var(--navy);
+  color: transparent;
+}
+
+/* Boxer Cards */
+.boxer-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .boxer-grid-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .boxer-grid-layout {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.boxer-card-mr {
+  position: relative;
+  aspect-ratio: 16/10;
+  background-color: #090d1a;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .boxer-card-mr {
+    aspect-ratio: 3/4;
+  }
+}
+
+.boxer-card-mr .image-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.boxer-card-mr img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.boxer-card-mr:hover img {
+  transform: scale(1.05);
+}
+
+.boxer-card-mr .gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 7, 15, 0.95) 0%, rgba(5, 7, 15, 0.45) 50%, transparent 100%);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.boxer-card-mr .card-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.boxer-card-mr .card-text h2 {
+  font-size: 2.25rem;
+  line-height: 0.95;
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.boxer-card-mr .card-text .weight-cat {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--crimson);
+}
+
+/* Card Hover overlay (slides/fades in) */
+.boxer-card-mr .hover-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(197, 32, 58, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(15px);
+  z-index: 20;
+}
+
+.boxer-card-mr:hover .hover-overlay {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.boxer-card-mr .hover-overlay .trophy-text {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  max-width: 90%;
+}
+
+.boxer-card-mr .hover-overlay button {
+  background-color: #ffffff;
+  color: #0d1124;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.boxer-card-mr .hover-overlay button:hover {
+  background-color: #0d1124;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Hero New Banner Section */
+.hero-new-banner {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background-color: #05070f;
+}
+
+@media (min-width: 768px) {
+  .hero-new-banner {
+    height: 500px;
+  }
+}
+
+.hero-new-banner .banner-bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-new-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+
+.hero-new-banner .banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(5, 7, 15, 0.95) 0%, rgba(5, 7, 15, 0.4) 60%, transparent 100%);
+}
+
+.hero-new-content {
+  position: relative;
+  z-index: 10;
+  max-width: 80rem;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+.hero-new-content .preheading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--gold-light);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.hero-new-content .heading {
+  font-size: 3.5rem;
+  line-height: 0.95;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-family: var(--font-display);
+}
+
+@media (min-width: 768px) {
+  .hero-new-content .preheading {
+    font-size: 1.75rem;
+  }
+  .hero-new-content .heading {
+    font-size: 6rem;
+  }
+}
+

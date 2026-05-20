@@ -106,7 +106,7 @@ export function Navbar() {
             className={`absolute transition-all duration-500 ease-in-out z-20 ${
               scrolled
                 ? "left-0 top-1/2 -translate-y-1/2"
-                : "left-1/2 -translate-x-1/2 top-2"
+                : "left-1/2 -translate-x-1/2 top-0.5"
             }`}
           >
             <Link href="/#hero" className="group flex items-center">
@@ -117,8 +117,8 @@ export function Navbar() {
                 height={80}
                 className={`h-auto transition-all duration-500 ease-in-out group-hover:scale-[1.03] ${
                   scrolled 
-                    ? "w-[95px] sm:w-[100px]" 
-                    : "w-[115px] sm:w-[135px]"
+                    ? "w-[80px] sm:w-[90px]" 
+                    : "w-[100px] sm:w-[120px]"
                 }`}
                 style={{ filter: "brightness(1) drop-shadow(0 4px 6px rgba(0,0,0,0.3))" }}
                 priority
