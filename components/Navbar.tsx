@@ -126,11 +126,11 @@ export function Navbar() {
             </Link>
           </motion.div>
 
-          {/* Nav Links (hidden on mobile, centered bottom, or center-right middle) */}
+          {/* Nav Links (hidden on mobile/tablet, centered bottom, or center-right middle) */}
           <motion.div
             layout
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
-            className={`hidden md:flex absolute items-center transition-all duration-500 ease-in-out z-10 ${
+            className={`hidden lg:flex absolute items-center transition-all duration-500 ease-in-out z-10 ${
               scrolled
                 ? "left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 gap-4 lg:gap-8"
                 : "left-1/2 -translate-x-1/2 bottom-1.5 gap-8"
@@ -163,14 +163,14 @@ export function Navbar() {
                 : "right-0 top-2 sm:top-2.5"
             }`}
           >
-            <a href="#signin" className={signInClass}>
+            <a href="#signin" className={`${signInClass} hidden lg:inline-flex`}>
               <User className="h-4 w-4" />
               Sign in
             </a>
 
             <button
               onClick={() => setMobileOpen((open) => !open)}
-              className="rounded-full p-2 text-white/90 transition-colors duration-300 hover:text-white md:hidden drop-shadow-md"
+              className="rounded-full p-2 text-white/90 transition-colors duration-300 hover:text-white lg:hidden drop-shadow-md"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
@@ -186,7 +186,7 @@ export function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden border-t border-white/10 bg-[#0d1124]/98 md:hidden backdrop-blur-xl"
+            className="overflow-hidden border-t border-white/10 bg-[#0d1124]/98 lg:hidden backdrop-blur-xl"
           >
             <div className="space-y-1 px-4 py-4">
               {navLinks.map((link) => (

@@ -217,15 +217,15 @@ export function SocialWall() {
           </p>
         </motion.div>
 
-        <div className="grid auto-rows-[110px] gap-4 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 xl:auto-rows-[104px]">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5 xl:auto-rows-[104px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="group relative row-span-4 overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-[0_30px_80px_rgba(15,23,42,0.2)] md:col-span-2 xl:col-span-2 xl:row-span-4"
+            className="group relative overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-[0_30px_80px_rgba(15,23,42,0.2)] sm:col-span-2 xl:col-span-2 xl:row-span-4"
           >
-            <div className="relative h-full min-h-[440px] overflow-hidden">
+            <div className="relative h-full min-h-[320px] overflow-hidden sm:min-h-[440px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={featuredPost.mediaUrl}
@@ -253,28 +253,28 @@ export function SocialWall() {
 
           {topLeftPost && renderFeedTile(
             topLeftPost,
-            "row-span-2 md:row-span-2 xl:col-start-3 xl:row-start-1 xl:row-span-2",
+            "xl:col-start-3 xl:row-start-1 xl:row-span-2",
             "aspect-square",
             62
           )}
 
           {topCenterPost && renderFeedTile(
             topCenterPost,
-            "row-span-2 md:row-span-2 xl:col-start-4 xl:row-start-1 xl:row-span-2",
+            "xl:col-start-4 xl:row-start-1 xl:row-span-2",
             "aspect-square",
             56
           )}
 
           {topRightPost && renderFeedTile(
             topRightPost,
-            "row-span-2 md:row-span-2 xl:col-start-5 xl:row-start-1 xl:row-span-2",
+            "xl:col-start-5 xl:row-start-1 xl:row-span-2",
             "aspect-[4/5]",
             54
           )}
 
           {sidePost && renderFeedTile(
             sidePost,
-            "row-span-2 md:col-span-1 xl:col-start-3 xl:row-start-3 xl:row-span-2",
+            "xl:col-start-3 xl:row-start-3 xl:row-span-2",
             "aspect-[4/5]",
             52
           )}
@@ -329,7 +329,7 @@ export function SocialWall() {
 
           {tallPost && renderFeedTile(
             tallPost,
-            "row-span-3 md:col-span-2 lg:col-span-2 xl:col-start-5 xl:row-start-3 xl:col-span-1 xl:row-span-3",
+            "sm:col-span-2 xl:col-start-5 xl:row-start-3 xl:col-span-1 xl:row-span-3",
             "aspect-[4/7] h-full",
             70
           )}
@@ -339,7 +339,7 @@ export function SocialWall() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="rounded-[1.75rem] border border-slate-200/80 bg-white shadow-[0_24px_50px_rgba(15,23,42,0.08)] md:col-span-2 lg:col-span-2 xl:col-span-2 xl:row-span-2"
+            className="rounded-[1.75rem] border border-slate-200/80 bg-white shadow-[0_24px_50px_rgba(15,23,42,0.08)] sm:col-span-2 xl:col-span-2 xl:row-span-2"
           >
             <div className="flex h-full flex-col justify-between gap-6 p-6 sm:p-7">
               <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
@@ -390,7 +390,7 @@ export function SocialWall() {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               transition={{ type: "spring", stiffness: 350, damping: 25 }}
-              className="relative flex h-full max-h-[640px] w-full max-w-[850px] flex-col overflow-hidden rounded-3xl bg-white shadow-2xl md:flex-row"
+              className="relative flex h-full max-h-[92vh] w-full max-w-[850px] flex-col overflow-hidden rounded-3xl bg-white shadow-2xl md:flex-row"
               onClick={(e) => e.stopPropagation()}
             >
               
@@ -403,7 +403,7 @@ export function SocialWall() {
               </button>
 
               {/* Left Side: Video/Media Screen */}
-              <div className="relative flex-1 bg-black">
+              <div className="relative min-h-[260px] flex-1 bg-black md:min-h-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={selectedReel.mediaUrl}
@@ -443,8 +443,8 @@ export function SocialWall() {
               </div>
 
               {/* Right Side: Editorial Information & Comments */}
-              <div className="flex flex-col w-full md:w-[360px] bg-white p-6 justify-between border-l border-gray-100">
-                <div className="space-y-5 overflow-y-auto max-h-[440px] pr-1">
+              <div className="flex min-h-0 w-full flex-col justify-between border-l border-gray-100 bg-white p-6 md:w-[360px]">
+                <div className="max-h-none space-y-5 overflow-y-auto pr-1 md:max-h-[440px]">
                   
                   {/* User Profile Header */}
                   <div className="flex items-center justify-between border-b border-gray-100 pb-3">
