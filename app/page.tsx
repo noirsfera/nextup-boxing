@@ -25,9 +25,6 @@ export default function Home() {
       <ScrollReveal delay={0.08}>
         <MagazineSection />
       </ScrollReveal>
-      <ScrollReveal delay={0.1}>
-        <Rankings />
-      </ScrollReveal>
       <ScrollReveal delay={0.12}>
         <SponsorsStrip />
       </ScrollReveal>

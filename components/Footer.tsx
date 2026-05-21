@@ -3,10 +3,7 @@
 import Image from "next/image"
 
 const footerLinks = {
-  "The League": ["About Us", "Our Story", "Press", "Careers"],
-  Events: ["Upcoming Fights", "Past Events", "Fight Calendar", "Tickets"],
-  Streaming: ["Live PPV", "On Demand", "Subscriptions", "Apps"],
-  Support: ["Help Center", "Contact Us", "FAQs", "Terms"],
+  "The League": ["About Us", "Our Story", "Press",],
 }
 
 export function Footer() {
