@@ -30,12 +30,12 @@ export function MagazineSection() {
     <section
       id="magazine"
       ref={ref}
-      className="relative overflow-hidden bg-white px-4 py-20 text-[#0d1124] sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-[#0a0a0a] px-4 py-20 text-white sm:px-6 lg:px-8"
     >
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#c5203a]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(197,32,58,0.04),transparent_38%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(30,45,94,0.05),transparent_42%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(13,17,36,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(13,17,36,0.03)_1px,transparent_1px)] bg-[size:38px_38px] opacity-25" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(197,32,58,0.08),transparent_38%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(184,150,46,0.06),transparent_42%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:38px_38px] opacity-25" />
 
       <div className="relative mx-auto max-w-6xl">
         <motion.div
@@ -52,14 +52,14 @@ export function MagazineSection() {
           </div>
 
           <h2
-            className="text-[clamp(3.2rem,8vw,6rem)] uppercase leading-[0.88]"
+            className="text-[clamp(3.2rem,8vw,6rem)] uppercase leading-[0.88] text-white animate-fade-in"
             style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}
           >
             Inside The
             <span className="block text-[#b8962e]">Fight Issue</span>
           </h2>
 
-          <p className="editorial-body mx-auto mt-5 max-w-2xl text-sm text-[#0d1124]/65 sm:text-base">
+          <p className="editorial-body mx-auto mt-5 max-w-2xl text-sm text-white/70 sm:text-base">
             Long-form reporting, fighter profiles, championship analysis, and the stories that shape
             the sport beyond the final bell. Our magazine is built to feel collectible, informed, and
             rooted in the culture of boxing.
@@ -68,7 +68,7 @@ export function MagazineSection() {
 
         <div className="relative mt-20">
           <motion.div
-            className="pointer-events-none absolute left-1/2 top-8 -translate-x-1/2 text-[#0d1124]/5 uppercase"
+            className="pointer-events-none absolute left-1/2 top-8 -translate-x-1/2 text-white/5 uppercase"
             initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.15 }}
@@ -82,14 +82,32 @@ export function MagazineSection() {
             Ring
           </motion.div>
 
-          <div className="absolute left-0 right-0 top-1/2 hidden h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-[#0d1124]/18 to-transparent lg:block" />
+          <div className="absolute left-0 right-0 top-1/2 hidden h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block" />
 
           <motion.div
             style={{ y: cardY }}
             className="relative z-10 flex justify-center"
           >
-            <div className="w-full max-w-[360px] sm:max-w-[430px] lg:max-w-[500px]">
+            <div className="w-full max-w-[360px] sm:max-w-[430px] lg:max-w-[500px] flex flex-col items-center">
               <MagazineCard {...featuredIssue} />
+              
+              {/* Elegant digital release label that blends well */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mt-6 flex items-center gap-3 px-4 py-1.5 rounded-full border border-[#b8962e]/30 bg-[#b8962e]/5 backdrop-blur-sm"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-[#b8962e] animate-pulse" />
+                <span 
+                  className="text-[0.7rem] uppercase tracking-[0.25em] text-[#b8962e] font-bold"
+                  style={{ fontFamily: "var(--font-sans), sans-serif" }}
+                >
+                  Digital versions dropping soon
+                </span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[#b8962e] animate-pulse" />
+              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -101,17 +119,17 @@ export function MagazineSection() {
           transition={{ duration: 0.7, delay: 0.15 }}
           className="mt-16 text-center"
         >
-          <div className="mx-auto flex max-w-2xl flex-col items-center gap-5 border-y border-[#0d1124]/10 px-6 py-8">
-            <p className="section-eyebrow text-[#0d1124]/45">Editorial Release</p>
-            <p className="editorial-body max-w-xl text-sm text-[#0d1124]/62 sm:text-base">
+          <div className="mx-auto flex max-w-2xl flex-col items-center gap-5 border-y border-white/10 px-6 py-8 bg-white/[0.01] backdrop-blur-sm rounded-2xl">
+            <p className="section-eyebrow text-[#b8962e]/90 font-bold uppercase tracking-widest text-xs">Editorial Release</p>
+            <p className="editorial-body max-w-xl text-sm text-white/70 sm:text-base">
               Be first to read each new issue, from cover features and ringside essays to the sharp
               analysis behind boxing&apos;s biggest moments.
             </p>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <button className="editorial-button rounded-full bg-[#0d1124] px-8 py-3 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1e2d5e]">
+            <div className="flex flex-col gap-3 sm:flex-row w-full justify-center">
+              <button className="editorial-button rounded-full bg-[#b8962e] px-8 py-3 text-black font-bold tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#c9a435] shadow-lg">
                 Read The Issue
               </button>
-              <button className="editorial-button rounded-full border border-[#0d1124]/18 bg-white/70 px-8 py-3 text-[#0d1124] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#b8962e] hover:text-[#b8962e]">
+              <button className="editorial-button rounded-full border border-white/20 bg-transparent px-8 py-3 text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-[#b8962e] hover:text-[#b8962e]">
                 Join The List
               </button>
             </div>

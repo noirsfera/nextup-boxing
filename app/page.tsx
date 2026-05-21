@@ -22,10 +22,6 @@ export default function Home() {
       <ScrollReveal delay={0.04}>
         <SocialWall />
       </ScrollReveal>
-      <LiveStreamPromo />
-      <ScrollReveal delay={0.06}>
-        <YoutubeSection />
-      </ScrollReveal>
       <ScrollReveal delay={0.08}>
         <MagazineSection />
       </ScrollReveal>

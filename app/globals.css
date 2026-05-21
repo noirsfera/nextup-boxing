@@ -80,8 +80,8 @@
 }
 
 @theme inline {
-  --font-sans:    "Helvetica Neue", Helvetica, "Helvetica Now", Arial, sans-serif;
-  --font-mono:    'Geist Mono', monospace;
+  --font-sans:    var(--font-helvetica-now), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono:    var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-display: var(--font-bebas), var(--font-oswald), var(--font-montserrat), 'Impact', 'Arial Narrow Bold', sans-serif;
 
   --color-background:  var(--background);
@@ -740,4 +740,3 @@
     font-size: 6rem;
   }
 }
-

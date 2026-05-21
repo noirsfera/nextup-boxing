@@ -31,9 +31,9 @@ export function MagazineCard({
           isHovered ? "-translate-y-2 rotate-[1deg]" : ""
         }`}
       >
-        <div className="absolute -right-4 top-5 hidden h-[88%] w-full rounded-[1.75rem] border border-[#0d1124]/10 bg-white/35 lg:block" />
+        <div className="absolute -right-4 top-5 hidden h-[88%] w-full rounded-[1.75rem] border border-white/10 bg-white/5 backdrop-blur-sm lg:block" />
 
-        <div className="relative overflow-hidden rounded-[1.75rem] border border-[#0d1124]/12 bg-white p-4 shadow-[0_30px_80px_rgba(13,17,36,0.18)]">
+        <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white p-4 shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
           <div className="relative aspect-[0.74] overflow-hidden rounded-[1.1rem] bg-[#ddd6ca]">
             <Image
               src={coverImage}

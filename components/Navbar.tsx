@@ -106,7 +106,7 @@ export function Navbar() {
             className={`absolute transition-all duration-500 ease-in-out z-20 ${
               scrolled
                 ? "left-0 top-1/2 -translate-y-1/2"
-                : "left-1/2 -translate-x-1/2 top-0.5"
+                : "left-1/2 -translate-x-1/2 -top-6"
             }`}
           >
             <Link href="/#hero" className="group flex items-center">

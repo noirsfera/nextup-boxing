@@ -1,39 +1,62 @@
 import type { Metadata, Viewport } from 'next'
-import { Sora, Geist_Mono, Bebas_Neue, Montserrat, Oswald } from 'next/font/google'
+import { Geist_Mono, Bebas_Neue, Montserrat, Oswald } from 'next/font/google'
+import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const sora = Sora({
-  subsets: ["latin"],
-  variable: "--font-sora",
+const helveticaNow = localFont({
+  src: [
+    {
+      path: '../public/fonts/helveticanowtext-bold-demo.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/helveticanowtext-bolditalic-demo.ttf',
+      weight: '700',
+      style: 'italic',
+    },
+    {
+      path: '../public/fonts/helveticanowtext-black-demo.ttf',
+      weight: '900',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/helveticanowtext-blackitalic-demo.ttf',
+      weight: '900',
+      style: 'italic',
+    },
+  ],
+  variable: "--font-helvetica-now",
   display: "swap",
-});
+  fallback: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+})
 
-const geistMono = Geist_Mono({ 
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-});
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+})
 
 const bebasNeue = Bebas_Neue({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-bebas",
-  display: "swap",
-});
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-bebas',
+  display: 'swap',
+})
 
 const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-  weight: ["800", "900"],
-  display: "swap",
-});
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  weight: ['800', '900'],
+  display: 'swap',
+})
 
 const oswald = Oswald({
-  subsets: ["latin"],
-  variable: "--font-oswald",
-  weight: ["600", "700"],
-  display: "swap",
-});
+  subsets: ['latin'],
+  variable: '--font-oswald',
+  weight: ['600', '700'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Next Up Boxing League | June 6, 2026',
@@ -63,7 +86,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${sora.variable} ${geistMono.variable} ${bebasNeue.variable} ${montserrat.variable} ${oswald.variable} bg-white`}>
+    <html
+      lang="en"
+      className={`${helveticaNow.variable} ${geistMono.variable} ${bebasNeue.variable} ${montserrat.variable} ${oswald.variable} bg-white`}
+    >
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
