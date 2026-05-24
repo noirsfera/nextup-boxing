@@ -9,7 +9,8 @@ const events = [
     title: "ZAYAS VS ENNIS",
     location: "Barclays Center | Brooklyn, New York City",
     broadcaster: "DAZN",
-    image: "/fighter-1.png", 
+    image: "/fighter-1.png",
+    ticketUrl: "#",
   },
   {
     id: 2,
@@ -17,7 +18,17 @@ const events = [
     title: "MASON VS CORDINA",
     location: "CSU Wolstein Center | Cleveland, Ohio",
     broadcaster: "TNT and DAZN",
-    image: "/fighter-2.png", 
+    image: "/fighter-2.png",
+    ticketUrl: "#",
+  },
+  {
+    id: 3,
+    date: "Fri, Aug 14 / 7:30 PM ET",
+    title: "HERNANDEZ VS RODRIGUEZ",
+    location: "Madison Square Garden | New York, NY",
+    broadcaster: "ESPN+",
+    image: "/fighter-3.png",
+    ticketUrl: "#",
   }
 ]
 
@@ -43,50 +54,34 @@ export function EventsSection() {
           </Link>
         </div>
 
-        {/* Event List */}
-        <div className="flex flex-col gap-10">
+        {/* Event List - 3 across on md+ */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {events.map((event) => (
-            <div key={event.id} className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-              
-              {/* Image & Info Wrapper */}
-              <div className="flex flex-col gap-6 md:flex-row md:items-center">
-                {/* Image */}
-                <div className="relative h-56 w-full shrink-0 overflow-hidden bg-gray-100 md:h-[180px] md:w-[320px]">
-                  <Image
-                    src={event.image}
-                    alt={event.title}
-                    fill
-                    className="object-cover object-top"
-                  />
-                </div>
-
-                {/* Info */}
-                <div className="flex flex-col justify-center">
-                  <span className="mb-1 text-[13px] font-bold text-[#b8962e]">{event.date}</span>
-                  <h3 className="mb-3 text-[2.5rem] leading-[0.9] font-bold italic tracking-tight text-[#1e2d5e] uppercase" style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}>
-                    {event.title}
-                  </h3>
-                  
-                  <div className="mb-1 flex items-center gap-1.5 text-[13px] font-medium text-gray-700">
-                    <MapPin className="h-[14px] w-[14px] text-[#c5203a]" />
-                    {event.location}
-                  </div>
-                  <span className="text-[13px] font-medium text-gray-500">{event.broadcaster}</span>
-                </div>
+            <article key={event.id} className="flex w-full flex-col overflow-hidden rounded-lg border bg-white shadow-sm">
+              <div className="relative h-44 w-full overflow-hidden bg-gray-100">
+                <Image src={event.image} alt={event.title} fill className="object-cover object-top" />
               </div>
 
-              {/* Buttons */}
-              <div className="flex shrink-0 flex-row md:ml-4 h-[50px] md:h-[60px] w-full md:w-auto">
-                <button className="flex h-full flex-1 items-center justify-center gap-2 bg-[#1e2d5e] px-6 text-[13px] font-bold text-white transition-colors hover:bg-[#141f45] md:w-[160px]">
-                  <Ticket className="h-4 w-4" />
-                  BUY TICKETS
-                </button>
-                <button className="flex h-full flex-1 items-center justify-center bg-[#f5f5f5] px-6 text-[13px] font-bold text-[#1e2d5e] transition-colors hover:bg-[#e5e5e5] md:w-[140px]">
-                  LEARN MORE
-                </button>
-              </div>
+              <div className="flex flex-1 flex-col gap-3 p-4">
+                <span className="text-[13px] font-bold text-[#b8962e]">{event.date}</span>
+                <h3 className="text-lg font-bold uppercase tracking-tight text-[#1e2d5e]" style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}>{event.title}</h3>
+                <div className="flex items-center gap-2 text-[13px] text-gray-700">
+                  <MapPin className="h-4 w-4 text-[#c5203a]" />
+                  <span className="truncate">{event.location}</span>
+                </div>
+                <span className="text-[13px] text-gray-500">{event.broadcaster}</span>
 
-            </div>
+                <div className="mt-4 flex gap-3">
+                  <a href={event.ticketUrl} className="inline-flex items-center gap-2 rounded-md bg-yellow-300 px-4 py-2 text-sm font-bold text-[#0d1124] transition-colors hover:bg-yellow-400">
+                    <Ticket className="h-4 w-4" />
+                    BUY TICKETS
+                  </a>
+                  <Link href="#" className="inline-flex items-center gap-2 rounded-md bg-gray-100 px-4 py-2 text-sm font-bold text-[#1e2d5e] transition-colors hover:bg-gray-200">
+                    LEARN MORE
+                  </Link>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </div>

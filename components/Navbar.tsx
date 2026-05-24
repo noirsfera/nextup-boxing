@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { TiLocationArrow } from "react-icons/ti";
 import { Menu, X, User } from "lucide-react"
 
 const navLinks = [
@@ -189,8 +190,9 @@ export function Navbar() {
               href="#signin"
               className={`${signInClass} hidden xl:inline-flex mr-4`}
             >
-              <User className="h-4 w-4" />
+              
               Sign in
+              <TiLocationArrow size={24} />
             </a>
 
             {/* Mobile + Tablet Hamburger ONLY */}

@@ -113,7 +113,7 @@ export function Footer() {
           --text-ghost: rgba(255,255,255,.26);
           position: relative; overflow: hidden;
           background: var(--bg); color: #fff;
-          font-family: 'Azeret Mono', monospace;
+          font-family: 'General', sans-serif;
         }
 
         /* ── Atmosphere ── */

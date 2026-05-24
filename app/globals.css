@@ -3,6 +3,17 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ═══════════════════════════════════════════════════════
+   CUSTOM FONTS
+   ═══════════════════════════════════════════════════════ */
+@font-face {
+  font-family: 'General';
+  src: url('/fonts/general.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* ─── Core White-Primary Theme ──────────────────────── */
   --background: oklch(0.99 0 0);
@@ -271,6 +282,7 @@
    NAVBAR — UFC-STYLE SCROLL TRANSITION
    ═══════════════════════════════════════════════════════ */
 .navbar-editorial {
+  font-family: 'General', sans-serif;
   background: rgba(13, 17, 36, 0.97);
   backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
