@@ -14,7 +14,7 @@ import { ScrollReveal } from "@/components/ScrollReveal"
 
 export default function Home() {
   return (
-    <main className="bg-white">
+    <main className="min-h-screen w-screen overflow-x-hidden bg-white">
       <Navbar />
       <HeroSection />
       <EventsSection />

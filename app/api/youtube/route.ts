@@ -2,7 +2,8 @@ import { NextResponse } from "next/server"
 
 import { fetchYoutubeFeed } from "@/lib/youtube"
 
-const DEFAULT_CHANNEL_URL = "https://www.youtube.com/@NextUpBoxing"
+// Default to the event's Strong Island Fight Night channel
+const DEFAULT_CHANNEL_URL = "https://www.youtube.com/channel/UCo1IceoT57YLFphnf3Iqj5A"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"

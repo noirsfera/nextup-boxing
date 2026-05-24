@@ -59,10 +59,10 @@ export function HeroSection() {
         }}
       />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 pt-16 pb-3 text-center sm:px-8 lg:px-16">
+      <div className="relative z-10 mx-auto w-full max-w-7xl flex-1 px-4 sm:px-8 lg:px-16">
         <motion.div 
           style={{ y, opacity }} 
-          className="flex w-full max-w-5xl flex-col items-center"
+          className="absolute left-4 bottom-6 sm:left-8 sm:bottom-12 flex w-full max-w-5xl flex-col items-start text-left"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -86,7 +86,7 @@ export function HeroSection() {
             <span className="block text-white" style={{ textShadow: "0 10px 40px rgba(0,0,0,0.5)" }}>COLE</span>
           </h1>
 
-          <div className="mt-2 mb-5 flex flex-col items-center justify-center gap-3">
+          <div className="mt-2 mb-5 flex flex-col items-start justify-center gap-3">
             <span
               className="text-xl font-bold uppercase tracking-widest text-white drop-shadow-lg sm:text-2xl lg:text-3xl"
               style={{ fontFamily: "var(--font-bebas)" }}
@@ -95,9 +95,11 @@ export function HeroSection() {
             </span>
           </div>
 
-          <div className="mt-2 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+          <div className="mt-2 flex flex-wrap items-center justify-start gap-4 sm:gap-6">
             <a
-              href="#events"
+              href="https://www.simpletix.com/e/strong-island-fight-night-11-tickets-254611"
+              target="_blank"
+              rel="noopener noreferrer"
               className="editorial-button inline-flex items-center justify-center gap-3 bg-[#1e9b46] px-8 py-4 text-base font-bold text-white transition-all duration-300 hover:bg-[#157a35] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(30,155,70,0.3)] sm:px-10 sm:py-5 sm:text-lg"
             >
               GET TICKETS

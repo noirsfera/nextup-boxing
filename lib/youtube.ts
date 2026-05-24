@@ -14,7 +14,8 @@ export type YoutubeFeedPayload = {
   videos: YoutubeFeedVideo[]
 }
 
-const DEFAULT_CHANNEL_URL = "https://www.youtube.com/@NextUpBoxing"
+// Use Strong Island Fight Night YouTube channel by default for this event
+const DEFAULT_CHANNEL_URL = "https://www.youtube.com/channel/UCo1IceoT57YLFphnf3Iqj5A"
 
 function decodeXml(value: string) {
   return value

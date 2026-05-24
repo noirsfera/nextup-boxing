@@ -19,7 +19,8 @@ type YoutubeApiPayload = {
   error?: string
 }
 
-const DEFAULT_CHANNEL_URL = "https://www.youtube.com/@NextUpBoxing"
+// Default to Strong Island Fight Night channel for this event
+const DEFAULT_CHANNEL_URL = "https://www.youtube.com/channel/UCo1IceoT57YLFphnf3Iqj5A"
 
 function ytThumb(id: string, quality: "maxresdefault" | "hqdefault" = "maxresdefault") {
   return `https://i.ytimg.com/vi/${id}/${quality}.jpg`
@@ -189,17 +190,18 @@ export function YoutubeSection() {
 
   useEffect(() => {
     let isMounted = true
+    const controller = new AbortController()
+    const POLL_INTERVAL_MS = 60_000
 
     async function loadVideos() {
       try {
         const response = await fetch("/api/youtube", {
           cache: "no-store",
+          signal: controller.signal,
         })
         const data: YoutubeApiPayload = await response.json()
 
-        if (!isMounted) {
-          return
-        }
+        if (!isMounted) return
 
         setChannelUrl(data.channelUrl || DEFAULT_CHANNEL_URL)
         setPlaylistId(data.playlistId)
@@ -207,20 +209,21 @@ export function YoutubeSection() {
         setActiveVideoId((currentVideoId) => currentVideoId ?? data.videos[0]?.id ?? null)
         setErrorMessage(data.error || "")
         setStatus(response.ok ? "ready" : "error")
-      } catch {
-        if (!isMounted) {
-          return
-        }
-
+      } catch (err: any) {
+        if (err.name === "AbortError") return
+        if (!isMounted) return
         setStatus("error")
         setErrorMessage("We couldn't load the latest uploads right now.")
       }
     }
 
     loadVideos()
+    const id = setInterval(loadVideos, POLL_INTERVAL_MS)
 
     return () => {
       isMounted = false
+      controller.abort()
+      clearInterval(id)
     }
   }, [])
 

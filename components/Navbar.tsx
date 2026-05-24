@@ -26,14 +26,15 @@ export function Navbar() {
   const isHome = pathname === "/" || pathname === ""
 
   const getHash = (url: string) => {
-    const idx = url.indexOf('#')
-    return idx !== -1 ? url.substring(idx + 1) : ''
+    const idx = url.indexOf("#")
+    return idx !== -1 ? url.substring(idx + 1) : ""
   }
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+      const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight
 
       setScrolled(scrollTop > 50)
       setScrollProgress(maxScroll > 0 ? scrollTop / maxScroll : 0)
@@ -42,7 +43,9 @@ export function Navbar() {
     const sections = navLinks
       .map((link) => {
         const hash = getHash(link.href)
-        return hash ? document.querySelector<HTMLElement>(`#${hash}`) : null
+        return hash
+          ? document.querySelector<HTMLElement>(`#${hash}`)
+          : null
       })
       .filter((section): section is HTMLElement => Boolean(section))
 
@@ -50,7 +53,10 @@ export function Navbar() {
       (entries) => {
         const visibleEntries = entries
           .filter((entry) => entry.isIntersecting)
-          .sort((entryA, entryB) => entryB.intersectionRatio - entryA.intersectionRatio)
+          .sort(
+            (entryA, entryB) =>
+              entryB.intersectionRatio - entryA.intersectionRatio
+          )
 
         const nextActive = visibleEntries[0]?.target.id
 
@@ -65,7 +71,9 @@ export function Navbar() {
     )
 
     sections.forEach((section) => observer.observe(section))
+
     window.addEventListener("scroll", handleScroll, { passive: true })
+
     handleScroll()
 
     return () => {
@@ -74,9 +82,12 @@ export function Navbar() {
     }
   }, [])
 
-  // Keep navbar solid dark on sub-pages (like /boxers) and transparent on home page when unscrolled
   const isSolid = scrolled || !isHome
-  const shellClass = isSolid ? "navbar-editorial text-white shadow-lg" : "bg-transparent text-white"
+
+  const shellClass = isSolid
+    ? "navbar-editorial text-white shadow-lg"
+    : "bg-transparent text-white"
+
   const signInClass =
     "editorial-button inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-black shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100"
 
@@ -85,6 +96,7 @@ export function Navbar() {
       id="main-navbar"
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ease-out ${shellClass}`}
     >
+      {/* Top Accent Line */}
       <div
         className={`h-[3px] transition-all duration-500 ${
           isSolid ? "bg-[#c5203a]" : "bg-transparent"
@@ -92,18 +104,17 @@ export function Navbar() {
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* The outer motion container, animating its height smoothly based on scrolled state */}
-        <motion.div 
+        <motion.div
           layout
           className={`relative w-full transition-all duration-500 ease-in-out ${
             scrolled ? "h-14 md:h-16" : "h-20 md:h-24"
           }`}
         >
-          {/* Logo (centered top, or left middle) */}
+          {/* Logo */}
           <motion.div
             layout
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
-            className={`absolute transition-all duration-500 ease-in-out z-20 ${
+            className={`absolute z-20 transition-all duration-500 ease-in-out ${
               scrolled
                 ? "left-0 top-1/2 -translate-y-1/2"
                 : "left-1/2 -translate-x-1/2 -top-6"
@@ -115,70 +126,90 @@ export function Navbar() {
                 alt="NextUp Boxing"
                 width={160}
                 height={80}
+                priority
                 className={`h-auto transition-all duration-500 ease-in-out group-hover:scale-[1.03] ${
-                  scrolled 
-                    ? "w-[80px] sm:w-[90px]" 
+                  scrolled
+                    ? "w-[80px] sm:w-[90px]"
                     : "w-[100px] sm:w-[120px]"
                 }`}
-                style={{ filter: "brightness(1) drop-shadow(0 4px 6px rgba(0,0,0,0.3))" }}
-                priority
+                style={{
+                  filter:
+                    "brightness(1) drop-shadow(0 4px 6px rgba(0,0,0,0.3))",
+                }}
               />
             </Link>
           </motion.div>
 
-          {/* Nav Links (hidden on mobile/tablet, centered bottom, or center-right middle) */}
+          {/* Desktop Nav Links */}
           <motion.div
             layout
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
-            className={`hidden lg:flex absolute items-center transition-all duration-500 ease-in-out z-10 ${
+            className={`hidden xl:flex absolute items-center transition-all duration-500 ease-in-out z-10 ${
               scrolled
-                ? "left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 gap-4 lg:gap-8"
-                : "left-1/2 -translate-x-1/2 bottom-1.5 gap-8"
+                ? "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-4 lg:gap-8"
+                : "left-1/2 bottom-1.5 -translate-x-1/2 gap-8"
             }`}
           >
             {navLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="group relative py-2 text-[0.8rem] font-semibold uppercase tracking-[0.2em] transition-all duration-300 text-white drop-shadow-md hover:text-white/80"
-                aria-current={activeSection === getHash(link.href) ? "page" : undefined}
+                aria-current={
+                  activeSection === getHash(link.href)
+                    ? "page"
+                    : undefined
+                }
+                className="group relative py-2 text-[0.72rem] font-semibold uppercase tracking-[0.2em] transition-all duration-300 text-white drop-shadow-md hover:text-white/80"
               >
                 {link.label}
+
                 <span
                   className={`absolute inset-x-0 bottom-0 h-[2px] origin-left bg-[#c5203a] transition-transform duration-300 ${
-                    activeSection === getHash(link.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    activeSection === getHash(link.href)
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
                   }`}
                 />
               </Link>
             ))}
           </motion.div>
 
-          {/* Right Actions (Sign In / Mobile trigger) */}
+          {/* Right Actions */}
           <motion.div
             layout
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
-            className={`absolute flex items-center gap-3 z-20 ${
+            className={`absolute z-20 ${
               scrolled
                 ? "right-0 top-1/2 -translate-y-1/2"
                 : "right-0 top-2 sm:top-2.5"
             }`}
           >
-            <a href="#signin" className={`${signInClass} hidden lg:inline-flex`}>
+            {/* Desktop Sign In ONLY */}
+            <a
+              href="#signin"
+              className={`${signInClass} hidden xl:inline-flex mr-4`}
+            >
               <User className="h-4 w-4" />
               Sign in
             </a>
 
+            {/* Mobile + Tablet Hamburger ONLY */}
             <button
               onClick={() => setMobileOpen((open) => !open)}
-              className="rounded-full p-2 text-white/90 transition-colors duration-300 hover:text-white lg:hidden drop-shadow-md"
+              className="rounded-full p-2 text-white/90 transition-colors duration-300 hover:text-white xl:hidden drop-shadow-md"
               aria-label="Toggle menu"
             >
-              {mobileOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+              {mobileOpen ? (
+                <X className="h-7 w-7" />
+              ) : (
+                <Menu className="h-7 w-7" />
+              )}
             </button>
           </motion.div>
         </motion.div>
       </div>
 
+      {/* Mobile / Tablet Menu */}
       <AnimatePresence>
         {mobileOpen ? (
           <motion.div
@@ -186,7 +217,7 @@ export function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden border-t border-white/10 bg-[#0d1124]/98 lg:hidden backdrop-blur-xl"
+            className="overflow-hidden border-t border-white/10 bg-[#0d1124]/98 xl:hidden backdrop-blur-xl"
           >
             <div className="space-y-1 px-4 py-4">
               {navLinks.map((link) => (
@@ -194,20 +225,26 @@ export function Navbar() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`block rounded-xl px-4 py-3 text-[0.8rem] font-semibold uppercase tracking-[0.2em] transition-colors duration-300 ${
+                  aria-current={
+                    activeSection === getHash(link.href)
+                      ? "page"
+                      : undefined
+                  }
+                  className={`block rounded-xl px-4 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.2em] transition-colors duration-300 ${
                     activeSection === getHash(link.href)
                       ? "bg-white/10 text-white"
                       : "text-white/70 hover:bg-white/5 hover:text-white"
                   }`}
-                  aria-current={activeSection === getHash(link.href) ? "page" : undefined}
                 >
                   {link.label}
                 </Link>
               ))}
+
+              {/* Sign In inside dropdown */}
               <a
                 href="#signin"
                 onClick={() => setMobileOpen(false)}
-                className={`${signInClass} mt-3 w-full justify-center`}
+                className={`${signInClass} mt-3 flex w-full justify-center`}
               >
                 <User className="h-4 w-4" />
                 Sign in
@@ -217,6 +254,7 @@ export function Navbar() {
         ) : null}
       </AnimatePresence>
 
+      {/* Bottom Progress Line */}
       <div className="h-px bg-white/5">
         <motion.div
           className="h-full origin-left bg-gradient-to-r from-[#1e2d5e] via-[#c5203a] to-[#d4ae44]"

@@ -3,9 +3,10 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 
+// Use event sponsors / partners provided
 const sponsors = [
-  "Nike", "Everlast", "ESPN", "Gatorade", "Under Armour",
-  "Showtime", "Riddell", "Title Boxing", "Adidas", "DAZN",
+  { name: "BULOVAS RESTORATIONS", url: "https://www.bulovasrestorations.com/index.html" },
+  { name: "M&T STRONG CONCRETE", url: "https://mbstrongconcrete.com/" },
 ]
 
 // Duplicate for seamless loop
@@ -41,22 +42,25 @@ export function SponsorsStrip() {
         className="relative overflow-hidden mb-4"
       >
         <div className="marquee-track">
-          {track1.map((name, i) => (
+          {track1.map((sponsor, i) => (
             <div
               key={`t1-${i}`}
-              className="flex-shrink-0 flex items-center mx-10 sm:mx-14"
+              className="flex-shrink-0 flex items-center mx-8 sm:mx-10"
             >
-              <span
-                className="font-black uppercase text-white hover:text-[#b8962e] transition-colors duration-500 cursor-default select-none"
+              <a
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-black uppercase text-white hover:text-[#b8962e] transition-colors duration-500 select-none"
                 style={{
                   fontFamily: 'var(--font-bebas), Impact, sans-serif',
-                  fontSize: 'clamp(1.1rem, 3vw, 1.6rem)',
+                  fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
                   letterSpacing: '0.08em',
                 }}
               >
-                {name}
-              </span>
-              <span className="ml-10 sm:ml-14 w-1 h-1 rounded-full bg-[#b8962e]/25 flex-shrink-0" />
+                {sponsor.name}
+              </a>
+              <span className="ml-6 sm:ml-8 w-1 h-1 rounded-full bg-[#b8962e]/25 flex-shrink-0" />
             </div>
           ))}
         </div>
@@ -70,22 +74,25 @@ export function SponsorsStrip() {
         className="relative overflow-hidden mb-8"
       >
         <div className="marquee-track-reverse">
-          {track2.map((name, i) => (
+          {track2.map((sponsor, i) => (
             <div
               key={`t2-${i}`}
-              className="flex-shrink-0 flex items-center mx-10 sm:mx-14"
+              className="flex-shrink-0 flex items-center mx-8 sm:mx-10"
             >
-              <span
-                className="font-black uppercase text-white hover:text-[#c5203a] transition-colors duration-500 cursor-default select-none"
+              <a
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-black uppercase text-white hover:text-[#c5203a] transition-colors duration-500 select-none"
                 style={{
                   fontFamily: 'var(--font-bebas), Impact, sans-serif',
-                  fontSize: 'clamp(0.9rem, 2.5vw, 1.25rem)',
+                  fontSize: 'clamp(0.95rem, 2.25vw, 1.1rem)',
                   letterSpacing: '0.1em',
                 }}
               >
-                {name}
-              </span>
-              <span className="ml-10 sm:ml-14 w-1 h-1 rounded-full bg-[#c5203a]/20 flex-shrink-0" />
+                {sponsor.name}
+              </a>
+              <span className="ml-6 sm:ml-8 w-1 h-1 rounded-full bg-[#c5203a]/20 flex-shrink-0" />
             </div>
           ))}
         </div>

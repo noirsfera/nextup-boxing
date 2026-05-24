@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Heart, MessageCircle, Play, ExternalLink, X, Check, Share2 } from "lucide-react"
 
@@ -128,6 +128,58 @@ export function SocialWall() {
   const [copiedId, setCopiedId] = useState<string | null>(null)
   const [likedReels, setLikedReels] = useState<Record<string, boolean>>({})
 
+  const [posts, setPosts] = useState<MockReel[]>(MOCK_REELS)
+  const [isError, setIsError] = useState<string | null>(null)
+
+  const POLL_INTERVAL_MS = 30_000
+
+  useEffect(() => {
+    let isMounted = true
+    const controller = new AbortController()
+
+    async function loadReels() {
+      try {
+        const res = await fetch("/api/instagram/reels", { cache: "no-store", signal: controller.signal })
+        const data = await res.json()
+
+        if (!isMounted) return
+
+        if (Array.isArray(data.reels) && data.reels.length > 0) {
+          const mapped = data.reels.map((r: any) => ({
+            id: r.id,
+            caption: r.caption || "",
+            permalink: r.permalink || data.profileUrl || "https://www.instagram.com/",
+            mediaUrl: r.mediaUrl || r.thumbnailUrl || r.media_url || r.thumbnail_url || "",
+            timestamp: r.timestamp || "",
+            likeCount: typeof r.likeCount === "number" ? r.likeCount : (typeof r.like_count === "number" ? r.like_count : 0),
+            commentsCount: typeof r.commentsCount === "number" ? r.commentsCount : (typeof r.comments_count === "number" ? r.comments_count : 0),
+            category: "promos",
+            duration: "0:30",
+            views: "—",
+            commentsList: [],
+          })) as MockReel[]
+
+          setPosts(mapped)
+          setIsError(null)
+        } else if (data.error) {
+          setIsError(data.error)
+        }
+      } catch (err: any) {
+        if (err.name === "AbortError") return
+        setIsError("Unable to load Instagram reels right now.")
+      }
+    }
+
+    loadReels()
+    const id = setInterval(loadReels, POLL_INTERVAL_MS)
+
+    return () => {
+      isMounted = false
+      controller.abort()
+      clearInterval(id)
+    }
+  }, [])
+
   const handleLike = (id: string, e: React.MouseEvent) => {
     e.stopPropagation()
     e.preventDefault()
@@ -145,7 +197,6 @@ export function SocialWall() {
     setTimeout(() => setCopiedId(null), 2000)
   }
 
-  const posts = MOCK_REELS
   const featuredPost = posts[0]
   const gridPosts = posts.slice(1)
   const [topLeftPost, topCenterPost, topRightPost, sidePost, tallPost] = gridPosts

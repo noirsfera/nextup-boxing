@@ -41,6 +41,28 @@ const champions = [
   }
 ]
 
+// Added two more champions to show six by default
+champions.push(
+  {
+    id: 5,
+    firstName: "LUIS",
+    lastName: "ESCOBAR",
+    weightClass: "LIGHTWEIGHT",
+    titles: ["WBA"],
+    stats: { win: 20, loss: 1, draw: 0, kos: 12 },
+    image: "/fighter-1.png"
+  },
+  {
+    id: 6,
+    firstName: "MARIO",
+    lastName: "SOTO",
+    weightClass: "FEATHERWEIGHT",
+    titles: ["WBC"],
+    stats: { win: 22, loss: 2, draw: 0, kos: 15 },
+    image: "/fighter-2.png"
+  }
+)
+
 const bannerFighters = [
   { id: 1, name: "CAPETILLO", image: "/fighter-1.png" },
   { id: 2, name: "BARBOZA JR.", image: "/fighter-2.png" },
@@ -76,7 +98,7 @@ export function ChampionsSection() {
         </div>
 
         {/* Cards Grid */}
-        <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           
           {/* Nav arrows (absolute) */}
           <button className="absolute left-0 top-1/3 -translate-y-1/2 z-20 bg-black/60 p-2 text-white hover:bg-[#c5203a] transition-colors lg:-left-6 hidden md:block border border-white/10 shadow-lg">
@@ -89,8 +111,8 @@ export function ChampionsSection() {
           {champions.map((fighter) => (
             <div key={fighter.id} className="flex flex-col transform transition-transform hover:-translate-y-1 hover:shadow-2xl">
               
-              {/* Image & Gradient Container */}
-              <div className="relative h-[360px] w-full bg-gradient-to-b from-[#d4ae44] to-[#b8962e] overflow-hidden">
+              {/* Image & Gradient Container (reduced height to fit 6 cards) */}
+              <div className="relative h-[200px] w-full bg-gradient-to-b from-[#d4ae44] to-[#b8962e] overflow-hidden">
                 <Image
                   src={fighter.image}
                   alt={`${fighter.firstName} ${fighter.lastName}`}
@@ -100,12 +122,12 @@ export function ChampionsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent"></div>
                 
                 {/* Fighter Info Overlay */}
-                <div className="absolute bottom-4 left-0 right-0 text-center px-2">
-                  <div className="uppercase tracking-widest text-xl drop-shadow-lg" style={{ fontFamily: "var(--font-bebas), sans-serif" }}>
+                <div className="absolute bottom-3 left-0 right-0 text-center px-2">
+                  <div className="uppercase tracking-widest text-sm md:text-[0.9rem] drop-shadow-lg" style={{ fontFamily: "var(--font-bebas), sans-serif" }}>
                     <span className="text-white font-normal">{fighter.firstName} </span>
                     <span className="text-[#b8962e] font-bold">{fighter.lastName}</span>
                   </div>
-                  <div className="text-[11px] font-semibold text-gray-300 tracking-[0.2em] mb-2 uppercase drop-shadow-sm">
+                  <div className="text-[10px] font-semibold text-gray-300 tracking-[0.12em] mb-1 uppercase drop-shadow-sm">
                     {fighter.weightClass}
                   </div>
                   <div className="flex flex-wrap items-center justify-center gap-3">
@@ -121,19 +143,19 @@ export function ChampionsSection() {
 
               {/* Stats Block */}
               <div className="grid grid-cols-4 text-center border-b border-[#1e2d5e]/20">
-                <div className="bg-[#b8962e] py-2 text-[11px] font-bold text-white uppercase tracking-wider">WIN</div>
-                <div className="bg-[#b8962e] py-2 text-[11px] font-bold text-white uppercase tracking-wider border-l border-[#c9a435]">LOSS</div>
-                <div className="bg-[#b8962e] py-2 text-[11px] font-bold text-white uppercase tracking-wider border-l border-[#c9a435]">DRAW</div>
-                <div className="bg-[#b8962e] py-2 text-[11px] font-bold text-white uppercase tracking-wider border-l border-[#c9a435]">KOs</div>
+                <div className="bg-[#b8962e] py-1.5 text-[10px] font-bold text-white uppercase tracking-wider">WIN</div>
+                <div className="bg-[#b8962e] py-1.5 text-[10px] font-bold text-white uppercase tracking-wider border-l border-[#c9a435]">LOSS</div>
+                <div className="bg-[#b8962e] py-1.5 text-[10px] font-bold text-white uppercase tracking-wider border-l border-[#c9a435]">DRAW</div>
+                <div className="bg-[#b8962e] py-1.5 text-[10px] font-bold text-white uppercase tracking-wider border-l border-[#c9a435]">KOs</div>
                 
-                <div className="bg-[#1a1a1a] py-3 text-[15px] font-bold text-white">{fighter.stats.win}</div>
-                <div className="bg-[#1a1a1a] py-3 text-[15px] font-bold text-white border-l border-white/10">{fighter.stats.loss}</div>
-                <div className="bg-[#1a1a1a] py-3 text-[15px] font-bold text-white border-l border-white/10">{fighter.stats.draw}</div>
-                <div className="bg-[#1a1a1a] py-3 text-[15px] font-bold text-white border-l border-white/10">{fighter.stats.kos}</div>
+                <div className="bg-[#1a1a1a] py-2 text-[13px] font-bold text-white">{fighter.stats.win}</div>
+                <div className="bg-[#1a1a1a] py-2 text-[13px] font-bold text-white border-l border-white/10">{fighter.stats.loss}</div>
+                <div className="bg-[#1a1a1a] py-2 text-[13px] font-bold text-white border-l border-white/10">{fighter.stats.draw}</div>
+                <div className="bg-[#1a1a1a] py-2 text-[13px] font-bold text-white border-l border-white/10">{fighter.stats.kos}</div>
               </div>
 
               {/* Action Button */}
-              <button className="mt-4 border-2 border-[#b8962e] py-3 text-[13px] font-bold text-[#b8962e] transition-all duration-300 hover:bg-[#b8962e] hover:text-black uppercase tracking-wider shadow-sm">
+              <button className="mt-3 border-2 border-[#b8962e] py-2 text-[12px] font-bold text-[#b8962e] transition-all duration-300 hover:bg-[#b8962e] hover:text-black uppercase tracking-wider shadow-sm">
                 FIGHTER PROFILE
               </button>
 
