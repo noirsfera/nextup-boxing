@@ -337,6 +337,29 @@ export function Footer() {
           box-shadow:0 0 6px rgba(184,150,46,.5);
         }
 
+        /* Sanctioned block */
+        .nub-sanctioned {
+          margin-top:52px; padding-top:20px;
+          border-top:1px solid var(--border);
+        }
+        .nub-sanctioned-label {
+          font-size:.54rem; letter-spacing:.2em; text-transform:uppercase;
+          color:rgba(255,255,255,.2); margin-bottom:14px;
+        }
+
+        /* Eyebrow */
+        .nub-eyebrow {
+          display:flex; align-items:center; gap:10px; margin-bottom:14px;
+        }
+        .nub-eyebrow-line {
+          display:block; width:18px; height:1px;
+          background:rgba(184,150,46,.42); flex-shrink:0;
+        }
+        .nub-eyebrow-text {
+          font-size:.58rem; letter-spacing:.26em; text-transform:uppercase;
+          color:rgba(212,174,68,.5); font-weight:500;
+        }
+
         /* HUD bottom bar */
         .nub-hud {
           position:relative;
@@ -437,7 +460,7 @@ export function Footer() {
               {/* Social icon buttons */}
               <div className="nub-icon-row">
                 {SOCIAL_LINKS.map(({ label, href, icon }) => (
-                  
+                  <a
                     key={label}
                     href={href}
                     target="_blank"
@@ -453,7 +476,7 @@ export function Footer() {
 
               <DiamondDivider />
 
-              
+              <a
                 href="https://www.simpletix.com/e/strong-island-fight-night-11-tickets-254611"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -476,6 +499,17 @@ export function Footer() {
                   </Link>
                 ))}
               </nav>
+
+              <div className="nub-sanctioned">
+                <p className="nub-sanctioned-label">Sanctioned By</p>
+                <Image
+                  src="/usa-boxing-metro-logo.png"
+                  alt="USA Boxing Metro"
+                  width={90}
+                  height={36}
+                  className="h-auto"
+                />
+              </div>
             </div>
 
           </div>
