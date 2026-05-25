@@ -5,15 +5,15 @@ import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { TiLocationArrow } from "react-icons/ti";
+import { TiLocationArrow } from "react-icons/ti"
 import { Menu, X, User } from "lucide-react"
 
 const navLinks = [
   { label: "Home", href: "/#hero" },
   { label: "Fights", href: "/#events" },
+  { label: "Boxers", href: "/boxers" },
   { label: "Stream", href: "/#livestream" },
   { label: "Rankings", href: "/#rankings" },
-  { label: "Magazine", href: "/#magazine" },
   { label: "Social", href: "/#social-wall" },
 ]
 

@@ -1,12 +1,660 @@
-import type { Metadata } from "next"
-import { BoxersClient } from "./BoxersClient"
+"use client"
 
-export const metadata: Metadata = {
-  title: "NextUp Fighters | Elite Boxing Roster",
-  description: "Explore the elite roster of NextUp Boxing League. Access detailed fighter profiles, professional records, physical statistics, and interactive career timelines for our champions.",
-  keywords: ["nextup boxing", "boxers stable", "boxing champions", "boxing roster", "vergil ortiz", "ryan garcia"],
-}
+import { useRef, useEffect, useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { Navbar } from "@/components/Navbar"
+import { Footer } from "@/components/Footer"
+import { ChevronDown, Search, X } from "lucide-react"
+
+gsap.registerPlugin(ScrollTrigger)
+
+// Boxers data - World Champions
+const worldChampions = [
+  {
+    id: 1,
+    firstName: "Marcus",
+    lastName: "Steel",
+    image: "/boxers/champion-1.jpg",
+    weightClass: "Heavyweight",
+    titles: "NEXTUP HEAVYWEIGHT WORLD CHAMPION",
+    record: "28-0-0",
+    wins: 28,
+    kos: 22,
+    losses: 0,
+  },
+  {
+    id: 2,
+    firstName: "Elena",
+    lastName: "Tyson",
+    image: "/boxers/champion-2.jpg",
+    weightClass: "Super-Flyweight",
+    titles: "WBC, WBA & NEXTUP CHAMPION",
+    record: "21-0-0",
+    wins: 21,
+    kos: 15,
+    losses: 0,
+  },
+  {
+    id: 3,
+    firstName: "Devon",
+    lastName: "King",
+    image: "/boxers/champion-3.jpg",
+    weightClass: "Welterweight",
+    titles: "NEXTUP WELTERWEIGHT WORLD CHAMPION",
+    record: "19-1-0",
+    wins: 19,
+    kos: 14,
+    losses: 1,
+  },
+  {
+    id: 4,
+    firstName: "Carlos",
+    lastName: "Mendez",
+    image: "/boxers/champion-4.jpg",
+    weightClass: "Super-Lightweight",
+    titles: "NEXTUP SUPER-LIGHTWEIGHT CHAMPION",
+    record: "24-2-0",
+    wins: 24,
+    kos: 18,
+    losses: 2,
+  },
+  {
+    id: 5,
+    firstName: "Isaiah",
+    lastName: "Thompson",
+    image: "/boxers/champion-5.jpg",
+    weightClass: "Light-Heavyweight",
+    titles: "UNIFIED LIGHT-HEAVYWEIGHT CHAMPION",
+    record: "22-0-0",
+    wins: 22,
+    kos: 19,
+    losses: 0,
+  },
+  {
+    id: 6,
+    firstName: "Kai",
+    lastName: "Nakamura",
+    image: "/boxers/champion-6.jpg",
+    weightClass: "Featherweight",
+    titles: "NEXTUP FEATHERWEIGHT CHAMPION",
+    record: "26-1-0",
+    wins: 26,
+    kos: 20,
+    losses: 1,
+  },
+]
+
+// All boxers (includes champions + prospects)
+const allBoxers = [
+  ...worldChampions,
+  {
+    id: 7,
+    firstName: "Aaron",
+    lastName: "Bowens",
+    image: "/boxers/boxer-7.jpg",
+    weightClass: "Middleweight",
+    titles: "",
+    record: "15-2-0",
+    wins: 15,
+    kos: 10,
+    losses: 2,
+  },
+  {
+    id: 8,
+    firstName: "Adam",
+    lastName: "Musa",
+    image: "/boxers/boxer-8.jpg",
+    weightClass: "Super-Welterweight",
+    titles: "",
+    record: "12-0-0",
+    wins: 12,
+    kos: 8,
+    losses: 0,
+  },
+  {
+    id: 9,
+    firstName: "Alan",
+    lastName: "Chaves",
+    image: "/boxers/boxer-9.jpg",
+    weightClass: "Lightweight",
+    titles: "",
+    record: "18-3-0",
+    wins: 18,
+    kos: 12,
+    losses: 3,
+  },
+  {
+    id: 10,
+    firstName: "Alex",
+    lastName: "Middlemiss",
+    image: "/boxers/boxer-10.jpg",
+    weightClass: "Heavyweight",
+    titles: "",
+    record: "14-1-0",
+    wins: 14,
+    kos: 11,
+    losses: 1,
+  },
+  {
+    id: 11,
+    firstName: "Andy",
+    lastName: "Cruz",
+    image: "/boxers/boxer-11.jpg",
+    weightClass: "Featherweight",
+    titles: "",
+    record: "8-0-0",
+    wins: 8,
+    kos: 5,
+    losses: 0,
+  },
+  {
+    id: 12,
+    firstName: "Anthony",
+    lastName: "Joshua",
+    image: "/boxers/boxer-12.jpg",
+    weightClass: "Heavyweight",
+    titles: "",
+    record: "28-4-0",
+    wins: 28,
+    kos: 25,
+    losses: 4,
+  },
+  {
+    id: 13,
+    firstName: "Antonio",
+    lastName: "Vargas",
+    image: "/boxers/boxer-13.jpg",
+    weightClass: "Bantamweight",
+    titles: "",
+    record: "16-2-0",
+    wins: 16,
+    kos: 10,
+    losses: 2,
+  },
+  {
+    id: 14,
+    firstName: "Ade",
+    lastName: "Bayo",
+    image: "/boxers/boxer-14.jpg",
+    weightClass: "Cruiserweight",
+    titles: "",
+    record: "11-0-0",
+    wins: 11,
+    kos: 8,
+    losses: 0,
+  },
+  {
+    id: 15,
+    firstName: "Arturo",
+    lastName: "Cardenas",
+    image: "/boxers/boxer-15.jpg",
+    weightClass: "Super-Flyweight",
+    titles: "",
+    record: "9-1-0",
+    wins: 9,
+    kos: 6,
+    losses: 1,
+  },
+  {
+    id: 16,
+    firstName: "Austin",
+    lastName: "Williams",
+    image: "/boxers/boxer-16.jpg",
+    weightClass: "Middleweight",
+    titles: "",
+    record: "14-0-0",
+    wins: 14,
+    kos: 11,
+    losses: 0,
+  },
+  {
+    id: 17,
+    firstName: "Beatriz",
+    lastName: "Ferreira",
+    image: "/boxers/boxer-17.jpg",
+    weightClass: "Lightweight",
+    titles: "",
+    record: "7-0-0",
+    wins: 7,
+    kos: 4,
+    losses: 0,
+  },
+  {
+    id: 18,
+    firstName: "Ben",
+    lastName: "Whittaker",
+    image: "/boxers/boxer-18.jpg",
+    weightClass: "Light-Heavyweight",
+    titles: "",
+    record: "10-0-0",
+    wins: 10,
+    kos: 7,
+    losses: 0,
+  },
+]
+
+// Weight class options
+const weightClasses = [
+  "All",
+  "Heavyweight",
+  "Cruiserweight",
+  "Light-Heavyweight",
+  "Super-Middleweight",
+  "Middleweight",
+  "Super-Welterweight",
+  "Welterweight",
+  "Super-Lightweight",
+  "Lightweight",
+  "Super-Featherweight",
+  "Featherweight",
+  "Super-Bantamweight",
+  "Bantamweight",
+  "Super-Flyweight",
+  "Flyweight",
+]
+
+// Sort options
+const sortOptions = ["A-Z", "Z-A", "Record"]
 
 export default function BoxersPage() {
-  return <BoxersClient />
+  const championsRef = useRef<HTMLDivElement>(null)
+  const allBoxersRef = useRef<HTMLDivElement>(null)
+  const bannerRef = useRef<HTMLDivElement>(null)
+  
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedWeight, setSelectedWeight] = useState("All")
+  const [sortBy, setSortBy] = useState("A-Z")
+  const [showWeightDropdown, setShowWeightDropdown] = useState(false)
+  const [showSortDropdown, setShowSortDropdown] = useState(false)
+
+  // Filter and sort boxers
+  const filteredBoxers = allBoxers
+    .filter((boxer) => {
+      const matchesSearch = 
+        boxer.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        boxer.lastName.toLowerCase().includes(searchQuery.toLowerCase())
+      const matchesWeight = selectedWeight === "All" || boxer.weightClass === selectedWeight
+      return matchesSearch && matchesWeight
+    })
+    .sort((a, b) => {
+      if (sortBy === "A-Z") return a.lastName.localeCompare(b.lastName)
+      if (sortBy === "Z-A") return b.lastName.localeCompare(a.lastName)
+      if (sortBy === "Record") return b.wins - a.wins
+      return 0
+    })
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Banner parallax
+      const bannerImg = bannerRef.current?.querySelector<HTMLImageElement>("img")
+      if (bannerImg) {
+        gsap.to(bannerImg, {
+          y: 100,
+          ease: "none",
+          scrollTrigger: {
+            trigger: bannerRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          }
+        })
+      }
+
+      // Champions cards stagger reveal
+      const championCards = championsRef.current?.querySelectorAll(".champion-card")
+      if (championCards) {
+        gsap.fromTo(
+          championCards,
+          { opacity: 0, y: 60, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: championsRef.current,
+              start: "top 75%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        )
+      }
+
+      // All boxers cards stagger
+      const boxerCards = allBoxersRef.current?.querySelectorAll(".boxer-card")
+      if (boxerCards) {
+        gsap.fromTo(
+          boxerCards,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.05,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: allBoxersRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        )
+      }
+
+      // Vertical title animation
+      gsap.fromTo(
+        ".vertical-title",
+        { opacity: 0, x: -30 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".vertical-title",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      )
+    })
+
+    return () => ctx.revert()
+  }, [])
+
+  return (
+    <main className="min-h-screen w-screen overflow-x-hidden bg-white">
+      <Navbar />
+
+      {/* Banner Section - Matchroom Style */}
+      <section 
+        ref={bannerRef}
+        className="relative h-[400px] md:h-[500px] overflow-hidden flex items-center bg-[#05070f]"
+      >
+        <div className="absolute inset-0">
+          <Image
+            src="/boxers/banner-bg.jpg"
+            alt="Boxing ring atmosphere"
+            fill
+            className="object-cover opacity-50"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#05070f]/95 via-[#05070f]/60 to-transparent" />
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-8">
+          <span 
+            className="block text-xl md:text-2xl font-semibold tracking-[0.1em] text-[#d4ae44] mb-2"
+            style={{ fontFamily: "var(--font-bebas)" }}
+          >
+            Ordinary People.
+          </span>
+          <h1 
+            className="text-5xl md:text-7xl lg:text-8xl font-black uppercase text-white leading-[0.95]"
+            style={{ fontFamily: "var(--font-bebas)" }}
+          >
+            EXTRAORDINARY<br />TALENT
+          </h1>
+        </div>
+
+        {/* Diagonal accent line */}
+        <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#c5203a] via-[#c5203a] to-transparent" />
+      </section>
+
+      {/* World Champions Section */}
+      <section className="world-champions relative">
+        {/* Background effects */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#1e2d5e]/20 rounded-full blur-[150px]" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#c5203a]/10 rounded-full blur-[120px]" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
+            {/* Vertical Title */}
+            <div className="vertical-title lg:w-20 flex-shrink-0">
+              <div className="vertical-title-container">
+                <h2 
+                  className="text-5xl lg:text-7xl font-black uppercase text-outline-white-heavy"
+                  style={{ fontFamily: "var(--font-bebas)" }}
+                >
+                  WORLD<br />CHAMPIONS
+                </h2>
+              </div>
+            </div>
+
+            {/* Champions Grid */}
+            <div ref={championsRef} className="flex-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {worldChampions.map((boxer) => (
+                  <ChampionCard key={boxer.id} boxer={boxer} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* All Boxers Section */}
+      <section className="all-boxers py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Header with filters */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
+            <h2 
+              className="text-4xl md:text-5xl font-black uppercase text-[#0d1124]"
+              style={{ fontFamily: "var(--font-bebas)" }}
+            >
+              All Boxers
+            </h2>
+
+            <div className="flex flex-wrap items-center gap-3">
+              {/* Search */}
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 pr-4 py-2.5 bg-white border border-gray-200 text-sm font-medium text-[#0d1124] placeholder-gray-400 focus:outline-none focus:border-[#c5203a] transition-colors w-40"
+                />
+                {searchQuery && (
+                  <button 
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-2 top-1/2 -translate-y-1/2"
+                  >
+                    <X className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                  </button>
+                )}
+              </div>
+
+              {/* Weight Class Dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => {
+                    setShowWeightDropdown(!showWeightDropdown)
+                    setShowSortDropdown(false)
+                  }}
+                  className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 text-sm font-bold uppercase tracking-wider text-[#0d1124] hover:border-gray-300 transition-colors"
+                >
+                  {selectedWeight === "All" ? "Weight" : selectedWeight}
+                  <ChevronDown className={`w-4 h-4 transition-transform ${showWeightDropdown ? "rotate-180" : ""}`} />
+                </button>
+                {showWeightDropdown && (
+                  <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 shadow-lg z-50 max-h-64 overflow-y-auto">
+                    {weightClasses.map((weight) => (
+                      <button
+                        key={weight}
+                        onClick={() => {
+                          setSelectedWeight(weight)
+                          setShowWeightDropdown(false)
+                        }}
+                        className={`w-full text-left px-4 py-2 text-sm font-medium hover:bg-gray-50 transition-colors ${
+                          selectedWeight === weight ? "bg-[#c5203a] text-white" : "text-[#0d1124]"
+                        }`}
+                      >
+                        {weight}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Sort Dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => {
+                    setShowSortDropdown(!showSortDropdown)
+                    setShowWeightDropdown(false)
+                  }}
+                  className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 text-sm font-bold uppercase tracking-wider text-[#0d1124] hover:border-gray-300 transition-colors"
+                >
+                  Sort
+                  <ChevronDown className={`w-4 h-4 transition-transform ${showSortDropdown ? "rotate-180" : ""}`} />
+                </button>
+                {showSortDropdown && (
+                  <div className="absolute top-full right-0 mt-1 w-32 bg-white border border-gray-200 shadow-lg z-50">
+                    {sortOptions.map((option) => (
+                      <button
+                        key={option}
+                        onClick={() => {
+                          setSortBy(option)
+                          setShowSortDropdown(false)
+                        }}
+                        className={`w-full text-left px-4 py-2 text-sm font-medium hover:bg-gray-50 transition-colors ${
+                          sortBy === option ? "bg-[#c5203a] text-white" : "text-[#0d1124]"
+                        }`}
+                      >
+                        {option}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Boxers Grid */}
+          <div ref={allBoxersRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
+            {filteredBoxers.map((boxer) => (
+              <BoxerCard key={boxer.id} boxer={boxer} />
+            ))}
+          </div>
+
+          {filteredBoxers.length === 0 && (
+            <div className="text-center py-16">
+              <p className="text-gray-500 text-lg">No boxers found matching your criteria.</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  )
+}
+
+// Champion Card Component
+interface BoxerData {
+  id: number
+  firstName: string
+  lastName: string
+  image: string
+  weightClass: string
+  titles: string
+  record: string
+  wins: number
+  kos: number
+  losses: number
+}
+
+function ChampionCard({ boxer }: { boxer: BoxerData }) {
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
+    <div 
+      className="champion-card boxer-card-mr group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="image-wrap">
+        <Image
+          src={boxer.image}
+          alt={`${boxer.firstName} ${boxer.lastName}`}
+          fill
+          className="object-cover object-top transition-transform duration-600"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+      </div>
+      <div className="gradient-overlay" />
+      
+      <div className="card-text">
+        <h2>
+          {boxer.firstName}<br />{boxer.lastName}
+        </h2>
+        <p className="weight-cat">{boxer.weightClass}</p>
+      </div>
+
+      {/* Hover overlay */}
+      <div className="hover-overlay">
+        <p className="trophy-text">{boxer.titles}</p>
+        <Link href={`/boxers/${boxer.id}`}>
+          <button>SEE PROFILE</button>
+        </Link>
+      </div>
+    </div>
+  )
+}
+
+// Regular Boxer Card Component
+function BoxerCard({ boxer }: { boxer: BoxerData }) {
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
+    <Link href={`/boxers/${boxer.id}`}>
+      <div 
+        className="boxer-card relative aspect-[3/4] bg-[#f5f5f5] overflow-hidden group cursor-pointer"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div className="absolute inset-0">
+          <Image
+            src={boxer.image}
+            alt={`${boxer.firstName} ${boxer.lastName}`}
+            fill
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+          />
+        </div>
+        
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        
+        {/* Text content */}
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <h3 
+            className="text-xl md:text-2xl font-black uppercase text-white leading-[0.95]"
+            style={{ fontFamily: "var(--font-bebas)" }}
+          >
+            {boxer.firstName}<br />{boxer.lastName}
+          </h3>
+          <p className="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-[#c5203a] mt-1">
+            {boxer.weightClass}
+          </p>
+        </div>
+
+        {/* Hover effect - red tint */}
+        <div 
+          className={`absolute inset-0 bg-[#c5203a]/0 transition-colors duration-300 ${
+            isHovered ? "bg-[#c5203a]/20" : ""
+          }`}
+        />
+      </div>
+    </Link>
+  )
 }

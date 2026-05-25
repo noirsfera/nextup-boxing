@@ -1,90 +1,109 @@
-import Image from "next/image"
-import Link from "next/link"
-import { MapPin, Ticket, ArrowRight } from "lucide-react"
+"use client"
 
-const events = [
-  {
-    id: 1,
-    date: "Sat, Jun 27",
-    title: "ZAYAS VS ENNIS",
-    location: "Barclays Center | Brooklyn, New York City",
-    broadcaster: "DAZN",
-    image: "/fighter-1.png",
-    ticketUrl: "#",
-  },
-  {
-    id: 2,
-    date: "Sat, Jul 4 / 8:00 PM ET",
-    title: "MASON VS CORDINA",
-    location: "CSU Wolstein Center | Cleveland, Ohio",
-    broadcaster: "TNT and DAZN",
-    image: "/fighter-2.png",
-    ticketUrl: "#",
-  },
-  {
-    id: 3,
-    date: "Fri, Aug 14 / 7:30 PM ET",
-    title: "HERNANDEZ VS RODRIGUEZ",
-    location: "Madison Square Garden | New York, NY",
-    broadcaster: "ESPN+",
-    image: "/fighter-3.png",
-    ticketUrl: "#",
-  }
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
+
+// Use event sponsors / partners provided
+const sponsors = [
+  { name: "BULOVAS RESTORATIONS", url: "https://www.bulovasrestorations.com/index.html" },
+  { name: "M&T STRONG CONCRETE", url: "https://mbstrongconcrete.com/" },
 ]
 
-export function EventsSection() {
+// Duplicate for seamless loop
+const track1 = [...sponsors, ...sponsors]
+const track2 = [...sponsors].reverse().concat([...sponsors].reverse())
+
+export function SponsorsStrip() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-50px" })
+
   return (
-    <section id="events" className="relative w-full scroll-mt-20 overflow-hidden bg-white py-16 md:py-24">
-      {/* Background TEXT */}
-      <div className="pointer-events-none absolute left-0 right-0 top-10 flex justify-center overflow-hidden">
-        <span className="text-[15rem] font-black leading-none text-[#f8f8f8] select-none uppercase tracking-tighter">
-          EVENTS
+    <section ref={ref} className="relative overflow-hidden bg-black py-0">
+      {/* Top brand gradient rule */}
+      <div className="h-[3px] bg-gradient-to-r from-[#1e2d5e] via-[#b8962e] to-[#c5203a]" />
+
+      {/* Header row */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className="flex items-center justify-center gap-4 py-8"
+      >
+        <span className="h-px w-16 bg-[#b8962e]/25" />
+        <span className="section-eyebrow text-white">
+          Official Partners &amp; Sponsors
         </span>
-      </div>
+        <span className="h-px w-16 bg-[#b8962e]/25" />
+      </motion.div>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-12 flex items-center justify-between border-b border-gray-200 pb-4">
-          <div className="flex items-center gap-6">
-            <button className="text-xl font-bold text-[#c5203a] tracking-tight">UPCOMING</button>
-            <button className="text-xl font-bold text-gray-300 tracking-tight transition-colors hover:text-gray-500">PAST</button>
-          </div>
-          <Link href="/events" className="flex items-center gap-2 text-sm font-bold text-black tracking-tight transition-colors hover:text-[#c5203a] uppercase">
-            SEE ALL EVENTS <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
+      {/* Ticker Row 1 — LTR */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.8, delay: 0.1 }}
+        className="relative overflow-hidden mb-4"
+      >
+        <div className="marquee-track">
+          {track1.map((sponsor, i) => (
+            <div
+              key={`t1-${i}`}
+              className="flex-shrink-0 flex items-center mx-8 sm:mx-10"
+            >
+              <a
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-black uppercase text-white hover:text-[#b8962e] transition-colors duration-500 select-none"
+                style={{
+                  fontFamily: "var(--font-bebas), Impact, sans-serif",
+                  fontSize: "clamp(1rem, 2.5vw, 1.3rem)",
+                  letterSpacing: "0.08em",
+                }}
+              >
+                {sponsor.name}
+              </a>
 
-        {/* Event List - 3 across on md+ */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {events.map((event) => (
-            <article key={event.id} className="flex w-full flex-col overflow-hidden rounded-lg border bg-white shadow-sm">
-              <div className="relative h-44 w-full overflow-hidden bg-gray-100">
-                <Image src={event.image} alt={event.title} fill className="object-cover object-top" />
-              </div>
-
-              <div className="flex flex-1 flex-col gap-3 p-4">
-                <span className="text-[13px] font-bold text-[#b8962e]">{event.date}</span>
-                <h3 className="text-lg font-bold uppercase tracking-tight text-[#1e2d5e]" style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}>{event.title}</h3>
-                <div className="flex items-center gap-2 text-[13px] text-gray-700">
-                  <MapPin className="h-4 w-4 text-[#c5203a]" />
-                  <span className="truncate">{event.location}</span>
-                </div>
-                <span className="text-[13px] text-gray-500">{event.broadcaster}</span>
-
-                <div className="mt-4 flex gap-3">
-                  <a href={event.ticketUrl} className="inline-flex items-center gap-2 rounded-md bg-yellow-300 px-4 py-2 text-sm font-bold text-[#0d1124] transition-colors hover:bg-yellow-400">
-                    <Ticket className="h-4 w-4" />
-                    BUY TICKETS
-                  </a>
-                  <Link href="#" className="inline-flex items-center gap-2 rounded-md bg-gray-100 px-4 py-2 text-sm font-bold text-[#1e2d5e] transition-colors hover:bg-gray-200">
-                    LEARN MORE
-                  </Link>
-                </div>
-              </div>
-            </article>
+              <span className="ml-6 sm:ml-8 w-1 h-1 rounded-full bg-[#b8962e]/25 flex-shrink-0" />
+            </div>
           ))}
         </div>
-      </div>
+      </motion.div>
+
+      {/* Ticker Row 2 — RTL */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="relative overflow-hidden mb-8"
+      >
+        <div className="marquee-track-reverse">
+          {track2.map((sponsor, i) => (
+            <div
+              key={`t2-${i}`}
+              className="flex-shrink-0 flex items-center mx-8 sm:mx-10"
+            >
+              <a
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-black uppercase text-white hover:text-[#c5203a] transition-colors duration-500 select-none"
+                style={{
+                  fontFamily: "var(--font-bebas), Impact, sans-serif",
+                  fontSize: "clamp(0.95rem, 2.25vw, 1.1rem)",
+                  letterSpacing: "0.1em",
+                }}
+              >
+                {sponsor.name}
+              </a>
+
+              <span className="ml-6 sm:ml-8 w-1 h-1 rounded-full bg-[#c5203a]/20 flex-shrink-0" />
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Bottom rule */}
+      <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
     </section>
   )
 }

@@ -1,6 +1,13 @@
+"use client"
+
+import { useRef, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Trophy, ChevronRight, ChevronLeft, Users } from "lucide-react"
+
+gsap.registerPlugin(ScrollTrigger)
 
 const champions = [
   {
@@ -41,7 +48,6 @@ const champions = [
   }
 ]
 
-// Added two more champions to show six by default
 champions.push(
   {
     id: 5,
@@ -72,35 +78,198 @@ const bannerFighters = [
 ]
 
 export function ChampionsSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+  const bannerRef = useRef<HTMLDivElement>(null)
+  const dotsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+
+      // --- Logo stamp-in ---
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, scale: 1.15, filter: "blur(8px)" },
+        {
+          opacity: 1,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 1,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+
+      // --- Horizontal rule lines shoot in from sides ---
+      gsap.fromTo(
+        ".champ-line-left",
+        { scaleX: 0, transformOrigin: "right center" },
+        {
+          scaleX: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+      gsap.fromTo(
+        ".champ-line-right",
+        { scaleX: 0, transformOrigin: "left center" },
+        {
+          scaleX: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+
+      // --- Cards: staggered rise with clip-path wipe ---
+      const cards = cardsRef.current?.querySelectorAll<HTMLElement>(".champ-card")
+      if (cards && cards.length) {
+        gsap.fromTo(
+          cards,
+          {
+            opacity: 0,
+            y: 80,
+            clipPath: "inset(100% 0% 0% 0%)",
+          },
+          {
+            opacity: 1,
+            y: 0,
+            clipPath: "inset(0% 0% 0% 0%)",
+            duration: 0.75,
+            stagger: 0.08,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: "top 78%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        )
+
+        // Subtle image parallax on each card image
+        cards.forEach((card) => {
+          const img = card.querySelector<HTMLElement>(".card-img")
+          if (img) {
+            gsap.fromTo(
+              img,
+              { y: -20 },
+              {
+                y: 20,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: 1.2,
+                },
+              }
+            )
+          }
+        })
+      }
+
+      // --- Dots pop ---
+      if (dotsRef.current) {
+        gsap.fromTo(
+          dotsRef.current.children,
+          { scale: 0, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.4,
+            stagger: 0.12,
+            ease: "back.out(2)",
+            scrollTrigger: {
+              trigger: dotsRef.current,
+              start: "top 90%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        )
+      }
+
+      // --- Bottom banner: slide up + fighters stagger ---
+      gsap.fromTo(
+        bannerRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: bannerRef.current,
+            start: "top 88%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      )
+
+      const bannerItems = bannerRef.current?.querySelectorAll<HTMLElement>(".banner-fighter")
+      if (bannerItems && bannerItems.length) {
+        gsap.fromTo(
+          bannerItems,
+          { opacity: 0, y: 40, scale: 0.9 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.55,
+            stagger: 0.07,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: bannerRef.current,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        )
+      }
+
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section className="bg-[#0a0a0a] py-16 w-full overflow-hidden border-t border-[#b8962e]/20">
+    <section ref={sectionRef} className="bg-[#0a0a0a] py-16 w-full overflow-hidden border-t border-[#b8962e]/20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="relative mb-12 flex flex-col items-center justify-center text-center">
-          {/* Horizontal Line behind */}
-          <div className="absolute top-1/2 left-0 right-0 h-px bg-[#b8962e] opacity-40 z-0"></div>
-          
-          <div className="relative z-10 bg-[#0a0a0a] px-6 flex flex-col items-center">
-            <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-white mb-[-10px] drop-shadow-lg" style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}>
-              WORLD
-            </h2>
-            <h2 
-              className="text-5xl md:text-6xl font-bold uppercase tracking-widest text-transparent drop-shadow-md" 
-              style={{ 
-                fontFamily: "var(--font-bebas), Impact, sans-serif",
-                WebkitTextStroke: "1.5px #b8962e"
-              }}
-            >
-              CHAMPIONS
-            </h2>
+
+        {/* Header — logo replaces "WORLD CHAMPIONS" text */}
+        <div ref={headerRef} className="relative mb-12 flex flex-col items-center justify-center text-center">
+          <div className="champ-line-left absolute top-1/2 left-0 right-1/2 h-px bg-[#b8962e] opacity-40 z-0 mr-20" />
+          <div className="champ-line-right absolute top-1/2 left-1/2 right-0 h-px bg-[#b8962e] opacity-40 z-0 ml-20" />
+
+          <div className="relative z-10 bg-[#0a0a0a] px-8 py-2">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={180}
+              height={80}
+              className="object-contain"
+              priority
+            />
           </div>
         </div>
 
         {/* Cards Grid */}
-        <div className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          
-          {/* Nav arrows (absolute) */}
+        <div ref={cardsRef} className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+
+          {/* Nav arrows */}
           <button className="absolute left-0 top-1/3 -translate-y-1/2 z-20 bg-black/60 p-2 text-white hover:bg-[#c5203a] transition-colors lg:-left-6 hidden md:block border border-white/10 shadow-lg">
             <ChevronLeft className="h-6 w-6" />
           </button>
@@ -109,19 +278,22 @@ export function ChampionsSection() {
           </button>
 
           {champions.map((fighter) => (
-            <div key={fighter.id} className="flex flex-col transform transition-transform hover:-translate-y-1 hover:shadow-2xl">
-              
-              {/* Image & Gradient Container (reduced height to fit 6 cards) */}
+            <div
+              key={fighter.id}
+              className="champ-card flex flex-col transform transition-transform hover:-translate-y-1 hover:shadow-2xl"
+            >
+              {/* Image */}
               <div className="relative h-[200px] w-full bg-gradient-to-b from-[#d4ae44] to-[#b8962e] overflow-hidden">
-                <Image
-                  src={fighter.image}
-                  alt={`${fighter.firstName} ${fighter.lastName}`}
-                  fill
-                  className="object-cover object-top drop-shadow-2xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent"></div>
-                
-                {/* Fighter Info Overlay */}
+                <div className="card-img absolute inset-0">
+                  <Image
+                    src={fighter.image}
+                    alt={`${fighter.firstName} ${fighter.lastName}`}
+                    fill
+                    className="object-cover object-top drop-shadow-2xl"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
+
                 <div className="absolute bottom-3 left-0 right-0 text-center px-2">
                   <div className="uppercase tracking-widest text-sm md:text-[0.9rem] drop-shadow-lg" style={{ fontFamily: "var(--font-bebas), sans-serif" }}>
                     <span className="text-white font-normal">{fighter.firstName} </span>
@@ -147,43 +319,40 @@ export function ChampionsSection() {
                 <div className="bg-[#b8962e] py-1.5 text-[10px] font-bold text-white uppercase tracking-wider border-l border-[#c9a435]">LOSS</div>
                 <div className="bg-[#b8962e] py-1.5 text-[10px] font-bold text-white uppercase tracking-wider border-l border-[#c9a435]">DRAW</div>
                 <div className="bg-[#b8962e] py-1.5 text-[10px] font-bold text-white uppercase tracking-wider border-l border-[#c9a435]">KOs</div>
-                
+
                 <div className="bg-[#1a1a1a] py-2 text-[13px] font-bold text-white">{fighter.stats.win}</div>
                 <div className="bg-[#1a1a1a] py-2 text-[13px] font-bold text-white border-l border-white/10">{fighter.stats.loss}</div>
                 <div className="bg-[#1a1a1a] py-2 text-[13px] font-bold text-white border-l border-white/10">{fighter.stats.draw}</div>
                 <div className="bg-[#1a1a1a] py-2 text-[13px] font-bold text-white border-l border-white/10">{fighter.stats.kos}</div>
               </div>
-
-              {/* Action Button */}
-              <button className="mt-3 border-2 border-[#b8962e] py-2 text-[12px] font-bold text-[#b8962e] transition-all duration-300 hover:bg-[#b8962e] hover:text-black uppercase tracking-wider shadow-sm">
-                FIGHTER PROFILE
-              </button>
-
             </div>
           ))}
         </div>
 
         {/* Carousel Dots */}
-        <div className="mt-8 flex justify-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-white shadow-sm"></div>
-          <div className="h-2 w-2 rounded-full border border-white bg-transparent"></div>
+        <div ref={dotsRef} className="mt-8 flex justify-center gap-2">
+          <div className="h-2 w-2 rounded-full bg-white shadow-sm" />
+          <div className="h-2 w-2 rounded-full border border-white bg-transparent" />
         </div>
 
         {/* Bottom Banner Strip */}
-        <div className="mt-12 relative w-full overflow-hidden bg-gradient-to-r from-[#b8962e] to-[#d4ae44] px-6 py-4 flex flex-col md:flex-row items-center justify-between shadow-[0_15px_30px_rgba(0,0,0,0.4)]">
-          {/* Diagonal Stripes Pattern */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none" 
-               style={{ backgroundImage: "repeating-linear-gradient(45deg, #000 0, #000 2px, transparent 2px, transparent 12px)" }}>
-          </div>
-          
+        <div
+          ref={bannerRef}
+          className="mt-12 relative w-full overflow-hidden bg-gradient-to-r from-[#b8962e] to-[#d4ae44] px-6 py-4 flex flex-col md:flex-row items-center justify-between shadow-[0_15px_30px_rgba(0,0,0,0.4)]"
+        >
+          <div
+            className="absolute inset-0 opacity-10 pointer-events-none"
+            style={{ backgroundImage: "repeating-linear-gradient(45deg, #000 0, #000 2px, transparent 2px, transparent 12px)" }}
+          />
+
           <div className="relative z-10 flex flex-col items-center md:items-start mb-6 md:mb-0">
             <div className="flex items-center gap-3 text-white mb-3 drop-shadow-md">
               <Users className="h-7 w-7" />
               <span className="text-4xl font-bold uppercase tracking-wider" style={{ fontFamily: "var(--font-bebas), sans-serif" }}>FIGHTERS</span>
             </div>
-            <Link 
+            <Link
               id="view-all-fighters-btn"
-              href="/boxers" 
+              href="/boxers"
               className="flex items-center gap-2 bg-[#0a0a0a] px-6 py-2.5 text-[13px] font-bold text-white transition-colors hover:bg-[#c5203a] uppercase tracking-wider shadow-md"
             >
               <ChevronRight className="h-4 w-4" />
@@ -193,7 +362,10 @@ export function ChampionsSection() {
 
           <div className="relative z-10 flex w-full md:w-auto items-end justify-between md:justify-end gap-2 md:gap-8 overflow-x-auto pb-1 scrollbar-hide">
             {bannerFighters.map((bf) => (
-              <div key={bf.id} className="flex flex-col items-center shrink-0 w-[80px] md:w-[110px] transform transition-transform hover:-translate-y-1">
+              <div
+                key={bf.id}
+                className="banner-fighter flex flex-col items-center shrink-0 w-[80px] md:w-[110px] transform transition-transform hover:-translate-y-1"
+              >
                 <div className="relative h-[90px] md:h-[120px] w-full mb-1">
                   <Image
                     src={bf.image}
@@ -203,7 +375,10 @@ export function ChampionsSection() {
                   />
                 </div>
                 <div className="w-full border-t-2 border-black/30 pt-1.5 text-center">
-                  <span className="text-[12px] md:text-[14px] font-bold text-black uppercase tracking-wider" style={{ fontFamily: "var(--font-bebas), sans-serif" }}>
+                  <span
+                    className="text-[12px] md:text-[14px] font-bold text-black uppercase tracking-wider"
+                    style={{ fontFamily: "var(--font-bebas), sans-serif" }}
+                  >
                     {bf.name}
                   </span>
                 </div>
@@ -211,6 +386,7 @@ export function ChampionsSection() {
             ))}
           </div>
         </div>
+
       </div>
     </section>
   )
