@@ -9,9 +9,13 @@ const sponsors = [
   { name: "M&T STRONG CONCRETE", url: "https://mbstrongconcrete.com/" },
 ]
 
-// Duplicate for seamless loop
-const track1 = [...sponsors, ...sponsors]
-const track2 = [...sponsors].reverse().concat([...sponsors].reverse())
+// Duplicate enough times for seamless full-width flow
+const track1 = [...sponsors, ...sponsors, ...sponsors, ...sponsors]
+const track2 = [...sponsors].reverse().concat(
+  [...sponsors].reverse(),
+  [...sponsors].reverse(),
+  [...sponsors].reverse()
+)
 
 export function SponsorsStrip() {
   const ref = useRef(null)
@@ -30,76 +34,122 @@ export function SponsorsStrip() {
         className="flex items-center justify-center gap-4 py-8"
       >
         <span className="h-px w-16 bg-[#b8962e]/25" />
-        <span className="section-eyebrow text-white">Official Partners &amp; Sponsors</span>
+        <span className="section-eyebrow text-white">
+          Official Partners &amp; Sponsors
+        </span>
         <span className="h-px w-16 bg-[#b8962e]/25" />
       </motion.div>
 
-      {/* Ticker Row 1 — LTR */}
+      {/* Ticker Row 1 — Right to Left */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.1 }}
         className="relative overflow-hidden mb-4"
       >
-        <div className="marquee-track">
-          {track1.map((sponsor, i) => (
-            <div
-              key={`t1-${i}`}
-              className="flex-shrink-0 flex items-center mx-8 sm:mx-10"
-            >
-              <a
-                href={sponsor.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-black uppercase text-white hover:text-[#b8962e] transition-colors duration-500 select-none"
-                style={{
-                  fontFamily: 'var(--font-bebas), Impact, sans-serif',
-                  fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
-                  letterSpacing: '0.08em',
-                }}
+        <div className="marquee-wrapper">
+          <div className="marquee-track">
+            {track1.map((sponsor, i) => (
+              <div
+                key={`t1-${i}`}
+                className="flex-shrink-0 flex items-center px-8 sm:px-10"
               >
-                {sponsor.name}
-              </a>
-              <span className="ml-6 sm:ml-8 w-1 h-1 rounded-full bg-[#b8962e]/25 flex-shrink-0" />
-            </div>
-          ))}
+                <a
+                  href={sponsor.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-black uppercase text-white hover:text-[#b8962e] transition-colors duration-500 select-none whitespace-nowrap"
+                  style={{
+                    fontFamily: "var(--font-bebas), Impact, sans-serif",
+                    fontSize: "clamp(1rem, 2.5vw, 1.3rem)",
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  {sponsor.name}
+                </a>
+
+                <span className="ml-6 sm:ml-8 w-1 h-1 rounded-full bg-[#b8962e]/25 flex-shrink-0" />
+              </div>
+            ))}
+          </div>
         </div>
       </motion.div>
 
-      {/* Ticker Row 2 — RTL */}
+      {/* Ticker Row 2 — Left to Right */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.2 }}
         className="relative overflow-hidden mb-8"
       >
-        <div className="marquee-track-reverse">
-          {track2.map((sponsor, i) => (
-            <div
-              key={`t2-${i}`}
-              className="flex-shrink-0 flex items-center mx-8 sm:mx-10"
-            >
-              <a
-                href={sponsor.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-black uppercase text-white hover:text-[#c5203a] transition-colors duration-500 select-none"
-                style={{
-                  fontFamily: 'var(--font-bebas), Impact, sans-serif',
-                  fontSize: 'clamp(0.95rem, 2.25vw, 1.1rem)',
-                  letterSpacing: '0.1em',
-                }}
+        <div className="marquee-wrapper">
+          <div className="marquee-track-reverse">
+            {track2.map((sponsor, i) => (
+              <div
+                key={`t2-${i}`}
+                className="flex-shrink-0 flex items-center px-8 sm:px-10"
               >
-                {sponsor.name}
-              </a>
-              <span className="ml-6 sm:ml-8 w-1 h-1 rounded-full bg-[#c5203a]/20 flex-shrink-0" />
-            </div>
-          ))}
+                <a
+                  href={sponsor.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-black uppercase text-white hover:text-[#c5203a] transition-colors duration-500 select-none whitespace-nowrap"
+                  style={{
+                    fontFamily: "var(--font-bebas), Impact, sans-serif",
+                    fontSize: "clamp(0.95rem, 2.25vw, 1.1rem)",
+                    letterSpacing: "0.1em",
+                  }}
+                >
+                  {sponsor.name}
+                </a>
+
+                <span className="ml-6 sm:ml-8 w-1 h-1 rounded-full bg-[#c5203a]/20 flex-shrink-0" />
+              </div>
+            ))}
+          </div>
         </div>
       </motion.div>
 
       {/* Bottom rule */}
       <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+
+      {/* Animations */}
+      <style jsx>{`
+        .marquee-wrapper {
+          display: flex;
+          width: max-content;
+        }
+
+        .marquee-track {
+          display: flex;
+          width: max-content;
+          animation: marquee-left 28s linear infinite;
+        }
+
+        .marquee-track-reverse {
+          display: flex;
+          width: max-content;
+          animation: marquee-right 28s linear infinite;
+        }
+
+        @keyframes marquee-left {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        @keyframes marquee-right {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(0%);
+          }
+        }
+      `}</style>
     </section>
   )
 }

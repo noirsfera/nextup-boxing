@@ -12,66 +12,57 @@ gsap.registerPlugin(ScrollTrigger)
 const champions = [
   {
     id: 1,
-    firstName: "VERGIL",
-    lastName: "ORTIZ JR.",
-    weightClass: "SUPER WELTERWEIGHT",
-    titles: ["WBC Interim"],
-    stats: { win: 24, loss: 0, draw: 0, kos: 22 },
-    image: "/fighter-1.png",
+    firstName: "ARTURO",
+    lastName: "ACEVEDO",
+    weightClass: "121 LBS",
+    titles: ["SBC"],
+    stats: { win: 0, loss: 0, draw: 0, kos: 0 },
+    image: "/champions/ARTURO_ACEVEDO_121_SBC_CHAMPION.png",
   },
   {
     id: 2,
-    firstName: "RYAN",
-    lastName: "GARCIA",
-    weightClass: "WELTERWEIGHT",
-    titles: ["WBC"],
-    stats: { win: 25, loss: 2, draw: 0, kos: 20 },
-    image: "/fighter-2.png",
+    firstName: "XAVIER",
+    lastName: "WILCHER",
+    weightClass: "198 LBS",
+    titles: ["SBC"],
+    stats: { win: 0, loss: 0, draw: 0, kos: 0 },
+    image: "/champions/XAVIER_WILCHER_198_SBC_CHAMPION.png",
   },
   {
     id: 3,
-    firstName: "RICARDO",
-    lastName: "SANDOVAL",
-    weightClass: "FLYWEIGHT",
-    titles: ["WBC", "WBA"],
-    stats: { win: 27, loss: 2, draw: 0, kos: 18 },
-    image: "/fighter-1.png",
+    firstName: "JADEN",
+    lastName: "HARVEY",
+    weightClass: "165 LBS",
+    titles: ["DAWG"],
+    stats: { win: 0, loss: 0, draw: 0, kos: 0 },
+    image: "/champions/JADEN_HARVEY_165_DAWG_CHAMPION.png",
   },
   {
     id: 4,
-    firstName: "GABRIELA",
-    lastName: "FUNDORA",
-    weightClass: "FLYWEIGHT",
-    titles: ["IBF", "WBO", "WBC", "WBA"],
-    stats: { win: 18, loss: 0, draw: 0, kos: 10 },
-    image: "/fighter-2.png",
+    firstName: "BRADLEY",
+    lastName: "BELT",
+    weightClass: "198 LBS",
+    titles: ["ADC"],
+    stats: { win: 0, loss: 0, draw: 0, kos: 0 },
+    image: "/champions/BRADLEY_BELT_198_ADC_CHAMPION.png",
   },
   {
     id: 5,
-    firstName: "LUIS",
-    lastName: "ESCOBAR",
-    weightClass: "LIGHTWEIGHT",
-    titles: ["WBA"],
-    stats: { win: 20, loss: 1, draw: 0, kos: 12 },
-    image: "/fighter-1.png",
-  },
-  {
-    id: 6,
-    firstName: "MARIO",
-    lastName: "SOTO",
-    weightClass: "FEATHERWEIGHT",
-    titles: ["WBC"],
-    stats: { win: 22, loss: 2, draw: 0, kos: 15 },
-    image: "/fighter-2.png",
-  },
+    firstName: "NAIJALIE",
+    lastName: "RODRIGUEZ",
+    weightClass: "106 LBS",
+    titles: ["WOMENS SBC"],
+    stats: { win: 0, loss: 0, draw: 0, kos: 0 },
+    image: "/champions/NAIJALIE_RODRIGUEZ_106_WOMENS_SBC_CHAMPION.png",
+  }, 
 ]
 
 const bannerFighters = [
-  { id: 1, name: "CAPETILLO", image: "/fighter-1.png" },
-  { id: 2, name: "BARBOZA JR.", image: "/fighter-2.png" },
-  { id: 3, name: "FLORES", image: "/fighter-1.png" },
-  { id: 4, name: "PRIEST", image: "/fighter-2.png" },
-  { id: 5, name: "CONWELL", image: "/fighter-1.png" },
+  { id: 1, name: "ACEVEDO", image: "/champions/ARTURO_ACEVEDO_121_SBC_CHAMPION.png" },
+  { id: 2, name: "WILCHER", image: "/champions/XAVIER_WILCHER_198_SBC_CHAMPION.png" },
+  { id: 3, name: "HARVEY", image: "/champions/JADEN_HARVEY_165_DAWG_CHAMPION.png" },
+  { id: 4, name: "BELT", image: "/champions/BRADLEY_BELT_198_ADC_CHAMPION.png" },
+  { id: 5, name: "RODRIGUEZ", image: "/champions/NAIJALIE_RODRIGUEZ_106_WOMENS_SBC_CHAMPION.png" },
 ]
 
 export function ChampionsSection() {
@@ -247,7 +238,7 @@ export function ChampionsSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0a0a0a] py-16 w-full overflow-hidden border-t border-[#b8962e]/20"
+      className="bg-[#3a5299] py-16 w-full overflow-hidden border-t border-[#b8962e]/20"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -259,7 +250,7 @@ export function ChampionsSection() {
 
           <div className="champ-line-right absolute top-1/2 left-1/2 right-0 h-px bg-[#b8962e] opacity-40 z-0 ml-20" />
 
-          <div className="relative z-10 bg-[#0a0a0a] px-8 py-2 flex items-center gap-4">
+          <div className="relative z-10 bg-[#3a5299] px-8 py-2 flex items-center gap-4">
             <Image
               src="/logo.png"
               alt="Logo"
@@ -391,7 +382,7 @@ export function ChampionsSection() {
         {/* Bottom Banner */}
         <div
           ref={bannerRef}
-          className="mt-12 relative w-full overflow-hidden bg-gradient-to-r from-[#b8962e] to-[#d4ae44] px-6 py-4 flex flex-col md:flex-row items-center justify-between shadow-[0_15px_30px_rgba(0,0,0,0.4)]"
+          className="mt-12 relative w-full overflow-hidden bg-gradient-to-r from-[#b8962e] to-[#d4ae44] px-6 py-4 flex flex-col items-center justify-center shadow-[0_15px_30px_rgba(0,0,0,0.4)]"
         >
           <div
             className="absolute inset-0 opacity-10 pointer-events-none"
@@ -423,7 +414,7 @@ export function ChampionsSection() {
             </Link>
           </div>
 
-          <div className="relative z-10 flex w-full md:w-auto items-end justify-between md:justify-end gap-2 md:gap-8 overflow-x-auto pb-1 scrollbar-hide">
+          <div className="relative z-10 flex w-full items-end justify-center gap-2 md:gap-8 overflow-x-auto pb-1 scrollbar-hide">
             {bannerFighters.map((bf) => (
               <div
                 key={bf.id}

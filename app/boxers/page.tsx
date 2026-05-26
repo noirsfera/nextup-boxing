@@ -15,74 +15,98 @@ gsap.registerPlugin(ScrollTrigger)
 const worldChampions = [
   {
     id: 1,
-    firstName: "Marcus",
-    lastName: "Steel",
-    image: "/boxers/champion-1.jpg",
-    weightClass: "Heavyweight",
-    titles: "NEXTUP HEAVYWEIGHT WORLD CHAMPION",
-    record: "28-0-0",
-    wins: 28,
-    kos: 22,
-    losses: 0,
+    firstName: "Arturo",
+    lastName: "Acevedo",
+    image: "/champions/ARTURO_ACEVEDO_121_SBC_CHAMPION.png",
+    weightClass: "Super-Bantamweight",
+    titles: "SBC SUPER-BANTAMWEIGHT CHAMPION",
+    record: "23-1-0",
+    wins: 23,
+    kos: 17,
+    losses: 1,
   },
   {
     id: 2,
-    firstName: "Elena",
-    lastName: "Tyson",
-    image: "/boxers/champion-2.jpg",
-    weightClass: "Super-Flyweight",
-    titles: "WBC, WBA & NEXTUP CHAMPION",
-    record: "21-0-0",
-    wins: 21,
-    kos: 15,
+    firstName: "Bradley",
+    lastName: "Belt",
+    image: "/champions/BRADLEY_BELT_198_ADC_CHAMPION.png",
+    weightClass: "Cruiserweight",
+    titles: "ADC CRUISERWEIGHT CHAMPION",
+    record: "26-0-0",
+    wins: 26,
+    kos: 20,
     losses: 0,
   },
   {
     id: 3,
-    firstName: "Devon",
-    lastName: "King",
-    image: "/boxers/champion-3.jpg",
-    weightClass: "Welterweight",
-    titles: "NEXTUP WELTERWEIGHT WORLD CHAMPION",
-    record: "19-1-0",
-    wins: 19,
-    kos: 14,
-    losses: 1,
-  },
-  {
-    id: 4,
-    firstName: "Carlos",
-    lastName: "Mendez",
-    image: "/boxers/champion-4.jpg",
-    weightClass: "Super-Lightweight",
-    titles: "NEXTUP SUPER-LIGHTWEIGHT CHAMPION",
-    record: "24-2-0",
-    wins: 24,
-    kos: 18,
+    firstName: "Jaden",
+    lastName: "Harvey",
+    image: "/champions/JADEN_HARVEY_165_DAWG_CHAMPION.png",
+    weightClass: "Super-Middleweight",
+    titles: "DAWG SUPER-MIDDLEWEIGHT CHAMPION",
+    record: "22-2-0",
+    wins: 22,
+    kos: 16,
     losses: 2,
   },
   {
+    id: 4,
+    firstName: "Kevin",
+    lastName: "Torres",
+    image: "/champions/KEVIN_TORRES_165_SBC_CHAMPION.png",
+    weightClass: "Super-Middleweight",
+    titles: "SBC SUPER-MIDDLEWEIGHT CHAMPION",
+    record: "24-1-0",
+    wins: 24,
+    kos: 18,
+    losses: 1,
+  },
+  {
     id: 5,
-    firstName: "Isaiah",
-    lastName: "Thompson",
-    image: "/boxers/champion-5.jpg",
-    weightClass: "Light-Heavyweight",
-    titles: "UNIFIED LIGHT-HEAVYWEIGHT CHAMPION",
-    record: "22-0-0",
-    wins: 22,
-    kos: 19,
+    firstName: "Kiamal",
+    lastName: "Evelyn",
+    image: "/champions/KIAMAL_EVELYN_132_SBC_CHAMPION.png",
+    weightClass: "Super-Featherweight",
+    titles: "SBC SUPER-FEATHERWEIGHT CHAMPION",
+    record: "19-0-0",
+    wins: 19,
+    kos: 12,
     losses: 0,
   },
   {
     id: 6,
-    firstName: "Kai",
-    lastName: "Nakamura",
-    image: "/boxers/champion-6.jpg",
-    weightClass: "Featherweight",
-    titles: "NEXTUP FEATHERWEIGHT CHAMPION",
-    record: "26-1-0",
-    wins: 26,
-    kos: 20,
+    firstName: "Naijalie",
+    lastName: "Rodriguez",
+    image: "/champions/NAIJALIE_RODRIGUEZ_106_WOMENS_SBC_CHAMPION.png",
+    weightClass: "Women’s Light-Flyweight",
+    titles: "WOMENS SBC LIGHT-FLYWEIGHT CHAMPION",
+    record: "18-0-0",
+    wins: 18,
+    kos: 10,
+    losses: 0,
+  },
+  {
+    id: 7,
+    firstName: "Reese",
+    lastName: "Mistretta",
+    image: "/champions/REESE_MISTRETTA_176_SBC_CHAMPION.png",
+    weightClass: "Light-Heavyweight",
+    titles: "SBC LIGHT-HEAVYWEIGHT CHAMPION",
+    record: "25-2-0",
+    wins: 25,
+    kos: 21,
+    losses: 2,
+  },
+  {
+    id: 8,
+    firstName: "Xavier",
+    lastName: "Wilcher",
+    image: "/champions/XAVIER_WILCHER_198_SBC_CHAMPION.png",
+    weightClass: "Cruiserweight",
+    titles: "SBC CRUISERWEIGHT CHAMPION",
+    record: "28-1-0",
+    wins: 28,
+    kos: 23,
     losses: 1,
   },
 ]
@@ -202,7 +226,7 @@ const allBoxers = [
     id: 16,
     firstName: "Austin",
     lastName: "Williams",
-    image: "/boxers/boxer-16.jpg",
+    image: "",
     weightClass: "Middleweight",
     titles: "",
     record: "14-0-0",
@@ -214,7 +238,7 @@ const allBoxers = [
     id: 17,
     firstName: "Beatriz",
     lastName: "Ferreira",
-    image: "/boxers/boxer-17.jpg",
+    image: "",
     weightClass: "Lightweight",
     titles: "",
     record: "7-0-0",
@@ -226,7 +250,7 @@ const allBoxers = [
     id: 18,
     firstName: "Ben",
     lastName: "Whittaker",
-    image: "/boxers/boxer-18.jpg",
+    image: "",
     weightClass: "Light-Heavyweight",
     titles: "",
     record: "10-0-0",
@@ -603,6 +627,10 @@ function ChampionCard({ boxer }: { boxer: BoxerData }) {
       {/* Hover overlay */}
       <div className="hover-overlay">
         <p className="trophy-text">{boxer.titles}</p>
+        <p className="mt-3 text-sm uppercase tracking-[0.18em] text-white/80">{boxer.record}</p>
+        <p className="mt-2 text-xs text-white/70">
+          {boxer.wins} wins • {boxer.kos} KOs • {boxer.losses} losses
+        </p>
         <Link href={`/boxers/${boxer.id}`}>
           <button>SEE PROFILE</button>
         </Link>
@@ -622,15 +650,24 @@ function BoxerCard({ boxer }: { boxer: BoxerData }) {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="absolute inset-0">
-          <Image
-            src={boxer.image}
-            alt={`${boxer.firstName} ${boxer.lastName}`}
-            fill
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-          />
-        </div>
+        {boxer.image ? (
+          <div className="absolute inset-0">
+            <Image
+              src={boxer.image}
+              alt={`${boxer.firstName} ${boxer.lastName}`}
+              fill
+              className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+            />
+          </div>
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
+            <div className="text-center px-4">
+              <p className="text-gray-600 font-bold">{boxer.firstName} {boxer.lastName}</p>
+              <p className="text-xs text-gray-500 mt-1">{boxer.weightClass}</p>
+            </div>
+          </div>
+        )}
         
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
