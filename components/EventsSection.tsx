@@ -38,7 +38,7 @@ export function EventsSection() {
         {/* Header */}
         <div className="mb-12 border-b border-gray-200 pb-4">
           <div className="flex items-center gap-6">
-            <button className="text-xl font-bold tracking-tight text-[#c5203a]">
+            <button className="text-xl font-bold tracking-tight text-[#c5203a] hover:text-black transition-colors">
               UPCOMING
             </button>
           </div>

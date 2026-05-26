@@ -55,6 +55,15 @@ const champions = [
     stats: { win: 0, loss: 0, draw: 0, kos: 0 },
     image: "/champions/NAIJALIE_RODRIGUEZ_106_WOMENS_SBC_CHAMPION.png",
   }, 
+   {
+    id: 6,
+    firstName: "KELVIN",
+    lastName: "TORRES",
+    weightClass: "165 LBS",
+    titles: ["SBC"],
+    stats: { win: 0, loss: 0, draw: 0, kos: 0 },
+    image: "/champions/KEVIN_TORRES_165_SBC_CHAMPION.png",
+  },
 ]
 
 const bannerFighters = [
@@ -238,7 +247,7 @@ export function ChampionsSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#3a5299] py-16 w-full overflow-hidden border-t border-[#b8962e]/20"
+      className="bg-gradient-to-br from-[#0a1628] via-[#0d1e3a] to-[#0a1628] py-16 w-full overflow-hidden border-t border-[#b8962e]/20"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -250,7 +259,7 @@ export function ChampionsSection() {
 
           <div className="champ-line-right absolute top-1/2 left-1/2 right-0 h-px bg-[#b8962e] opacity-40 z-0 ml-20" />
 
-          <div className="relative z-10 bg-[#3a5299] px-8 py-2 flex items-center gap-4">
+          <div className="relative z-10  px-8 py-2 fbg-gradient-to-br from-[#0a1628] via-[#0d1e3a] to-[#0a1628] lex items-center gap-4">
             <Image
               src="/logo.png"
               alt="Logo"

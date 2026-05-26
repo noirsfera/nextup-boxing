@@ -135,7 +135,7 @@ export function HeroSection() {
           <motion.div
             ref={textRef}
             style={{ y, opacity }}
-            className="order-2 flex flex-col items-start text-left lg:order-1"
+            className="order-2 flex flex-col items-start text-left lg:order-1 "
           >
             {/* Event badge */}
             <div className="animate-text mb-4 flex items-center gap-3">
@@ -254,54 +254,7 @@ export function HeroSection() {
             </div>
           </motion.div>
 
-          {/* RIGHT: Stats overlay - positioned in grid */}
-          <div className="relative order-1 flex items-end justify-center pb-10 lg:order-2">
-            <div
-              ref={statsRef}
-              className="z-30 hidden lg:block"
-            >
-              <div className="glass-dark flex items-center gap-6 rounded-lg px-6 py-3">
-                <div className="text-center">
-                  <span
-                    className="stat-number block text-xl font-bold text-[#b8962e]"
-                    data-value="24"
-                  >
-                    0
-                  </span>
-
-                  <span className="text-[0.6rem] uppercase tracking-[0.15em] text-white/60">
-                    Wins
-                  </span>
-                </div>
-
-                <div className="border-x border-white/10 px-6 text-center">
-                  <span
-                    className="stat-number block text-xl font-bold text-white"
-                    data-value="18"
-                  >
-                    0
-                  </span>
-
-                  <span className="text-[0.6rem] uppercase tracking-[0.15em] text-white/60">
-                    KOs
-                  </span>
-                </div>
-
-                <div className="text-center">
-                  <span
-                    className="stat-number block text-xl font-bold text-[#c5203a]"
-                    data-value="0"
-                  >
-                    0
-                  </span>
-
-                  <span className="text-[0.6rem] uppercase tracking-[0.15em] text-white/60">
-                    Losses
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+  
         </div>
       </div>
 
