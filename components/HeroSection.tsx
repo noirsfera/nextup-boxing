@@ -128,15 +128,12 @@ export function HeroSection() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 items-center px-4 sm:px-8 lg:px-16">
-        <div className="grid w-full items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          
-          {/* LEFT: TEXT */}
-          <motion.div
-            ref={textRef}
-            style={{ y, opacity }}
-            className="order-2 flex flex-col items-start text-left lg:order-1 "
-          >
+      <div className="relative z-10 mx-auto h-full w-full max-w-7xl px-4 sm:px-8 lg:px-16">
+        <motion.div
+          ref={textRef}
+          style={{ y, opacity }}
+          className="absolute left-[5%] bottom-8 flex max-w-[26rem] flex-col items-start gap-6 text-left sm:left-[6.5%] sm:bottom-10 lg:left-[8%] lg:bottom-16 xl:left-[9%]"
+        >
             {/* Event badge */}
             <div className="animate-text mb-4 flex items-center gap-3">
               <span className="inline-flex items-center gap-2 rounded-sm border border-[#c5203a]/40 bg-[#c5203a]/20 px-3 py-1.5">
@@ -153,76 +150,55 @@ export function HeroSection() {
             </div>
 
             {/* Main title */}
-            <h1 className="animate-text mb-1">
-              <span
-                className="block uppercase leading-[0.9] text-white"
-                style={{
-                  fontFamily: "var(--font-bebas), Impact, sans-serif",
-                  fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-                  textShadow: "0 8px 30px rgba(0,0,0,0.5)",
-                }}
-              >
-                ADEBAYO
-              </span>
-            </h1>
-
-            <div className="animate-text mb-1 flex items-center gap-3">
-              <span className="h-[2px] w-8 bg-gradient-to-r from-[#c5203a] to-transparent" />
-
-              <span
-                className="tracking-[0.3em] text-[#c5203a]"
-                style={{
-                  fontFamily: "var(--font-bebas), Impact, sans-serif",
-                  fontSize: "clamp(1rem, 2vw, 1.5rem)",
-                }}
-              >
-                VS
-              </span>
-
-              <span className="h-[2px] w-8 bg-gradient-to-l from-[#c5203a] to-transparent" />
-            </div>
-
             <h1 className="animate-text mb-4">
               <span
                 className="block uppercase leading-[0.9] text-white"
                 style={{
                   fontFamily: "var(--font-bebas), Impact, sans-serif",
-                  fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                  fontSize: "clamp(3rem, 7vw, 5rem)",
                   textShadow: "0 8px 30px rgba(0,0,0,0.5)",
                 }}
               >
-                COLE
+                BATTLE NIGHT
               </span>
             </h1>
 
             {/* Event details */}
-            <div className="animate-text mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-              <div className="flex items-center gap-2">
-                <div className="h-6 w-[3px] bg-gradient-to-b from-[#b8962e] to-[#c5203a]" />
-
-                <div>
-                  <span
-                    className="block text-base font-bold uppercase tracking-widest text-white"
-                    style={{ fontFamily: "var(--font-bebas)" }}
-                  >
-                    JUNE 6
-                  </span>
-
-                  <span className="text-[0.6rem] tracking-[0.15em] text-white/50">
-                    2026
-                  </span>
-                </div>
-              </div>
-
-              <span className="hidden text-lg text-[#c5203a]/60 sm:block">
-                |
+            <div className="animate-text mb-6 flex flex-col items-start gap-2">
+              <span
+                className="text-sm uppercase tracking-[0.35em] text-white/70"
+                style={{ fontFamily: "var(--font-bebas)" }}
+              >
+                Sat
               </span>
 
               <span
-                className="text-sm font-bold uppercase tracking-widest text-white/70"
+                className="text-[2.75rem] font-bold uppercase leading-[0.9] tracking-[0.1em] text-white sm:text-[3.75rem]"
+                style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}
+              >
+                June
+              </span>
+
+              <span
+                className="text-[2.75rem] font-bold uppercase leading-[0.9] tracking-[0.1em] text-white sm:text-[3.75rem]"
+                style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}
+              >
+                6th
+              </span>
+
+              <span
+                className="text-lg font-bold uppercase tracking-[0.3em] text-[#c5203a]"
                 style={{ fontFamily: "var(--font-bebas)" }}
               >
-                MADISON SQUARE GARDEN
+                Stereo Garden
+              </span>
+
+              <span className="text-sm uppercase tracking-[0.18em] text-white/60">
+                9 Railroad Ave Patchogue NY
+              </span>
+
+              <span className="text-sm uppercase tracking-[0.25em] text-[#b8962e]">
+                Door open 4PM
               </span>
             </div>
 
@@ -253,9 +229,6 @@ export function HeroSection() {
               </a>
             </div>
           </motion.div>
-
-  
-        </div>
       </div>
 
       {/* Full Background Cover Image */}
@@ -291,7 +264,7 @@ export function HeroSection() {
         >
           <Image
             src="/hero-boxers.png"
-            alt="Main Event - Adebayo vs Cole"
+            alt="Main event fighters image"
             fill
             priority
             sizes="100vw"

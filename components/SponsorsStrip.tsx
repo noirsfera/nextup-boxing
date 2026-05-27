@@ -112,44 +112,6 @@ export function SponsorsStrip() {
 
       {/* Bottom rule */}
       <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
-
-      {/* Animations */}
-      <style jsx>{`
-        .marquee-wrapper {
-          display: flex;
-          width: max-content;
-        }
-
-        .marquee-track {
-          display: flex;
-          width: max-content;
-          animation: marquee-left 28s linear infinite;
-        }
-
-        .marquee-track-reverse {
-          display: flex;
-          width: max-content;
-          animation: marquee-right 28s linear infinite;
-        }
-
-        @keyframes marquee-left {
-          0% {
-            transform: translateX(0%);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-
-        @keyframes marquee-right {
-          0% {
-            transform: translateX(-50%);
-          }
-          100% {
-            transform: translateX(0%);
-          }
-        }
-      `}</style>
     </section>
   )
 }

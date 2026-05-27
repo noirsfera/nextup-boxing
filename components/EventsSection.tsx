@@ -91,9 +91,13 @@ export function EventsSection() {
 
               {/* Button */}
               <div className="flex h-[50px] w-full shrink-0 flex-row md:ml-4 md:h-[60px] md:w-auto">
-                <button className="flex h-full flex-1 items-center justify-center gap-2 bg-[#1e2d5e] px-6 text-[13px] font-bold text-white transition-colors hover:bg-[#141f45] md:w-[160px]">
-                  <Ticket className="h-4 w-4" />
-                  BUY TICKETS
+                <button className="group relative overflow-hidden flex h-full flex-1 items-center justify-center gap-2 bg-[#1e2d5e] px-6 text-[13px] font-bold text-white transition-all duration-300 hover:bg-[#b8962e] hover:text-[#0d1124] hover:shadow-[0_0_25px_rgba(0,0,0,0.2)] md:w-[160px]">
+                  <span className="relative z-10 flex items-center gap-2">
+                    <Ticket className="h-4 w-4" />
+                    BUY TICKETS
+                  </span>
+
+                  <div className="absolute inset-0 translate-x-[-100%] bg-white/10 transition-transform duration-300 group-hover:translate-x-0" />
                 </button>
               </div>
             </div>

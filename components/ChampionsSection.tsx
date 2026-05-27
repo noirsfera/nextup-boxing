@@ -17,7 +17,7 @@ const champions = [
     weightClass: "121 LBS",
     titles: ["SBC"],
     stats: { win: 0, loss: 0, draw: 0, kos: 0 },
-    image: "/champions/AT.png",
+    image: "/champions/ARTURO_ACEVEDO_121_SBC_CHAMPION.png",
   },
   {
     id: 2,
@@ -158,26 +158,6 @@ export function ChampionsSection() {
           }
         )
 
-        cards.forEach((card) => {
-          const img = card.querySelector<HTMLElement>(".card-img")
-
-          if (img) {
-            gsap.fromTo(
-              img,
-              { y: -15 },
-              {
-                y: 15,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: card,
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub: 1.2,
-                },
-              }
-            )
-          }
-        })
       }
 
       // Dots animation
@@ -259,7 +239,7 @@ export function ChampionsSection() {
 
           <div className="champ-line-right absolute top-1/2 left-1/2 right-0 h-px bg-[#b8962e] opacity-40 z-0 ml-20" />
 
-          <div className="relative z-10  px-8 py-2 fbg-gradient-to-br from-[#0a1628] via-[#0d1e3a] to-[#0a1628] lex items-center gap-4">
+          <div className="relative z-10 mx-auto flex flex-col items-center justify-center gap-3 px-8 py-2 text-center">
             <Image
               src="/logo.png"
               alt="Logo"
@@ -283,15 +263,7 @@ export function ChampionsSection() {
           ref={cardsRef}
           className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3"
         >
-          {/* Nav arrows */}
-          <button className="absolute left-0 top-1/3 -translate-y-1/2 z-20 bg-black/60 p-2 text-white hover:bg-[#c5203a] transition-colors lg:-left-6 hidden md:block border border-white/10 shadow-lg">
-            <ChevronLeft className="h-6 w-6" />
-          </button>
-
-          <button className="absolute right-0 top-1/3 -translate-y-1/2 z-20 bg-black/60 p-2 text-white hover:bg-[#c5203a] transition-colors lg:-right-6 hidden md:block border border-white/10 shadow-lg">
-            <ChevronRight className="h-6 w-6" />
-          </button>
-
+  
           {champions.map((fighter) => (
             <div
               key={fighter.id}
@@ -423,11 +395,11 @@ export function ChampionsSection() {
             </Link>
           </div>
 
-          <div className="relative z-10 flex w-full items-end justify-center gap-2 md:gap-8 overflow-x-auto pb-1 scrollbar-hide">
+          <div className="relative z-10 flex w-full items-end justify-start gap-2 md:gap-8 overflow-x-auto pb-1 scrollbar-hide">
             {bannerFighters.map((bf) => (
               <div
                 key={bf.id}
-                className="banner-fighter flex flex-col items-center shrink-0 w-[80px] md:w-[110px] transform transition-transform hover:-translate-y-1"
+                className="banner-fighter flex flex-col items-center shrink-0 w-[80px] md:w-[110px]"
               >
                 <div className="relative h-[90px] md:h-[120px] w-full mb-1">
                   <Image

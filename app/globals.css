@@ -300,6 +300,11 @@
 /* ═══════════════════════════════════════════════════════
    MARQUEE / TICKER
    ═══════════════════════════════════════════════════════ */
+.marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
 @keyframes ticker-ltr {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -310,23 +315,38 @@
   to   { transform: translateX(0); }
 }
 
-.marquee-track {
+.marquee-track,
+.marquee-track-reverse {
   display: flex;
-  width: max-content;
-  animation: ticker-ltr 28s linear infinite;
+  min-width: 200%;
+  animation-duration: 28s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
   will-change: transform;
 }
 
+.marquee-track {
+  animation-name: ticker-ltr;
+}
+
 .marquee-track-reverse {
-  display: flex;
-  width: max-content;
-  animation: ticker-rtl 22s linear infinite;
-  will-change: transform;
+  animation-name: ticker-rtl;
 }
 
 .marquee-track:hover,
 .marquee-track-reverse:hover {
   animation-play-state: paused;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 /* ═══════════════════════════════════════════════════════
