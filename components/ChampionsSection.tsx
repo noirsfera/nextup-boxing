@@ -17,7 +17,7 @@ const champions = [
     weightClass: "121 LBS",
     titles: ["SBC"],
     stats: { win: 0, loss: 0, draw: 0, kos: 0 },
-    image: "/champions/ARTURO_ACEVEDO_121_SBC_CHAMPION.png",
+    image: "/champions/AT.png",
   },
   {
     id: 2,
