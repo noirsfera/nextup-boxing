@@ -149,20 +149,6 @@ export function HeroSection() {
               </span>
             </div>
 
-            {/* Main title */}
-            <h1 className="animate-text mb-4">
-              <span
-                className="block uppercase leading-[0.9] text-white"
-                style={{
-                  fontFamily: "var(--font-bebas), Impact, sans-serif",
-                  fontSize: "clamp(3rem, 7vw, 5rem)",
-                  textShadow: "0 8px 30px rgba(0,0,0,0.5)",
-                }}
-              >
-                BATTLE NIGHT
-              </span>
-            </h1>
-
             {/* Event details */}
             <div className="animate-text mb-6 flex flex-col items-start gap-2">
               <span
