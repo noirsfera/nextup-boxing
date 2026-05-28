@@ -90,7 +90,7 @@ export function Navbar() {
     : "bg-transparent text-white"
 
   const signInClass =
-    "editorial-button inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-black shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100"
+    "editorial-button inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-black shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#b8962e] hover:text-black"
 
   return (
     <nav
