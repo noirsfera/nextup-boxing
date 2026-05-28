@@ -145,10 +145,10 @@ export function Navbar() {
           <motion.div
             layout
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
-            className={`hidden xl:flex absolute items-center transition-all duration-500 ease-in-out z-10 ${
+            className={`hidden xl:flex absolute items-center transition-all duration-500 ease-in-out z-10 pointer-events-auto ${
               scrolled
                 ? "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-4 lg:gap-8"
-                : "left-1/2 bottom-1.5 -translate-x-1/2 gap-8"
+                : "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8"
             }`}
           >
             {navLinks.map((link) => (
@@ -160,7 +160,7 @@ export function Navbar() {
                     ? "page"
                     : undefined
                 }
-                className="group relative py-2 text-[0.72rem] font-semibold uppercase tracking-[0.2em] transition-all duration-300 text-white drop-shadow-md hover:text-white/80"
+                className="group relative px-2 py-2.5 text-[0.75rem] font-semibold uppercase tracking-[0.2em] transition-all duration-300 text-white drop-shadow-md hover:text-white/80 pointer-events-auto"
               >
                 {link.label}
 

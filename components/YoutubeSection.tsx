@@ -52,11 +52,12 @@ function formatPublishedDate(value: string) {
 }
 
 // Live Stream Banner for NY users
-function LiveStreamRestricted({ ticketPurchaseUrl }: { ticketPurchaseUrl: string }) {
+function LiveStreamRestricted({ ticketPurchaseUrl, isVisible }: { ticketPurchaseUrl: string; isVisible: boolean }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
+      animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: 0.55 }}
       className="relative overflow-hidden rounded-lg border border-[#c5203a]/30 bg-gradient-to-br from-[#0a1628] via-[#0d1e3a] to-[#0a1628]"
     >
       {/* Animated background grid */}
@@ -83,12 +84,11 @@ function LiveStreamRestricted({ ticketPurchaseUrl }: { ticketPurchaseUrl: string
         </div>
 
         <h3 className="mb-4 text-2xl font-bold text-white md:text-3xl">
-          Live Stream Unavailable in Your Region
+          Not streaming in New York
         </h3>
-        
+
         <p className="mb-8 max-w-md text-white/60">
-          Due to broadcasting restrictions, live streams are not available for viewers in New York. 
-          Get your tickets to watch the event live in person!
+          Not streaming in New York, but the rest of the event is still available to watch. Get your tickets to watch the event live in person!
         </p>
 
         <a
@@ -107,11 +107,11 @@ function LiveStreamRestricted({ ticketPurchaseUrl }: { ticketPurchaseUrl: string
 }
 
 // Live Stream Player Component
-function LiveStreamPlayer({ liveStream }: { liveStream: YoutubeLiveStream }) {
+function LiveStreamPlayer({ liveStream, isVisible }: { liveStream: YoutubeLiveStream; isVisible: boolean }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
       className="relative overflow-hidden rounded-lg"
     >
@@ -391,9 +391,9 @@ export function YoutubeSection() {
         {liveStream && (
           <div className="mb-10">
             {isNewYorkUser ? (
-              <LiveStreamRestricted ticketPurchaseUrl={ticketPurchaseUrl} />
+              <LiveStreamRestricted ticketPurchaseUrl={ticketPurchaseUrl} isVisible={isInView} />
             ) : (
-              <LiveStreamPlayer liveStream={liveStream} />
+              <LiveStreamPlayer liveStream={liveStream} isVisible={isInView} />
             )}
           </div>
         )}

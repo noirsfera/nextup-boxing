@@ -261,7 +261,7 @@ export function ChampionsSection() {
         {/* Cards */}
         <div
           ref={cardsRef}
-          className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3"
+          className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 place-items-center"
         >
   
           {champions.map((fighter) => (
@@ -385,17 +385,9 @@ export function ChampionsSection() {
               </span>
             </div>
 
-            <Link
-              id="view-all-fighters-btn"
-              href="/boxers"
-              className="flex items-center gap-2 bg-[#0a0a0a] px-6 py-2.5 text-[13px] font-bold text-white transition-colors hover:bg-[#c5203a] uppercase tracking-wider shadow-md"
-            >
-              <ChevronRight className="h-4 w-4" />
-              VIEW ALL
-            </Link>
           </div>
 
-          <div className="relative z-10 flex w-full items-end justify-start gap-2 md:gap-8 overflow-x-auto pb-1 scrollbar-hide">
+          <div className="relative z-10 flex w-full items-end justify-center gap-2 md:gap-8 overflow-x-auto pb-1 scrollbar-hide">
             {bannerFighters.map((bf) => (
               <div
                 key={bf.id}
