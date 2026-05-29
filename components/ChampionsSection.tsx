@@ -234,7 +234,7 @@ export function ChampionsSection() {
 
           <div className="relative z-10 mx-auto flex flex-col items-center justify-center gap-3 px-5 sm:px-8 py-2 text-center">
             <Image
-              src="/logo.png"
+              src="/logo-footer.png"
               alt="Logo"
               width={120}
               height={60}
@@ -254,7 +254,7 @@ export function ChampionsSection() {
         {/* Cards */}
         <div
           ref={cardsRef}
-          className="relative grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3"
+          className="relative mx-auto grid w-full max-w-[60rem] grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3"
         >
   
           {champions.map((fighter) => (

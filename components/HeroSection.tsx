@@ -103,7 +103,7 @@ export function HeroSection() {
       className="relative flex min-h-[700px] h-[100vh] flex-col overflow-hidden bg-[#0d1124]"
     >
       {/* Futuristic background effects */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {/* Diagonal speed lines */}
         <div className="absolute inset-0 opacity-10">
           {[...Array(8)].map((_, i) => (
@@ -174,7 +174,7 @@ export function HeroSection() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="animate-text flex flex-wrap items-center gap-3">
+            <div className="animate-text relative z-30 flex flex-wrap items-center gap-3">
               <a
                 href="https://www.simpletix.com/e/strong-island-fight-night-11-tickets-254611"
                 target="_blank"
@@ -189,7 +189,7 @@ export function HeroSection() {
               </a>
 
               <a
-                href="#livestream"
+                href="#youtube"
                 className="group relative overflow-hidden border-2 border-white/30 bg-transparent px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:border-white"
               >
                 <span className="editorial-button relative z-10">
@@ -206,7 +206,7 @@ export function HeroSection() {
       <motion.div
         ref={imageRef}
         style={{ y: imageY }}
-        className="absolute inset-0 z-[1]"
+        className="pointer-events-none absolute inset-0 z-[1]"
       >
         {/* HUD Frame */}
         <div className="pointer-events-none absolute inset-0 z-20">
@@ -260,7 +260,7 @@ export function HeroSection() {
       />
 
       {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 h-24 bg-gradient-to-t from-[#0d1124] to-transparent" />
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-24 bg-gradient-to-t from-[#0d1124] to-transparent" />
     </section>
   )
 }

@@ -601,7 +601,7 @@ export function Footer() {
             <div className="nub-brand">
               <div className="nub-bracket">
                 <Image
-                  src="/logo.png"
+                  src="/logo-footer.png"
                   alt="NextUp Boxing"
                   width={140}
                   height={56}
