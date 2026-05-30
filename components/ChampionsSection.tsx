@@ -260,19 +260,19 @@ export function ChampionsSection() {
           {champions.map((fighter) => (
             <div
               key={fighter.id}
-              className="champ-card w-full transform overflow-hidden bg-[#050912] shadow-[0_18px_45px_rgba(0,0,0,0.45)] transition-transform hover:-translate-y-1 hover:shadow-2xl"
+              className="champ-card w-full transform overflow-hidden rounded-[1.6rem] border border-[#b8962e]/65 bg-gradient-to-b from-[#21190c] via-[#070b14] to-[#050912] p-1 shadow-[0_18px_45px_rgba(0,0,0,0.45),0_0_28px_rgba(184,150,46,0.12)] transition-transform hover:-translate-y-1 hover:border-[#d4ae44]/85 hover:shadow-2xl sm:rounded-[2rem] sm:p-1.5"
             >
-              <div className="relative aspect-[4/5] w-full">
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.25rem] bg-[#050912] sm:rounded-[1.6rem]">
                 <Image
                   src={fighter.image}
                   alt={`${fighter.firstName} ${fighter.lastName}`}
                   fill
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
+                  className="scale-[1.015] object-cover"
                 />
               </div>
 
-              <div className="border-t border-[#b8962e]/25 bg-[#050912] px-3 py-3 text-center sm:px-5 sm:py-4">
+              <div className="mt-1 rounded-b-[1.2rem] border-t border-[#b8962e]/25 bg-gradient-to-b from-[#07101f]/95 to-[#050912]/95 px-3 py-3 text-center sm:rounded-b-[1.55rem] sm:px-5 sm:py-4">
                 <h3
                   className="text-2xl uppercase leading-none text-white sm:text-3xl"
                   style={{ fontFamily: "var(--font-bebas), sans-serif" }}

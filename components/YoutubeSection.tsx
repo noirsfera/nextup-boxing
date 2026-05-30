@@ -26,6 +26,7 @@ type YoutubeApiPayload = {
   videos: YoutubeFeedVideo[]
   liveStream: YoutubeLiveStream | null
   isNewYorkUser: boolean
+  hasRestrictedLiveStream: boolean
   ticketPurchaseUrl: string
   error?: string
 }
@@ -287,6 +288,7 @@ export function YoutubeSection() {
   const [videos, setVideos] = useState<YoutubeFeedVideo[]>([])
   const [liveStream, setLiveStream] = useState<YoutubeLiveStream | null>(null)
   const [isNewYorkUser, setIsNewYorkUser] = useState(false)
+  const [hasRestrictedLiveStream, setHasRestrictedLiveStream] = useState(false)
   const [ticketPurchaseUrl, setTicketPurchaseUrl] = useState("")
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null)
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading")
@@ -312,6 +314,7 @@ export function YoutubeSection() {
         setVideos(data.videos)
         setLiveStream(data.liveStream)
         setIsNewYorkUser(data.isNewYorkUser)
+        setHasRestrictedLiveStream(Boolean(data.hasRestrictedLiveStream))
         setTicketPurchaseUrl(data.ticketPurchaseUrl)
         setActiveVideoId((currentVideoId) => currentVideoId ?? data.videos[0]?.id ?? null)
         setErrorMessage(data.error || "")
@@ -336,6 +339,7 @@ export function YoutubeSection() {
 
   const activeVideo = videos.find((video) => video.id === activeVideoId) ?? videos[0] ?? null
   const activeIndex = activeVideo ? videos.findIndex((video) => video.id === activeVideo.id) : 0
+  const shouldShowTicketGate = isNewYorkUser && hasRestrictedLiveStream
 
   return (
     <section
@@ -387,13 +391,13 @@ export function YoutubeSection() {
           </div>
         </motion.div>
 
-        {/* Live Stream Section - Show if there's a live stream */}
-        {liveStream && (
+        {/* Live Stream Section - New York users receive only the ticket gate */}
+        {(liveStream || shouldShowTicketGate) && (
           <div className="mb-10">
-            {isNewYorkUser ? (
+            {shouldShowTicketGate ? (
               <LiveStreamRestricted ticketPurchaseUrl={ticketPurchaseUrl} isVisible={isInView} />
             ) : (
-              <LiveStreamPlayer liveStream={liveStream} isVisible={isInView} />
+              liveStream && <LiveStreamPlayer liveStream={liveStream} isVisible={isInView} />
             )}
           </div>
         )}
