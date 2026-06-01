@@ -135,42 +135,52 @@ export function HeroSection() {
           className="absolute inset-x-4 bottom-6 flex max-w-[calc(100vw-2rem)] flex-col items-start gap-4 text-left sm:inset-x-auto sm:left-[6.5%] sm:bottom-10 sm:max-w-[30rem] sm:gap-6 lg:left-[8%] lg:bottom-16 xl:left-[9%]"
         >
             {/* Event details */}
-            <div className="animate-text mb-6 flex flex-col items-start gap-2">
+            <div className="animate-text mb-6 flex flex-col items-start gap-2 select-none">
+              {/* Date Eyebrow */}
+              <div className="flex items-center gap-3">
+                <span
+                  className="bg-[#c5203a] px-3.5 py-1 text-xs font-black uppercase tracking-[0.25em] text-white shadow-md"
+                  style={{ fontFamily: "var(--font-bebas)" }}
+                >
+                  SAT
+                </span>
+                <span
+                  className="text-2xl font-black uppercase tracking-[0.15em] text-white"
+                  style={{ fontFamily: "var(--font-bebas)" }}
+                >
+                  JUNE 6TH
+                </span>
+              </div>
+
+              {/* League Name */}
               <span
-                className="text-base uppercase tracking-[0.35em] text-white/70 sm:text-lg"
-                style={{ fontFamily: "var(--font-bebas)" }}
+                className="text-lg font-extrabold uppercase tracking-[0.25em] text-[#b8962e] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] sm:text-xl"
+                style={{ fontFamily: "var(--font-oswald), sans-serif" }}
               >
-                Sat
+                Next up boxing
               </span>
 
-              <span
-                className="text-[2.75rem] font-bold uppercase leading-[0.9] tracking-[0.08em] text-white min-[380px]:text-[3.25rem] sm:text-[4.5rem] sm:tracking-[0.1em] lg:text-[5rem]"
+              {/* Event Title */}
+              <h1
+                className="mt-1 text-[2.75rem] font-black uppercase leading-[0.9] tracking-[0.02em] text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)] min-[380px]:text-[3.25rem] sm:text-[4.5rem] lg:text-[5rem]"
                 style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}
               >
-                June
-              </span>
+                strong island
+                <span className="block text-[#c5203a] drop-shadow-[0_2px_8px_rgba(197,32,58,0.4)]">
+                  fight night 11
+                </span>
+              </h1>
 
-              <span
-                className="text-[2.75rem] font-bold uppercase leading-[0.9] tracking-[0.08em] text-white min-[380px]:text-[3.25rem] sm:text-[4.5rem] sm:tracking-[0.1em] lg:text-[5rem]"
-                style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}
-              >
-                6th
-              </span>
-
-              <span
-                className="text-lg font-bold uppercase tracking-[0.22em] text-[#c5203a] min-[380px]:text-xl sm:text-2xl sm:tracking-[0.3em]"
-                style={{ fontFamily: "var(--font-bebas)" }}
-              >
-                Stereo Garden
-              </span>
-
-              <span className="max-w-full text-sm uppercase tracking-[0.12em] text-white/60 min-[380px]:text-base sm:tracking-[0.18em]">
-                9 Railroad Ave Patchogue NY
-              </span>
-
-              <span className="text-sm uppercase tracking-[0.18em] text-[#b8962e] min-[380px]:text-base sm:tracking-[0.25em]">
-                Door open 4PM
-              </span>
+              {/* Time Info */}
+              <div className="mt-3 inline-flex items-center gap-2 border-l-4 border-[#b8962e] bg-[#0d1124]/80 px-4 py-2 backdrop-blur-md shadow-lg">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#b8962e] animate-pulse" />
+                <span
+                  className="text-sm font-black uppercase tracking-[0.25em] text-white sm:text-base"
+                  style={{ fontFamily: "var(--font-bebas)" }}
+                >
+                  5 pm sharp
+                </span>
+              </div>
             </div>
 
             {/* CTA Buttons */}

@@ -57,6 +57,22 @@ const champions = [
     championship: "SBC Champion",
     image: "/champions/KEVIN_TORRES_165_SBC_CHAMPION.png",
   },
+  {
+    id: 7,
+    firstName: "KIAMAL",
+    lastName: "EVELYN",
+    weightClass: "Super-Featherweight",
+    championship: "SBC Champion",
+    image: "/champions/KIAMAL_EVELYN_132_SBC_CHAMPION.png",
+  },
+  {
+    id: 8,
+    firstName: "REESE",
+    lastName: "MISTRETTA",
+    weightClass: "Light-Heavyweight",
+    championship: "SBC Champion",
+    image: "/champions/REESE_MISTRETTA_176_SBC_CHAMPION.png",
+  },
 ]
 
 const bannerFighters = [
@@ -246,7 +262,7 @@ export function ChampionsSection() {
               className="text-4xl md:text-5xl uppercase text-white"
               style={{ fontFamily: "var(--font-bebas), sans-serif" }}
             >
-              <span className="text-[#b8962e]">Champions</span>
+              <span className="text-[#b8962e]">Current Champions</span>
             </h2>
           </div>
         </div>
@@ -254,7 +270,7 @@ export function ChampionsSection() {
         {/* Cards */}
         <div
           ref={cardsRef}
-          className="relative mx-auto grid w-full max-w-[60rem] grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3"
+          className="relative mx-auto grid w-full max-w-[60rem] grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4"
         >
   
           {champions.map((fighter) => (
@@ -319,7 +335,7 @@ export function ChampionsSection() {
                 className="text-3xl sm:text-4xl font-bold uppercase"
                 style={{ fontFamily: "var(--font-bebas), sans-serif" }}
               >
-                FIGHTERS
+                rising stars/ contenders
               </span>
             </div>
 

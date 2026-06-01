@@ -12,10 +12,9 @@ import { PremiumModal } from "@/components/PremiumModal"
 
 const navLinks = [
   { label: "Home", href: "/#hero" },
-  { label: "Fights", href: "/#events" },
   { label: "Boxers", href: "/boxers" },
   { label: "Stream", href: "/#livestream" },
-  { label: "Rankings", href: "/#rankings" },
+  { label: "Rankings", href: "/rankings" },
   { label: "Social", href: "/#social-wall" },
 ]
 
@@ -197,7 +196,7 @@ export function Navbar() {
               onClick={() => setPremiumOpen(true)}
               className={`${signInClass} hidden xl:inline-flex mr-4 cursor-pointer`}
             >
-              Sign in
+              free livestream access
               <TiLocationArrow size={24} />
             </button>
 
@@ -266,7 +265,7 @@ export function Navbar() {
                 className={`${signInClass} mt-3 flex w-full justify-center cursor-pointer`}
               >
                 <User className="h-4 w-4" />
-                Sign in
+                free livestream access
               </button>
             </div>
           </motion.div>

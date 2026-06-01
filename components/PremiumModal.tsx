@@ -3,7 +3,17 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { z } from "zod"
-import { X, User, Mail, ShieldAlert, CheckCircle2, Clock, Loader2 } from "lucide-react"
+import {
+  X,
+  User,
+  Mail,
+  ShieldAlert,
+  CheckCircle2,
+  Clock,
+  Loader2,
+  Phone,
+  MapPin,
+} from "lucide-react"
 
 import { useCountdown } from "@/hooks/use-countdown"
 import { EVENT_CONFIG, EVENT_DATE } from "@/lib/event"
@@ -13,26 +23,54 @@ interface PremiumModalProps {
   onClose: () => void
 }
 
-// Client-side Zod validation and sanitization schema
 const clientSignupSchema = z.object({
-  name: z
+  firstName: z
     .string()
     .trim()
-    .min(2, "Name must be at least 2 characters.")
-    .max(100, "Name must be less than 100 characters.")
+    .min(2, "First name must be at least 2 characters.")
+    .max(50, "First name must be less than 50 characters.")
+    .transform((val) => val.replace(/<\/?[^>]+(>|$)/g, "")),
+  lastName: z
+    .string()
+    .trim()
+    .min(2, "Last name must be at least 2 characters.")
+    .max(50, "Last name must be less than 50 characters.")
     .transform((val) => val.replace(/<\/?[^>]+(>|$)/g, "")),
   email: z
     .string()
     .trim()
     .email("Please enter a valid email address.")
     .toLowerCase(),
+  cellNumber: z
+    .string()
+    .trim()
+    .min(7, "Cell number is required.")
+    .max(20, "Cell number must be less than 20 characters.")
+    .transform((val) => val.replace(/<\/?[^>]+(>|$)/g, "")),
+  location: z
+    .string()
+    .trim()
+    .min(2, "Location is required.")
+    .max(120, "Location must be less than 120 characters.")
+    .transform((val) => val.replace(/<\/?[^>]+(>|$)/g, "")),
 })
+
+type FormErrors = {
+  firstName?: string
+  lastName?: string
+  email?: string
+  cellNumber?: string
+  location?: string
+}
 
 export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
   const timeLeft = useCountdown(EVENT_DATE)
-  const [name, setName] = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
-  const [errors, setErrors] = useState<{ name?: string; email?: string }>({})
+  const [cellNumber, setCellNumber] = useState("")
+  const [location, setLocation] = useState("")
+  const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [serverError, setServerError] = useState<string | null>(null)
   const [isSuccess, setIsSuccess] = useState(false)
@@ -50,8 +88,11 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
 
   useEffect(() => {
     if (isOpen) {
-      setName("")
+      setFirstName("")
+      setLastName("")
       setEmail("")
+      setCellNumber("")
+      setLocation("")
       setErrors({})
       setServerError(null)
       setIsSuccess(false)
@@ -59,15 +100,10 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
     }
   }, [isOpen])
 
-  const validateField = (field: "name" | "email", value: string) => {
+  const validateField = (field: keyof FormErrors, value: string) => {
     try {
-      if (field === "name") {
-        clientSignupSchema.shape.name.parse(value)
-        setErrors((prev) => ({ ...prev, name: undefined }))
-      } else {
-        clientSignupSchema.shape.email.parse(value)
-        setErrors((prev) => ({ ...prev, email: undefined }))
-      }
+      clientSignupSchema.shape[field].parse(value)
+      setErrors((prev) => ({ ...prev, [field]: undefined }))
     } catch (error) {
       if (error instanceof z.ZodError) {
         setErrors((prev) => ({ ...prev, [field]: error.issues[0].message }))
@@ -79,12 +115,18 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
     e.preventDefault()
     setServerError(null)
 
-    const validationResult = clientSignupSchema.safeParse({ name, email })
+    const validationResult = clientSignupSchema.safeParse({
+      firstName,
+      lastName,
+      email,
+      cellNumber,
+      location,
+    })
 
     if (!validationResult.success) {
-      const formattedErrors: { name?: string; email?: string } = {}
+      const formattedErrors: FormErrors = {}
       validationResult.error.issues.forEach((err) => {
-        const path = err.path[0] as "name" | "email"
+        const path = err.path[0] as keyof FormErrors
         formattedErrors[path] = err.message
       })
       setErrors(formattedErrors)
@@ -98,8 +140,11 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: validationResult.data.name,
+          firstName: validationResult.data.firstName,
+          lastName: validationResult.data.lastName,
           email: validationResult.data.email,
+          cellNumber: validationResult.data.cellNumber,
+          location: validationResult.data.location,
         }),
       })
 
@@ -122,7 +167,6 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -131,7 +175,6 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
             className="absolute inset-0 bg-black/75 backdrop-blur-sm"
           />
 
-          {/* Modal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -139,10 +182,8 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
             transition={{ type: "spring", duration: 0.45 }}
             className="relative z-10 w-full max-w-md overflow-hidden rounded-2xl border border-white/8 bg-[#0c0f1e] shadow-2xl"
           >
-            {/* Top accent line */}
             <div className="absolute left-0 right-0 top-0 h-[3px] bg-gradient-to-r from-[#c5203a] via-[#d4ae44] to-[#c5203a]" />
 
-            {/* Close button */}
             <button
               onClick={onClose}
               className="absolute right-4 top-4 rounded-full bg-white/5 p-1.5 text-white/40 transition-colors hover:bg-white/10 hover:text-white"
@@ -161,17 +202,18 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
                     exit={{ opacity: 0, x: -12 }}
                     transition={{ duration: 0.25 }}
                   >
-                    {/* Header */}
                     <div className="mb-6">
                       <h4 className="text-xl font-bold tracking-tight text-white">
                         Get VIP Access
                       </h4>
                       <p className="mt-1 text-sm text-white/50">
-                        Fight card updates &amp; live stream links straight to your inbox.
+                        Livestream access and event updates straight to your inbox
+                      </p>
+                      <p className="mt-1 text-sm text-white/50">
+                        June 6th fight night 11 livestream
                       </p>
                     </div>
 
-                    {/* Countdown strip */}
                     <div className="mb-6 flex items-center gap-3 rounded-xl border border-white/8 bg-white/4 px-4 py-3">
                       <Clock size={13} className="shrink-0 text-[#d4ae44]" />
                       <span className="text-[11px] font-medium uppercase tracking-wider text-white/50">
@@ -194,7 +236,6 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
                       </div>
                     </div>
 
-                    {/* Server Error */}
                     {serverError && (
                       <motion.div
                         initial={{ opacity: 0, y: -8 }}
@@ -207,42 +248,74 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-3">
-                      {/* Name */}
                       <div className="space-y-1">
                         <div className="relative">
                           <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/25">
                             <User size={15} />
                           </span>
                           <input
-                            id="premium-name"
+                            id="premium-first-name"
                             type="text"
-                            placeholder="Full name"
-                            value={name}
+                            placeholder="First name"
+                            value={firstName}
                             onChange={(e) => {
-                              setName(e.target.value)
-                              if (errors.name) validateField("name", e.target.value)
+                              setFirstName(e.target.value)
+                              if (errors.firstName) validateField("firstName", e.target.value)
                             }}
-                            onBlur={() => validateField("name", name)}
+                            onBlur={() => validateField("firstName", firstName)}
                             disabled={isSubmitting}
                             className={`w-full rounded-xl border ${
-                              errors.name
+                              errors.firstName
                                 ? "border-red-500/40 bg-red-500/5"
                                 : "border-white/8 bg-white/5"
                             } py-3 pl-10 pr-4 text-sm text-white placeholder-white/25 outline-none transition-all focus:border-[#d4ae44]/50 focus:ring-1 focus:ring-[#d4ae44]/50 disabled:opacity-50`}
                           />
                         </div>
-                        {errors.name && (
+                        {errors.firstName && (
                           <motion.p
                             initial={{ opacity: 0, y: -4 }}
                             animate={{ opacity: 1, y: 0 }}
                             className="pl-1 text-[10px] font-semibold text-red-400"
                           >
-                            {errors.name}
+                            {errors.firstName}
                           </motion.p>
                         )}
                       </div>
 
-                      {/* Email */}
+                      <div className="space-y-1">
+                        <div className="relative">
+                          <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/25">
+                            <User size={15} />
+                          </span>
+                          <input
+                            id="premium-last-name"
+                            type="text"
+                            placeholder="Last name"
+                            value={lastName}
+                            onChange={(e) => {
+                              setLastName(e.target.value)
+                              if (errors.lastName) validateField("lastName", e.target.value)
+                            }}
+                            onBlur={() => validateField("lastName", lastName)}
+                            disabled={isSubmitting}
+                            className={`w-full rounded-xl border ${
+                              errors.lastName
+                                ? "border-red-500/40 bg-red-500/5"
+                                : "border-white/8 bg-white/5"
+                            } py-3 pl-10 pr-4 text-sm text-white placeholder-white/25 outline-none transition-all focus:border-[#d4ae44]/50 focus:ring-1 focus:ring-[#d4ae44]/50 disabled:opacity-50`}
+                          />
+                        </div>
+                        {errors.lastName && (
+                          <motion.p
+                            initial={{ opacity: 0, y: -4 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="pl-1 text-[10px] font-semibold text-red-400"
+                          >
+                            {errors.lastName}
+                          </motion.p>
+                        )}
+                      </div>
+
                       <div className="space-y-1">
                         <div className="relative">
                           <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/25">
@@ -251,7 +324,7 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
                           <input
                             id="premium-email"
                             type="email"
-                            placeholder="Email address"
+                            placeholder="Email"
                             value={email}
                             onChange={(e) => {
                               setEmail(e.target.value)
@@ -277,7 +350,74 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
                         )}
                       </div>
 
-                      {/* Submit */}
+                      <div className="space-y-1">
+                        <div className="relative">
+                          <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/25">
+                            <Phone size={15} />
+                          </span>
+                          <input
+                            id="premium-cell-number"
+                            type="tel"
+                            placeholder="Cell number"
+                            value={cellNumber}
+                            onChange={(e) => {
+                              setCellNumber(e.target.value)
+                              if (errors.cellNumber) validateField("cellNumber", e.target.value)
+                            }}
+                            onBlur={() => validateField("cellNumber", cellNumber)}
+                            disabled={isSubmitting}
+                            className={`w-full rounded-xl border ${
+                              errors.cellNumber
+                                ? "border-red-500/40 bg-red-500/5"
+                                : "border-white/8 bg-white/5"
+                            } py-3 pl-10 pr-4 text-sm text-white placeholder-white/25 outline-none transition-all focus:border-[#d4ae44]/50 focus:ring-1 focus:ring-[#d4ae44]/50 disabled:opacity-50`}
+                          />
+                        </div>
+                        {errors.cellNumber && (
+                          <motion.p
+                            initial={{ opacity: 0, y: -4 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="pl-1 text-[10px] font-semibold text-red-400"
+                          >
+                            {errors.cellNumber}
+                          </motion.p>
+                        )}
+                      </div>
+
+                      <div className="space-y-1">
+                        <div className="relative">
+                          <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/25">
+                            <MapPin size={15} />
+                          </span>
+                          <input
+                            id="premium-location"
+                            type="text"
+                            placeholder="Location"
+                            value={location}
+                            onChange={(e) => {
+                              setLocation(e.target.value)
+                              if (errors.location) validateField("location", e.target.value)
+                            }}
+                            onBlur={() => validateField("location", location)}
+                            disabled={isSubmitting}
+                            className={`w-full rounded-xl border ${
+                              errors.location
+                                ? "border-red-500/40 bg-red-500/5"
+                                : "border-white/8 bg-white/5"
+                            } py-3 pl-10 pr-4 text-sm text-white placeholder-white/25 outline-none transition-all focus:border-[#d4ae44]/50 focus:ring-1 focus:ring-[#d4ae44]/50 disabled:opacity-50`}
+                          />
+                        </div>
+                        {errors.location && (
+                          <motion.p
+                            initial={{ opacity: 0, y: -4 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="pl-1 text-[10px] font-semibold text-red-400"
+                          >
+                            {errors.location}
+                          </motion.p>
+                        )}
+                      </div>
+
                       <button
                         type="submit"
                         disabled={isSubmitting}
@@ -289,7 +429,7 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
                             <span>Securing Entry…</span>
                           </>
                         ) : (
-                          <span>Reserve My Spot</span>
+                          <span>Join the team</span>
                         )}
                       </button>
                     </form>
@@ -299,7 +439,6 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
                     </p>
                   </motion.div>
                 ) : (
-                  /* Success */
                   <motion.div
                     key="success-screen"
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -317,10 +456,10 @@ export function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
                     </motion.div>
 
                     <h4 className="mt-4 text-xl font-bold tracking-tight text-white">
-                      You're In
+                      You&apos;re In
                     </h4>
                     <p className="mt-2 max-w-xs text-sm leading-relaxed text-white/55 [overflow-wrap:anywhere]">
-                      We've sent confirmation to <strong className="text-white">{email}</strong>.
+                      We&apos;ve sent confirmation to <strong className="text-white">{email}</strong>.
                     </p>
 
                     <div className="mt-6 w-full rounded-xl border border-white/8 bg-white/4 p-4 text-left">

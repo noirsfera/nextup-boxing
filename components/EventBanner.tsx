@@ -149,7 +149,7 @@ export function EventBanner() {
                 Buy Tickets - $49.99
               </a>
               <a
-                href="#rankings"
+                href="/rankings"
                 className="editorial-button inline-flex items-center justify-center rounded-full border border-[#1e2d5e]/15 bg-white px-8 py-3.5 text-[#1e2d5e] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#1e2d5e]/30 hover:bg-[#1e2d5e]/[0.03]"
               >
                 View Fight Card

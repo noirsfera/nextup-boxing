@@ -6,20 +6,36 @@ import { addEmailSubscriber } from "@/lib/subscribers"
 
 export const runtime = "nodejs"
 
-// Define validation and sanitization schema using Zod
 const premiumSubscribeSchema = z.object({
-  name: z
-    .string({ message: "Name is required." })
+  firstName: z
+    .string({ message: "First name is required." })
     .trim()
-    .min(2, { message: "Name must be at least 2 characters." })
-    .max(100, { message: "Name must be less than 100 characters." })
-    // Basic sanitization: strip any HTML/script tags to prevent XSS injection
+    .min(2, { message: "First name must be at least 2 characters." })
+    .max(50, { message: "First name must be less than 50 characters." })
+    .transform((val) => val.replace(/<\/?[^>]+(>|$)/g, "")),
+  lastName: z
+    .string({ message: "Last name is required." })
+    .trim()
+    .min(2, { message: "Last name must be at least 2 characters." })
+    .max(50, { message: "Last name must be less than 50 characters." })
     .transform((val) => val.replace(/<\/?[^>]+(>|$)/g, "")),
   email: z
     .string({ message: "Email is required." })
     .trim()
     .email({ message: "Please enter a valid email address." })
     .toLowerCase(),
+  cellNumber: z
+    .string({ message: "Cell number is required." })
+    .trim()
+    .min(7, { message: "Cell number must be at least 7 characters." })
+    .max(20, { message: "Cell number must be less than 20 characters." })
+    .transform((val) => val.replace(/<\/?[^>]+(>|$)/g, "")),
+  location: z
+    .string({ message: "Location is required." })
+    .trim()
+    .min(2, { message: "Location must be at least 2 characters." })
+    .max(120, { message: "Location must be less than 120 characters." })
+    .transform((val) => val.replace(/<\/?[^>]+(>|$)/g, "")),
 })
 
 export async function POST(request: Request) {
@@ -28,36 +44,36 @@ export async function POST(request: Request) {
   try {
     body = await request.json()
   } catch {
-    return NextResponse.json(
-      { error: "Invalid request payload." },
-      { status: 400 }
-    )
+    return NextResponse.json({ error: "Invalid request payload." }, { status: 400 })
   }
 
-  // Validate and sanitize the payload using Zod
   const result = premiumSubscribeSchema.safeParse(body)
 
   if (!result.success) {
-    // Extract and format the Zod validation errors
     const errorMessages = result.error.issues.map((err) => err.message).join(" ")
-    return NextResponse.json(
-      { error: errorMessages },
-      { status: 400 }
-    )
+    return NextResponse.json({ error: errorMessages }, { status: 400 })
   }
 
-  const { name, email } = result.data
+  const { firstName, lastName, email, cellNumber, location } = result.data
+  const fullName = `${firstName} ${lastName}`.trim()
 
   try {
-    // 1. Collect info in the database (with 'navbar-premium' source)
-    await addEmailSubscriber(email, name, "navbar-premium")
+    await addEmailSubscriber(
+      email,
+      {
+        firstName,
+        lastName,
+        cellNumber,
+        location,
+      },
+      "navbar-premium"
+    )
 
-    // 2. Send approaching event notification email via Resend
     let emailSent = false
     let emailErrorMsg = ""
 
     try {
-      await sendPremiumWelcomeEmail({ email, name })
+      await sendPremiumWelcomeEmail({ email, name: fullName })
       emailSent = true
     } catch (resendError) {
       console.error("Resend notification failed:", resendError)
@@ -65,10 +81,9 @@ export async function POST(request: Request) {
     }
 
     if (!emailSent) {
-      // If db insert succeeded but email failed, we notify the client (e.g. if API keys are missing/incorrect)
       return NextResponse.json(
         {
-          message: `Welcome, ${name}! You've been subscribed in our database, but we couldn't send the premium notification email. (Error: ${emailErrorMsg || "Resend not configured"})`,
+          message: `Welcome, ${fullName}! You've been subscribed in our database, but we couldn't send the premium notification email. (Error: ${emailErrorMsg || "Resend not configured"})`,
           partialSuccess: true,
         },
         { status: 201 }
@@ -77,7 +92,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
-        message: `Welcome, ${name}! You are locked in for the June 6 event updates. Check your inbox for your premium invite!`,
+        message: `Welcome, ${fullName}! You are locked in for the June 6 event updates. Check your inbox for your premium invite!`,
         success: true,
       },
       { status: 201 }
