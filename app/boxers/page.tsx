@@ -392,7 +392,7 @@ export default function BoxersPage() {
   }, [])
 
   return (
-    <main className="min-h-screen w-screen overflow-x-hidden bg-white">
+    <main className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-white">
       <Navbar />
 
       {/* Banner Section - Matchroom Style */}

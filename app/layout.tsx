@@ -90,7 +90,7 @@ export default function RootLayout({
       lang="en"
       className={`${helveticaNow.variable} ${geistMono.variable} ${bebasNeue.variable} ${montserrat.variable} ${oswald.variable} bg-white`}
     >
-      <body className="font-sans antialiased">
+      <body className="overflow-x-hidden font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

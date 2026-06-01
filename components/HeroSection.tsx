@@ -100,7 +100,7 @@ export function HeroSection() {
     <section
       ref={ref}
       id="hero"
-      className="relative flex min-h-[700px] h-[100vh] flex-col overflow-hidden bg-[#0d1124]"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-[#0d1124] sm:h-[100dvh] sm:min-h-[700px]"
     >
       {/* Futuristic background effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -132,7 +132,7 @@ export function HeroSection() {
         <motion.div
           ref={textRef}
           style={{ y, opacity }}
-          className="absolute left-[5%] bottom-8 flex max-w-[30rem] flex-col items-start gap-6 text-left sm:left-[6.5%] sm:bottom-10 lg:left-[8%] lg:bottom-16 xl:left-[9%]"
+          className="absolute inset-x-4 bottom-6 flex max-w-[calc(100vw-2rem)] flex-col items-start gap-4 text-left sm:inset-x-auto sm:left-[6.5%] sm:bottom-10 sm:max-w-[30rem] sm:gap-6 lg:left-[8%] lg:bottom-16 xl:left-[9%]"
         >
             {/* Event details */}
             <div className="animate-text mb-6 flex flex-col items-start gap-2">
@@ -144,42 +144,42 @@ export function HeroSection() {
               </span>
 
               <span
-                className="text-[3.25rem] font-bold uppercase leading-[0.9] tracking-[0.1em] text-white sm:text-[4.5rem] lg:text-[5rem]"
+                className="text-[2.75rem] font-bold uppercase leading-[0.9] tracking-[0.08em] text-white min-[380px]:text-[3.25rem] sm:text-[4.5rem] sm:tracking-[0.1em] lg:text-[5rem]"
                 style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}
               >
                 June
               </span>
 
               <span
-                className="text-[3.25rem] font-bold uppercase leading-[0.9] tracking-[0.1em] text-white sm:text-[4.5rem] lg:text-[5rem]"
+                className="text-[2.75rem] font-bold uppercase leading-[0.9] tracking-[0.08em] text-white min-[380px]:text-[3.25rem] sm:text-[4.5rem] sm:tracking-[0.1em] lg:text-[5rem]"
                 style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}
               >
                 6th
               </span>
 
               <span
-                className="text-xl font-bold uppercase tracking-[0.3em] text-[#c5203a] sm:text-2xl"
+                className="text-lg font-bold uppercase tracking-[0.22em] text-[#c5203a] min-[380px]:text-xl sm:text-2xl sm:tracking-[0.3em]"
                 style={{ fontFamily: "var(--font-bebas)" }}
               >
                 Stereo Garden
               </span>
 
-              <span className="text-base uppercase tracking-[0.18em] text-white/60">
+              <span className="max-w-full text-sm uppercase tracking-[0.12em] text-white/60 min-[380px]:text-base sm:tracking-[0.18em]">
                 9 Railroad Ave Patchogue NY
               </span>
 
-              <span className="text-base uppercase tracking-[0.25em] text-[#b8962e]">
+              <span className="text-sm uppercase tracking-[0.18em] text-[#b8962e] min-[380px]:text-base sm:tracking-[0.25em]">
                 Door open 4PM
               </span>
             </div>
 
             {/* CTA Buttons */}
-            <div className="animate-text relative z-30 flex flex-wrap items-center gap-3">
+            <div className="animate-text relative z-30 flex w-full flex-wrap items-center gap-3 sm:w-auto">
               <a
                 href="https://www.simpletix.com/e/strong-island-fight-night-11-tickets-254611"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative overflow-hidden bg-[#b8962e] px-6 py-3 text-sm font-bold text-[#0d1124] transition-all duration-300 hover:shadow-[0_0_25px_rgba(184,150,46,0.4)]"
+                className="group relative flex min-h-11 flex-1 items-center justify-center overflow-hidden bg-[#b8962e] px-4 py-3 text-center text-xs font-bold text-[#0d1124] transition-all duration-300 hover:shadow-[0_0_25px_rgba(184,150,46,0.4)] min-[380px]:text-sm sm:flex-none sm:px-6"
               >
                 <span className="editorial-button relative z-10">
                   GET TICKETS
@@ -190,7 +190,7 @@ export function HeroSection() {
 
               <a
                 href="#youtube"
-                className="group relative overflow-hidden border-2 border-white/30 bg-transparent px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:border-white"
+                className="group relative flex min-h-11 flex-1 items-center justify-center overflow-hidden border-2 border-white/30 bg-transparent px-4 py-3 text-center text-xs font-bold text-white transition-all duration-300 hover:border-white min-[380px]:text-sm sm:flex-none sm:px-6"
               >
                 <span className="editorial-button relative z-10">
                   WATCH ON NEXTUP

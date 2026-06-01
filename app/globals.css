@@ -148,14 +148,14 @@
   body {
     @apply bg-white text-foreground;
     font-feature-settings: "kern" 1, "liga" 1;
-    letter-spacing: -0.015em;
+    letter-spacing: 0;
   }
   html {
     scroll-behavior: smooth;
   }
   h1, h2, h3 {
     font-family: var(--font-display);
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
     text-transform: uppercase;
     font-weight: 800;
   }

@@ -1,0 +1,824 @@
+⚠ Slow filesystem detected. The benchmark took 219ms. If C:\Users\gamerrdotcom\Desktop\nextup-boxing\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+[browser] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. (<anonymous>)
+⨯ Failed to write image to cache HVZMsVkR9x-YiPY9xx0CtARZJzkBF7ntewBoCX-O770 Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+⨯ Failed to write image to cache Vx5jUFVZ-PJdp2mDLnp7vvMQJl-9TyKLVnSORJdCLT8 Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache 7PbN5ok6lio-iti0yt1jJPcWa2gVBsZrVrwRGGr4f94 Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache A-YzqREGlZ8QmhR8iVCVwml4yhJ_fzxGIZZYRMZd6_0 Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Failed to load Instagram reels: Error: Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID.
+    at fetchInstagramReels (lib\instagram.ts:63:11)
+    at GET (app\api\instagram\reels\route.ts:13:46)
+  61 |
+  62 |   if (!accessToken || !businessAccountId) {
+> 63 |     throw new Error(
+     |           ^
+  64 |       "Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCO...
+  65 |     )
+  66 |   }
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache wmcXBVqohBDmRzq79HsVO7VeTFjYonKgEdExkiNnL0Y Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache iv--Jcs2NQCXK3ZBv0YUvqdgW5yCUE_QB_Mg5BFNWxg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Failed to load YouTube feed: TypeError: fetch failed
+    at async fetchYoutubeFeed (lib\youtube.ts:131:24)
+    at async GET (app\api\youtube\route.ts:48:21)
+  129 |   }
+  130 |
+> 131 |   const feedResponse = await fetch(
+      |                        ^
+  132 |     `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`,
+  133 |     {
+  134 |       next: { revalidate: 900 }, {
+  [cause]: Error: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+      at ignore-listed frames {
+    code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'
+  }
+}
+⨯ Failed to write image to cache SM-1eGIOCmbINk6HGEk3eyPFytRCXueictIC0NfI0b4 Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache HBsy7YJ1BZAEBxTIMbfdQM4iHhYQkHFadDxI3q4r1M0 Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache w-YDHzqieo9p9YWau7aFAHpcuMqlMqyBHJAhUt3zOUc Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+[browser] Image with src "/logo-footer.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+Failed to load Instagram reels: Error: Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID.
+    at fetchInstagramReels (lib\instagram.ts:63:11)
+    at GET (app\api\instagram\reels\route.ts:13:46)
+  61 |
+  62 |   if (!accessToken || !businessAccountId) {
+> 63 |     throw new Error(
+     |           ^
+  64 |       "Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCO...
+  65 |     )
+  66 |   }
+[browser] Image with src "/champions/ARTURO_ACEVEDO_121_SBC_CHAMPION.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/champions/XAVIER_WILCHER_198_SBC_CHAMPION.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/champions/JADEN_HARVEY_165_DAWG_CHAMPION.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/champions/BRADLEY_BELT_198_ADC_CHAMPION.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/champions/NAIJALIE_RODRIGUEZ_106_WOMENS_SBC_CHAMPION.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+Failed to load Instagram reels: Error: Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID.
+    at fetchInstagramReels (lib\instagram.ts:63:11)
+    at GET (app\api\instagram\reels\route.ts:13:46)
+  61 |
+  62 |   if (!accessToken || !businessAccountId) {
+> 63 |     throw new Error(
+     |           ^
+  64 |       "Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCO...
+  65 |     )
+  66 |   }
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Failed to load YouTube feed: TypeError: fetch failed
+    at async fetchYoutubeFeed (lib\youtube.ts:131:24)
+    at async GET (app\api\youtube\route.ts:48:21)
+  129 |   }
+  130 |
+> 131 |   const feedResponse = await fetch(
+      |                        ^
+  132 |     `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`,
+  133 |     {
+  134 |       next: { revalidate: 900 }, {
+  [cause]: Error: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+      at ignore-listed frames {
+    code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'
+  }
+}
+⨯ Failed to write image to cache OcSg__b9efIqKGPOEeTKK-FMjwV293-cB2WH8i6v5Do Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache o2AtBKiUVDJAeCRsD5Y_4V5BY7R70OHk6FSKQOplN98 Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache GpW9DPHluHJEfBDOc2mysZF1C-O5U_4Van9WK06ZPYs Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+[browser] Image with src "/usa-boxing-metro-logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+Failed to load Instagram reels: Error: Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID.
+    at fetchInstagramReels (lib\instagram.ts:63:11)
+    at GET (app\api\instagram\reels\route.ts:13:46)
+  61 |
+  62 |   if (!accessToken || !businessAccountId) {
+> 63 |     throw new Error(
+     |           ^
+  64 |       "Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCO...
+  65 |     )
+  66 |   }
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache uiMl_O9k5HhDi0ZvpC19P51EbicuTFg6ZE-aNuHxj-U Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache rIYo_3f-_DsG2Gq0dDlBK9xIuMDNcEcExeXNNJ7YqkE Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache uiMl_O9k5HhDi0ZvpC19P51EbicuTFg6ZE-aNuHxj-U Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache rIYo_3f-_DsG2Gq0dDlBK9xIuMDNcEcExeXNNJ7YqkE Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache iv--Jcs2NQCXK3ZBv0YUvqdgW5yCUE_QB_Mg5BFNWxg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache zh_2kE7mG6c995Hz9Xmv6OcyZ-cLSMWD5-HVB67sOdg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache GpW9DPHluHJEfBDOc2mysZF1C-O5U_4Van9WK06ZPYs Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Image with src "/logo-footer.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[browser] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. (<anonymous>)
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache uiMl_O9k5HhDi0ZvpC19P51EbicuTFg6ZE-aNuHxj-U Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache rIYo_3f-_DsG2Gq0dDlBK9xIuMDNcEcExeXNNJ7YqkE Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache NtMqR6LjXYTXTOHDlCk0yT8NyzeyVm1xQ4mfVvea9Ls Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache zh_2kE7mG6c995Hz9Xmv6OcyZ-cLSMWD5-HVB67sOdg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Failed to load Instagram reels: Error: Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID.
+    at fetchInstagramReels (lib\instagram.ts:63:11)
+    at GET (app\api\instagram\reels\route.ts:13:46)
+  61 |
+  62 |   if (!accessToken || !businessAccountId) {
+> 63 |     throw new Error(
+     |           ^
+  64 |       "Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCO...
+  65 |     )
+  66 |   }
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Image with src "/logo-footer.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[browser] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. (<anonymous>)
+⨯ Failed to write image to cache Lo-_TRe7Y3vBLA4KYhjR7BXUnopysJlCZb4LogWDbjM Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Failed to load YouTube feed: TypeError: fetch failed
+    at async fetchYoutubeFeed (lib\youtube.ts:131:24)
+    at async GET (app\api\youtube\route.ts:48:21)
+  129 |   }
+  130 |
+> 131 |   const feedResponse = await fetch(
+      |                        ^
+  132 |     `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`,
+  133 |     {
+  134 |       next: { revalidate: 900 }, {
+  [cause]: Error: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+      at ignore-listed frames {
+    code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'
+  }
+}
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache uiMl_O9k5HhDi0ZvpC19P51EbicuTFg6ZE-aNuHxj-U Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache rIYo_3f-_DsG2Gq0dDlBK9xIuMDNcEcExeXNNJ7YqkE Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache zh_2kE7mG6c995Hz9Xmv6OcyZ-cLSMWD5-HVB67sOdg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache Lo-_TRe7Y3vBLA4KYhjR7BXUnopysJlCZb4LogWDbjM Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Failed to load Instagram reels: Error: Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID.
+    at fetchInstagramReels (lib\instagram.ts:63:11)
+    at GET (app\api\instagram\reels\route.ts:13:46)
+  61 |
+  62 |   if (!accessToken || !businessAccountId) {
+> 63 |     throw new Error(
+     |           ^
+  64 |       "Instagram is not configured. Add INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCO...
+  65 |     )
+  66 |   }
+Failed to load YouTube feed: TypeError: fetch failed
+    at async fetchYoutubeFeed (lib\youtube.ts:131:24)
+    at async GET (app\api\youtube\route.ts:48:21)
+  129 |   }
+  130 |
+> 131 |   const feedResponse = await fetch(
+      |                        ^
+  132 |     `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`,
+  133 |     {
+  134 |       next: { revalidate: 900 }, {
+  [cause]: Error: unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca
+      at ignore-listed frames {
+    code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'
+  }
+}
+[browser] Image with src "/logo-footer.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Autoplay was prevented by browser policy: NotSupportedError: The element has no supported sources. (components/SocialWall.tsx:193:17)
+[browser] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. (<anonymous>)
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache wRDHiU7t1H53FWGOMHMNrSqUsjOTxlEvLC_rSzKDsl0 Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache HVZMsVkR9x-YiPY9xx0CtARZJzkBF7ntewBoCX-O770 Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+[browser] Image with src "/nextupmagcover.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache rIYo_3f-_DsG2Gq0dDlBK9xIuMDNcEcExeXNNJ7YqkE Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache uiMl_O9k5HhDi0ZvpC19P51EbicuTFg6ZE-aNuHxj-U Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache iv--Jcs2NQCXK3ZBv0YUvqdgW5yCUE_QB_Mg5BFNWxg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⚠ Blocked cross-origin request to Next.js dev resource /_next/webpack-hmr from "127.0.0.1".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['127.0.0.1'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache zh_2kE7mG6c995Hz9Xmv6OcyZ-cLSMWD5-HVB67sOdg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache rIYo_3f-_DsG2Gq0dDlBK9xIuMDNcEcExeXNNJ7YqkE Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache uiMl_O9k5HhDi0ZvpC19P51EbicuTFg6ZE-aNuHxj-U Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache iv--Jcs2NQCXK3ZBv0YUvqdgW5yCUE_QB_Mg5BFNWxg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache zh_2kE7mG6c995Hz9Xmv6OcyZ-cLSMWD5-HVB67sOdg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache uiMl_O9k5HhDi0ZvpC19P51EbicuTFg6ZE-aNuHxj-U Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache rIYo_3f-_DsG2Gq0dDlBK9xIuMDNcEcExeXNNJ7YqkE Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache iv--Jcs2NQCXK3ZBv0YUvqdgW5yCUE_QB_Mg5BFNWxg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache zh_2kE7mG6c995Hz9Xmv6OcyZ-cLSMWD5-HVB67sOdg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache rIYo_3f-_DsG2Gq0dDlBK9xIuMDNcEcExeXNNJ7YqkE Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache uiMl_O9k5HhDi0ZvpC19P51EbicuTFg6ZE-aNuHxj-U Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache iv--Jcs2NQCXK3ZBv0YUvqdgW5yCUE_QB_Mg5BFNWxg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache zh_2kE7mG6c995Hz9Xmv6OcyZ-cLSMWD5-HVB67sOdg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache rIYo_3f-_DsG2Gq0dDlBK9xIuMDNcEcExeXNNJ7YqkE Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache uiMl_O9k5HhDi0ZvpC19P51EbicuTFg6ZE-aNuHxj-U Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache iv--Jcs2NQCXK3ZBv0YUvqdgW5yCUE_QB_Mg5BFNWxg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection: Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ unhandledRejection:  Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+⨯ Failed to write image to cache zh_2kE7mG6c995Hz9Xmv6OcyZ-cLSMWD5-HVB67sOdg Error: LRUCache: calculateSize returned 0, but size must be > 0. Items with size 0 would never be evicted, causing unbounded cache growth.
+    at ignore-listed frames
+Failed to process premium subscription: Error: Supabase is not configured. Add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.
+    at assertSupabaseEnv (lib\env.ts:15:11)
+    at getSupabaseAdmin (lib\supabase.ts:10:68)
+    at addEmailSubscriber (lib\subscribers.ts:33:36)
+    at POST (app\api\premium-subscribe\route.ts:53:29)
+  13 | export function assertSupabaseEnv() {
+  14 |   if (!env.supabaseUrl || !env.supabaseServiceRoleKey) {
+> 15 |     throw new Error(
+     |           ^
+  16 |       "Supabase is not configured. Add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY."
+  17 |     )
+  18 |   }

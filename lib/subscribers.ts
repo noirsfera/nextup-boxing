@@ -1,28 +1,8 @@
 import "server-only"
 
 import { REMINDER_WINDOWS, type ReminderColumnName } from "@/lib/event"
-import { getSql } from "@/lib/neon"
+import { getSupabaseAdmin } from "@/lib/supabase"
 import { normalizeEmail } from "@/lib/validation"
-
-const SUBSCRIBERS_TABLE_SQL = `
-  CREATE TABLE IF NOT EXISTS email_subscribers (
-    id BIGSERIAL PRIMARY KEY,
-    email TEXT NOT NULL UNIQUE,
-    source TEXT NOT NULL DEFAULT 'hero-section',
-    seven_day_reminder_sent_at TIMESTAMPTZ,
-    one_day_reminder_sent_at TIMESTAMPTZ,
-    last_notified_at TIMESTAMPTZ,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-  );
-`
-
-const ENSURE_REMINDER_COLUMNS_SQL = `
-  ALTER TABLE email_subscribers
-    ADD COLUMN IF NOT EXISTS seven_day_reminder_sent_at TIMESTAMPTZ,
-    ADD COLUMN IF NOT EXISTS one_day_reminder_sent_at TIMESTAMPTZ,
-    ADD COLUMN IF NOT EXISTS last_notified_at TIMESTAMPTZ;
-`
 
 type SubscriberRow = {
   email: string
@@ -34,14 +14,7 @@ type ReminderSubscriberRow = {
   email: string
 }
 
-async function ensureSubscribersSchema() {
-  const sql = getSql()
-
-  await sql.query(SUBSCRIBERS_TABLE_SQL)
-  await sql.query(ENSURE_REMINDER_COLUMNS_SQL)
-}
-
-function getReminderColumnSql(columnName: ReminderColumnName) {
+function getReminderColumnName(columnName: ReminderColumnName) {
   switch (columnName) {
     case REMINDER_WINDOWS.sevenDay.key:
       return "seven_day_reminder_sent_at"
@@ -52,58 +25,77 @@ function getReminderColumnSql(columnName: ReminderColumnName) {
   }
 }
 
-export async function addEmailSubscriber(email: string) {
-  const sql = getSql()
+export async function addEmailSubscriber(
+  email: string,
+  name?: string,
+  source: string = "hero-section"
+) {
+  const supabase = getSupabaseAdmin()
   const normalizedEmail = normalizeEmail(email)
+  const now = new Date().toISOString()
+  const subscriberPayload: Record<string, unknown> = {
+    email: normalizedEmail,
+    source,
+    updated_at: now,
+  }
 
-  await ensureSubscribersSchema()
+  if (name?.trim()) {
+    subscriberPayload.name = name.trim()
+  }
 
-  const subscriberRows = (await sql`
-    INSERT INTO email_subscribers (email, source)
-    VALUES (${normalizedEmail}, ${"hero-section"})
-    ON CONFLICT (email)
-    DO UPDATE SET
-      source = EXCLUDED.source,
-      updated_at = NOW()
-    RETURNING email, created_at, updated_at
-  `) as SubscriberRow[]
+  const { data, error } = await supabase
+    .from("email_subscribers")
+    .upsert(subscriberPayload, {
+      onConflict: "email",
+      ignoreDuplicates: false,
+    })
+    .select("email, created_at, updated_at")
+    .single<SubscriberRow>()
 
-  return subscriberRows[0]
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  return data
 }
 
 export async function getSubscribersPendingReminder(columnName: ReminderColumnName) {
-  const sql = getSql()
+  const supabase = getSupabaseAdmin()
+  const reminderColumn = getReminderColumnName(columnName)
 
-  await ensureSubscribersSchema()
+  const { data, error } = await supabase
+    .from("email_subscribers")
+    .select("email")
+    .is(reminderColumn, null)
+    .order("created_at", { ascending: true })
+    .returns<ReminderSubscriberRow[]>()
 
-  const reminderColumn = sql.unsafe(getReminderColumnSql(columnName))
+  if (error) {
+    throw new Error(error.message)
+  }
 
-  const subscriberRows = (await sql`
-    SELECT email
-    FROM email_subscribers
-    WHERE ${reminderColumn} IS NULL
-    ORDER BY created_at ASC
-  `) as ReminderSubscriberRow[]
-
-  return subscriberRows
+  return data
 }
 
 export async function markReminderSent(
   email: string,
   columnName: ReminderColumnName
 ) {
-  const sql = getSql()
-  const reminderColumn = sql.unsafe(getReminderColumnSql(columnName))
+  const supabase = getSupabaseAdmin()
+  const reminderColumn = getReminderColumnName(columnName)
   const normalizedEmail = normalizeEmail(email)
+  const now = new Date().toISOString()
 
-  await ensureSubscribersSchema()
+  const { error } = await supabase
+    .from("email_subscribers")
+    .update({
+      [reminderColumn]: now,
+      last_notified_at: now,
+      updated_at: now,
+    })
+    .eq("email", normalizedEmail)
 
-  await sql`
-    UPDATE email_subscribers
-    SET
-      ${reminderColumn} = NOW(),
-      last_notified_at = NOW(),
-      updated_at = NOW()
-    WHERE email = ${normalizedEmail}
-  `
+  if (error) {
+    throw new Error(error.message)
+  }
 }

@@ -10,12 +10,13 @@ import {
   markReminderSent,
 } from "@/lib/subscribers"
 import { sendReminderEmail } from "@/lib/resend"
+import { env } from "@/lib/env"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
 
 function isAuthorized(request: Request) {
-  const cronSecret = process.env.CRON_SECRET?.trim()
+  const cronSecret = env.cronSecret
 
   if (!cronSecret) {
     return process.env.NODE_ENV !== "production"

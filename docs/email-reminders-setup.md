@@ -2,7 +2,7 @@
 
 This project uses:
 
-- `Neon` for subscriber storage
+- `Supabase` for subscriber storage
 - `Resend` for email delivery
 - `Vercel Cron` for scheduled reminder runs
 
@@ -10,7 +10,8 @@ This project uses:
 
 Set these in your deployment environment:
 
-- `DATABASE_URL`
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
 - `RESEND_API_KEY`
 - `RESEND_FROM_EMAIL`
 - `SITE_URL`
@@ -18,13 +19,13 @@ Set these in your deployment environment:
 
 ## Database Setup
 
-For a fresh database, run:
+In your Supabase SQL editor, run:
 
-- [scripts/001_create_email_subscribers.sql](/C:/Users/gamerrdotcom/Desktop/nextup-boxing/scripts/001_create_email_subscribers.sql:1)
+- [scripts/003_supabase_setup.sql](/C:/Users/gamerrdotcom/Desktop/nextup-boxing/scripts/003_supabase_setup.sql:1)
 
-If the `email_subscribers` table already exists, also run:
+The script creates `email_subscribers`, adds reminder columns, enables RLS, and allows backend requests that use the service-role key.
 
-- [scripts/002_add_event_reminder_columns.sql](/C:/Users/gamerrdotcom/Desktop/nextup-boxing/scripts/002_add_event_reminder_columns.sql:1)
+If you already ran an older schema, the script is safe to run again because it uses `IF NOT EXISTS`.
 
 ## Resend Setup
 

@@ -24,7 +24,8 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 Create a `.env.local` file from `.env.example` and set:
 
-- `DATABASE_URL` to your Neon connection string.
+- `SUPABASE_URL` to your Supabase project URL.
+- `SUPABASE_SERVICE_ROLE_KEY` to a Supabase service-role key for server-side subscriber writes and reminder updates.
 - `YOUTUBE_CHANNEL_URL` to the public channel URL you want to surface.
 - `YOUTUBE_CHANNEL_ID` optionally, if you want to skip channel ID detection and use a fixed YouTube channel ID.
 - `INSTAGRAM_HANDLE` to the public Instagram username you want to display.
@@ -35,15 +36,13 @@ Create a `.env.local` file from `.env.example` and set:
 - `SITE_URL` to your production site URL so reminder emails link back correctly.
 - `CRON_SECRET` to protect the scheduled reminder route.
 
-The email signup flow automatically creates an `email_subscribers` table on the first successful request and stores each email once.
-
-If you prefer to create the table manually in Neon, copy the SQL from [scripts/001_create_email_subscribers.sql](/C:/Users/gamerrdotcom/Desktop/nextup-boxing/scripts/001_create_email_subscribers.sql:1) into the Neon SQL editor first.
+Run [scripts/003_supabase_setup.sql](/C:/Users/gamerrdotcom/Desktop/nextup-boxing/scripts/003_supabase_setup.sql:1) in the Supabase SQL editor before enabling signups. The signup flow stores each email once in `email_subscribers`.
 
 ## Event Reminders
 
 The reminder system uses:
 
-- `Neon` to store subscribers and reminder timestamps
+- `Supabase` to store subscribers and reminder timestamps
 - `Resend` to send reminder emails
 - `Vercel Cron` to trigger the reminder route once per day
 
@@ -51,7 +50,7 @@ Setup checklist:
 
 - Verify a sending domain in Resend and set `RESEND_FROM_EMAIL`
 - Add `RESEND_API_KEY`, `SITE_URL`, and `CRON_SECRET` to your deployment environment
-- If the `email_subscribers` table already exists, run [scripts/002_add_event_reminder_columns.sql](/C:/Users/gamerrdotcom/Desktop/nextup-boxing/scripts/002_add_event_reminder_columns.sql:1)
+- Run [scripts/003_supabase_setup.sql](/C:/Users/gamerrdotcom/Desktop/nextup-boxing/scripts/003_supabase_setup.sql:1) in Supabase so the reminder columns and service-role policy are present
 - Deploy with [vercel.json](/C:/Users/gamerrdotcom/Desktop/nextup-boxing/vercel.json:1) so the cron schedule is active
 
 The current setup sends up to two reminder emails per subscriber:

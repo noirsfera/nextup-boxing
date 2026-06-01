@@ -49,16 +49,18 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Failed to subscribe email:", error)
 
-    const isMissingDatabaseUrl =
-      error instanceof Error && error.message === "DATABASE_URL is not configured."
+    const isMissingSupabaseConfig =
+      error instanceof Error &&
+      error.message ===
+        "Supabase is not configured. Add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY."
 
     return NextResponse.json(
       {
-        error: isMissingDatabaseUrl
-          ? "Newsletter signups are not configured yet. Add DATABASE_URL to enable them."
+        error: isMissingSupabaseConfig
+          ? "Newsletter signups are not configured yet. Add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY to enable them."
           : "We couldn't save your email right now. Please try again.",
       },
-      { status: isMissingDatabaseUrl ? 503 : 500 }
+      { status: isMissingSupabaseConfig ? 503 : 500 }
     )
   }
 }

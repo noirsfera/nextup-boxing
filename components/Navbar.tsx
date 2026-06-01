@@ -8,6 +8,8 @@ import { usePathname } from "next/navigation"
 import { TiLocationArrow } from "react-icons/ti"
 import { Menu, X, User } from "lucide-react"
 
+import { PremiumModal } from "@/components/PremiumModal"
+
 const navLinks = [
   { label: "Home", href: "/#hero" },
   { label: "Fights", href: "/#events" },
@@ -22,6 +24,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("hero")
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [premiumOpen, setPremiumOpen] = useState(false)
   const pathname = usePathname()
 
   const isHome = pathname === "/" || pathname === ""
@@ -90,7 +93,11 @@ export function Navbar() {
     : "bg-transparent text-white"
 
   const signInClass =
-    "editorial-button inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-black shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#b8962e] hover:text-black"
+    "editorial-button items-center gap-2 rounded-full bg-white px-5 py-2.5 text-black shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#b8962e] hover:text-black"
+
+  const toggleMobileMenu = () => {
+    setMobileOpen((open) => !open)
+  }
 
   return (
     <nav
@@ -186,18 +193,26 @@ export function Navbar() {
             }`}
           >
             {/* Desktop Sign In ONLY */}
-            <a
-              href="#signin"
-              className={`${signInClass} hidden xl:inline-flex mr-4`}
+            <button
+              onClick={() => setPremiumOpen(true)}
+              className={`${signInClass} hidden xl:inline-flex mr-4 cursor-pointer`}
             >
-              
               Sign in
               <TiLocationArrow size={24} />
-            </a>
+            </button>
 
             {/* Mobile + Tablet Hamburger ONLY */}
             <button
-              onClick={() => setMobileOpen((open) => !open)}
+              onPointerDown={(event) => {
+                event.preventDefault()
+                toggleMobileMenu()
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault()
+                  toggleMobileMenu()
+                }
+              }}
               className="rounded-full p-2 text-white/90 transition-colors duration-300 hover:text-white xl:hidden drop-shadow-md"
               aria-label="Toggle menu"
             >
@@ -243,14 +258,16 @@ export function Navbar() {
               ))}
 
               {/* Sign In inside dropdown */}
-              <a
-                href="#signin"
-                onClick={() => setMobileOpen(false)}
-                className={`${signInClass} mt-3 flex w-full justify-center`}
+              <button
+                onClick={() => {
+                  setMobileOpen(false)
+                  setPremiumOpen(true)
+                }}
+                className={`${signInClass} mt-3 flex w-full justify-center cursor-pointer`}
               >
                 <User className="h-4 w-4" />
                 Sign in
-              </a>
+              </button>
             </div>
           </motion.div>
         ) : null}
@@ -264,6 +281,9 @@ export function Navbar() {
           transition={{ duration: 0.15, ease: "easeOut" }}
         />
       </div>
+
+      {/* Premium Sign-in Modal */}
+      <PremiumModal isOpen={premiumOpen} onClose={() => setPremiumOpen(false)} />
     </nav>
   )
 }

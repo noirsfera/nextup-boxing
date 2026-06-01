@@ -1,8 +1,9 @@
--- Run this in the Neon SQL Editor to create the email signup table.
+-- Legacy helper. Prefer scripts/003_supabase_setup.sql in the Supabase SQL editor.
 
 CREATE TABLE IF NOT EXISTS email_subscribers (
   id BIGSERIAL PRIMARY KEY,
   email TEXT NOT NULL UNIQUE,
+  name TEXT,
   source TEXT NOT NULL DEFAULT 'hero-section',
   seven_day_reminder_sent_at TIMESTAMPTZ,
   one_day_reminder_sent_at TIMESTAMPTZ,
@@ -13,6 +14,7 @@ CREATE TABLE IF NOT EXISTS email_subscribers (
 
 COMMENT ON TABLE email_subscribers IS 'Stores hero section email notification signups.';
 COMMENT ON COLUMN email_subscribers.email IS 'Subscriber email address.';
+COMMENT ON COLUMN email_subscribers.name IS 'Subscriber name.';
 COMMENT ON COLUMN email_subscribers.source IS 'Signup source identifier.';
 COMMENT ON COLUMN email_subscribers.seven_day_reminder_sent_at IS 'Timestamp for the first pre-event reminder email.';
 COMMENT ON COLUMN email_subscribers.one_day_reminder_sent_at IS 'Timestamp for the final day-before reminder email.';

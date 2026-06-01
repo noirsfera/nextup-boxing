@@ -20,7 +20,11 @@ export function SponsorsStrip() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&display=swap');
 
-        @keyframes sponsor-ticker { to { transform: translateX(-50%); } }
+        @keyframes sponsor-ticker {
+          to {
+            transform: translateX(-50%);
+          }
+        }
 
         .sponsor-ticker-wrap {
           position: relative;
@@ -64,17 +68,18 @@ export function SponsorsStrip() {
           padding: 0 28px;
           white-space: nowrap;
           font-family: 'Barlow Condensed', var(--font-bebas), sans-serif;
-          font-weight: 600;
-          font-size: .68rem;
-          letter-spacing: .24em;
+          font-weight: 700;
+          font-size: 1rem;
+          letter-spacing: .14em;
           text-transform: uppercase;
-          color: rgba(212,174,68,.6);
+          color: rgba(255,255,255,.95);
           text-decoration: none;
-          transition: color .28s;
+          transition: color .28s ease, transform .28s ease;
         }
 
         .sponsor-ticker-item:hover {
-          color: rgba(212,174,68,.9);
+          color: #ffffff;
+          transform: translateY(-1px);
         }
 
         .sponsor-ticker-gem {
@@ -83,6 +88,13 @@ export function SponsorsStrip() {
           flex-shrink: 0;
           background: rgba(197,32,58,.45);
           transform: rotate(45deg);
+        }
+
+        @media (max-width: 768px) {
+          .sponsor-ticker-item {
+            font-size: 0.9rem;
+            letter-spacing: .12em;
+          }
         }
       `}</style>
 

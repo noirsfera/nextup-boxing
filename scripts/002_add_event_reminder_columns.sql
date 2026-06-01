@@ -1,6 +1,7 @@
--- Run this in the Neon SQL Editor if your email_subscribers table already exists.
+-- Legacy helper. Prefer scripts/003_supabase_setup.sql in the Supabase SQL editor.
 
 ALTER TABLE email_subscribers
+  ADD COLUMN IF NOT EXISTS name TEXT,
   ADD COLUMN IF NOT EXISTS seven_day_reminder_sent_at TIMESTAMPTZ,
   ADD COLUMN IF NOT EXISTS one_day_reminder_sent_at TIMESTAMPTZ,
   ADD COLUMN IF NOT EXISTS last_notified_at TIMESTAMPTZ;
