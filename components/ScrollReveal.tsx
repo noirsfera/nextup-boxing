@@ -38,6 +38,7 @@ export function ScrollReveal({
         opacity: 0,
         y: distance,
         filter: "blur(18px)",
+        willChange: "transform, opacity, filter",
       })
 
       gsap.to(element, {
@@ -51,6 +52,9 @@ export function ScrollReveal({
           trigger: element,
           start: "top 82%",
           once: true,
+        },
+        onComplete: () => {
+          gsap.set(element, { clearProps: "willChange,filter" })
         },
       })
     }, element)
