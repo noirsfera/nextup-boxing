@@ -453,8 +453,15 @@ interface BoxerData {
   losses: number
 }
 
+function getChampionTitleFromImage(image: string) {
+  const filename = image.split("/").pop()?.replace(/\.[^/.]+$/, "") || ""
+  const parts = filename.split("_")
+  return parts.slice(2).join(" ")
+}
+
 function ChampionCard({ boxer }: { boxer: BoxerData }) {
   const [isHovered, setIsHovered] = useState(false)
+  const championTitle = getChampionTitleFromImage(boxer.image)
 
   return (
     <div 
@@ -477,8 +484,7 @@ function ChampionCard({ boxer }: { boxer: BoxerData }) {
         <h2>
           {boxer.firstName}<br />{boxer.lastName}
         </h2>
-        <p className="weight-cat">{boxer.weightClass}</p>
-        <p className="mt-2 text-xs font-bold uppercase tracking-[0.14em] text-[#d4ae44]">{boxer.titles}</p>
+        <p className="mt-2 text-xs font-bold uppercase tracking-[0.14em] text-[#d4ae44]">{championTitle}</p>
       </div>
 
       {/* Hover overlay */}
@@ -489,10 +495,7 @@ function ChampionCard({ boxer }: { boxer: BoxerData }) {
         >
           {boxer.firstName} {boxer.lastName}
         </h3>
-        <p className="mb-4 mt-2 text-xs font-bold uppercase tracking-[0.18em] text-white/80">
-          {boxer.weightClass}
-        </p>
-        <p className="trophy-text">{boxer.titles}</p>
+        <p className="trophy-text">{championTitle}</p>
       </div>
     </div>
   )
@@ -523,7 +526,6 @@ function BoxerCard({ boxer }: { boxer: BoxerData }) {
           <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
             <div className="text-center px-4">
               <p className="text-gray-600 font-bold">{boxer.firstName} {boxer.lastName}</p>
-              <p className="text-xs text-gray-500 mt-1">{boxer.weightClass}</p>
             </div>
           </div>
         )}
@@ -539,9 +541,6 @@ function BoxerCard({ boxer }: { boxer: BoxerData }) {
           >
             {boxer.firstName}<br />{boxer.lastName}
           </h3>
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-[#c5203a] mt-1">
-            {boxer.weightClass}
-          </p>
         </div>
 
         {/* Hover effect - red tint */}
