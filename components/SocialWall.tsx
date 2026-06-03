@@ -208,7 +208,7 @@ export function SocialWall() {
   const [likedReels, setLikedReels] = useState<Record<string, boolean>>({})
 
   const [posts, setPosts] = useState<MockReel[]>(MOCK_REELS)
-  const [isError, setIsError] = useState<string | null>(null)
+  const [apiMessage, setApiMessage] = useState<string | null>(null)
 
   useEffect(() => {
     if (selectedReel) {
@@ -234,7 +234,7 @@ export function SocialWall() {
 
         if (!isMounted) return
 
-        if (Array.isArray(data.reels) && data.reels.length > 0) {
+        if (res.ok && Array.isArray(data.reels) && data.reels.length > 0) {
           const mapped = data.reels.map((r: Record<string, unknown>, idx: number) => ({
             id: String(r.id ?? ""),
             caption: String(r.caption ?? ""),
@@ -251,18 +251,17 @@ export function SocialWall() {
               (["promos", "training", "behind-the-scenes"][idx % 3]) as "promos" | "training" | "behind-the-scenes",
             duration: String(r.duration ?? "0:30"),
             commentsList: Array.isArray(r.commentsList) ? r.commentsList : [],
-            platform: (r.platform as "instagram" | "tiktok" | "youtube" | undefined) ??
-              (["instagram", "tiktok", "youtube"][idx % 3]) as "instagram" | "tiktok" | "youtube"
+            platform: (r.platform as "instagram" | "tiktok" | "youtube" | undefined) ?? "instagram"
           })) as MockReel[]
 
           setPosts(mapped)
-          setIsError(null)
-        } else if (data.error) {
-          setIsError(data.error)
+          setApiMessage(null)
+        } else {
+          setApiMessage("Showing curated Instagram highlights while the API connection is pending.")
         }
       } catch (err: unknown) {
         if (err instanceof Error && err.name === "AbortError") return
-        setIsError("Unable to load Instagram reels right now.")
+        setApiMessage("Showing curated Instagram highlights while the API connection is pending.")
       }
     }
 
@@ -443,9 +442,9 @@ export function SocialWall() {
           </a>
         </motion.div>
 
-        {isError && (
+        {apiMessage && (
           <p className="mb-6 text-sm text-slate-500" role="status">
-            {isError}
+            {apiMessage}
           </p>
         )}
 

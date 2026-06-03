@@ -153,6 +153,7 @@ async function fetchInstagramPublicFeed(
         timestamp,
         likeCount,
         commentsCount: null,
+        platform: "instagram",
       }
     })
     .filter((item): item is InstagramReel => Boolean(item))
@@ -170,12 +171,14 @@ export async function fetchInstagramReels(
   const { accessToken, businessAccountId, handle, profileUrl } =
     getInstagramConfig()
 
-  // Log configuration state for debugging if configured, but do not make any network requests.
-  if (accessToken || businessAccountId) {
-    console.log("Instagram API configurations are present but bypassed to fetch mock reels.")
+  // Prefer Instagram public profile scraping for the latest feed when API credentials are not yet used.
+  try {
+    return await fetchInstagramPublicFeed(limit)
+  } catch (error) {
+    console.warn("Instagram public feed fallback failed:", error)
   }
 
-  // Pre-configured mock data representing reels with royalty-free video URLs for autoplay
+  // If public feed is unavailable, fall back to pre-configured mock reel data.
   const mockReels: InstagramReel[] = [
     {
       id: "reel-1",
