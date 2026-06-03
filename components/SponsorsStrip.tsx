@@ -25,13 +25,13 @@ export function SponsorsStrip() {
         initial={{ opacity: 0, y: 10 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="flex items-center justify-center gap-4 py-8"
+        className="flex items-center justify-center gap-4 px-4 py-8 text-center sm:px-0"
       >
-        <span className="h-px w-16 bg-[#b8962e]/25" />
-        <span className="section-eyebrow text-white">
-          Official Partners &amp; Sponsors
+        <span className="hidden h-px w-16 bg-[#b8962e]/25 sm:block" />
+        <span className="section-eyebrow block max-w-[17rem] text-center text-white sm:max-w-none">
+          Official Partners and Sponsors
         </span>
-        <span className="h-px w-16 bg-[#b8962e]/25" />
+        <span className="hidden h-px w-16 bg-[#b8962e]/25 sm:block" />
       </motion.div>
 
       <motion.div

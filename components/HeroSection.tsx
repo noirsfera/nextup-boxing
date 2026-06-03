@@ -128,24 +128,24 @@ export function HeroSection() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 mx-auto h-full w-full max-w-7xl px-4 sm:px-8 lg:px-16">
+      <div className="relative z-20 mx-auto flex min-h-[100svh] w-full max-w-7xl items-end px-4 pb-8 pt-28 sm:block sm:h-full sm:min-h-0 sm:px-8 sm:pb-0 sm:pt-0 lg:px-16">
         <motion.div
           ref={textRef}
           style={{ y, opacity }}
-          className="absolute inset-x-4 bottom-5 flex max-w-[calc(100vw-2rem)] flex-col items-start gap-5 text-left sm:inset-x-auto sm:left-[6%] sm:bottom-10 sm:max-w-[36rem] sm:gap-7 md:left-[7%] md:max-w-[40rem] lg:left-[8%] lg:bottom-16 xl:left-[9%]"
+          className="relative z-30 flex w-full max-w-[calc(100vw-2rem)] flex-col items-start gap-4 text-left sm:absolute sm:inset-x-auto sm:left-[6%] sm:bottom-10 sm:w-auto sm:max-w-[36rem] sm:gap-7 md:left-[7%] md:max-w-[40rem] lg:left-[8%] lg:bottom-16 xl:left-[9%]"
         >
             {/* Event details */}
-            <div className="animate-text mb-6 flex flex-col items-start gap-2 select-none">
+            <div className="animate-text mb-4 flex flex-col items-start gap-1.5 select-none sm:mb-6 sm:gap-2">
               {/* Date Eyebrow */}
               <div className="flex items-center gap-3">
                 <span
-                  className="bg-[#c5203a] px-4 py-1.5 text-sm font-black uppercase tracking-[0.25em] text-white shadow-md sm:text-base"
+                  className="bg-[#c5203a] px-3 py-1.5 text-xs font-black uppercase tracking-[0.25em] text-white shadow-md min-[380px]:text-sm sm:px-4 sm:text-base"
                   style={{ fontFamily: "var(--font-bebas)" }}
                 >
                   SAT
                 </span>
                 <span
-                  className="text-[1.8rem] font-black uppercase tracking-[0.15em] text-white sm:text-[2.2rem] md:text-[2.4rem]"
+                  className="text-[1.55rem] font-black uppercase tracking-[0.15em] text-white min-[380px]:text-[1.8rem] sm:text-[2.2rem] md:text-[2.4rem]"
                   style={{ fontFamily: "var(--font-bebas)" }}
                 >
                   JUNE 6TH
@@ -154,7 +154,7 @@ export function HeroSection() {
 
               {/* League Name */}
               <span
-                className="text-[1.35rem] font-extrabold uppercase tracking-[0.22em] text-[#b8962e] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] sm:text-[1.5rem] md:text-[1.7rem]"
+                className="text-[1.1rem] font-extrabold uppercase tracking-[0.22em] text-[#b8962e] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] min-[380px]:text-[1.25rem] sm:text-[1.5rem] md:text-[1.7rem]"
                 style={{ fontFamily: "var(--font-oswald), sans-serif" }}
               >
                 Next up boxing
@@ -162,7 +162,7 @@ export function HeroSection() {
 
               {/* Event Title */}
               <h1
-                className="mt-1 text-[3.3rem] font-black uppercase leading-[0.86] tracking-[0.02em] text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)] min-[380px]:text-[3.9rem] sm:text-[5.4rem] md:text-[5.8rem] lg:text-[6rem]"
+                className="mt-1 text-[2.95rem] font-black uppercase leading-[0.86] tracking-[0.02em] text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)] min-[380px]:text-[3.35rem] sm:text-[5.4rem] md:text-[5.8rem] lg:text-[6rem]"
                 style={{ fontFamily: "var(--font-bebas), Impact, sans-serif" }}
               >
                 strong island
@@ -172,10 +172,10 @@ export function HeroSection() {
               </h1>
 
               {/* Time Info */}
-              <div className="mt-3 inline-flex items-center gap-2 border-l-4 border-[#b8962e] bg-[#0d1124]/80 px-4 py-2 backdrop-blur-md shadow-lg">
+              <div className="mt-2 inline-flex items-center gap-2 border-l-4 border-[#b8962e] bg-[#0d1124]/80 px-4 py-2 backdrop-blur-md shadow-lg sm:mt-3">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#b8962e] animate-pulse" />
                 <span
-                  className="text-base font-black uppercase tracking-[0.25em] text-white sm:text-lg md:text-xl"
+                  className="text-sm font-black uppercase tracking-[0.25em] text-white min-[380px]:text-base sm:text-lg md:text-xl"
                   style={{ fontFamily: "var(--font-bebas)" }}
                 >
                   5 pm sharp
@@ -184,7 +184,7 @@ export function HeroSection() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="animate-text relative z-30 flex w-full flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:w-auto">
+            <div className="animate-text relative z-30 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
               <a
                 href="https://www.simpletix.com/e/strong-island-fight-night-11-tickets-254611"
                 target="_blank"
@@ -249,12 +249,12 @@ export function HeroSection() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-contain object-top sm:object-cover sm:object-center"
           />
 
           {/* overlays */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0d1124]/70 via-[#0d1124]/40 to-[#0d1124]/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0d1124]/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0d1124]/45 via-[#0d1124]/20 to-[#0d1124]/10 sm:from-[#0d1124]/70 sm:via-[#0d1124]/40 sm:to-[#0d1124]/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0d1124]/95 via-[#0d1124]/55 to-transparent sm:from-[#0d1124]/50 sm:via-transparent" />
         </motion.div>
       </motion.div>
 
