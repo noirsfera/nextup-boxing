@@ -132,6 +132,7 @@ function LiveStreamPlayer({ liveStream, isVisible }: { liveStream: YoutubeLiveSt
 
       <div className="aspect-video w-full bg-black pt-10">
         <iframe
+          loading="lazy"
           src={`https://www.youtube.com/embed/${liveStream.id}?autoplay=1&rel=0&modestbranding=1`}
           title={liveStream.title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -179,6 +180,7 @@ function FeaturedVideoPlayer({
       <div className="relative aspect-video w-full overflow-hidden bg-[#0a0e1a]">
         {embedUrl ? (
           <iframe
+            loading="lazy"
             src={embedUrl}
             title={activeVideo?.title ?? "Channel uploads"}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
