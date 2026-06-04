@@ -3,10 +3,6 @@
 import { useRef, useEffect } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-
-gsap.registerPlugin(ScrollTrigger)
 
 export function HeroSection() {
   const ref = useRef<HTMLElement | null>(null)
@@ -25,75 +21,96 @@ export function HeroSection() {
   const imageY = useTransform(scrollYProgress, [0, 1], [0, 30])
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Text animation with stagger
-      gsap.fromTo(
-        textRef.current?.querySelectorAll(".animate-text") || [],
-        {
-          y: 50,
-          opacity: 0,
-          clipPath: "inset(0 0 100% 0)",
-        },
-        {
-          y: 0,
-          opacity: 1,
-          clipPath: "inset(0 0 0% 0)",
-          duration: 0.9,
-          stagger: 0.1,
-          ease: "power4.out",
-          delay: 0.3,
-        },
-      )
+    let ctx: any = null
+    let cancelled = false
 
-      // Image reveal
-      gsap.fromTo(
-        imageRef.current,
-        {
-          clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)",
-          scale: 1.1,
-        },
-        {
-          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-          scale: 1,
-          duration: 1.2,
-          ease: "power4.inOut",
-          delay: 0.2,
-        },
-      )
+    async function initGsap() {
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ])
 
-      // Stats counter animation
-      const stats = statsRef.current?.querySelectorAll(".stat-number")
+      if (cancelled) {
+        return
+      }
 
-      stats?.forEach((stat) => {
-        const target = parseInt(stat.getAttribute("data-value") || "0")
+      gsap.registerPlugin(ScrollTrigger)
 
+      ctx = gsap.context(() => {
+        // Text animation with stagger
         gsap.fromTo(
-          stat,
-          { textContent: 0 },
+          textRef.current?.querySelectorAll(".animate-text") || [],
           {
-            textContent: target,
-            duration: 2,
-            ease: "power2.out",
-            snap: { textContent: 1 },
-            scrollTrigger: {
-              trigger: stat,
-              start: "top 80%",
-              toggleActions: "play none none reverse",
-            },
+            y: 50,
+            opacity: 0,
+            clipPath: "inset(0 0 100% 0)",
+          },
+          {
+            y: 0,
+            opacity: 1,
+            clipPath: "inset(0 0 0% 0)",
+            duration: 0.9,
+            stagger: 0.1,
+            ease: "power4.out",
+            delay: 0.3,
           },
         )
-      })
 
-      // Diagonal lines animation
-      gsap.to(".diagonal-line", {
-        x: "100%",
-        duration: 20,
-        repeat: -1,
-        ease: "none",
-      })
-    }, ref)
+        // Image reveal
+        gsap.fromTo(
+          imageRef.current,
+          {
+            clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)",
+            scale: 1.1,
+          },
+          {
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+            scale: 1,
+            duration: 1.2,
+            ease: "power4.inOut",
+            delay: 0.2,
+          },
+        )
 
-    return () => ctx.revert()
+        // Stats counter animation
+        const stats = statsRef.current?.querySelectorAll(".stat-number")
+
+        stats?.forEach((stat) => {
+          const target = parseInt(stat.getAttribute("data-value") || "0")
+
+          gsap.fromTo(
+            stat,
+            { textContent: 0 },
+            {
+              textContent: target,
+              duration: 2,
+              ease: "power2.out",
+              snap: { textContent: 1 },
+              scrollTrigger: {
+                trigger: stat,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              },
+            },
+          )
+        })
+
+        // Diagonal lines animation
+        gsap.to(".diagonal-line", {
+          x: "100%",
+          duration: 20,
+          repeat: -1,
+          ease: "none",
+        })
+      }, ref)
+    }
+
+    initGsap()
+
+    return () => {
+      cancelled = true
+      ctx?.revert?.()
+    }
   }, [])
 
   return (
@@ -244,7 +261,7 @@ export function HeroSection() {
           className="relative h-full w-full"
         >
           <Image
-            src="/hero-boxers.png"
+            src="/hero-boxers.webp"
             alt="Main event fighters image"
             fill
             priority

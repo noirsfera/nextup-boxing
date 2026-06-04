@@ -2,11 +2,7 @@
 
 import { useRef, useEffect } from "react"
 import Image from "next/image"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Users } from "lucide-react"
-
-gsap.registerPlugin(ScrollTrigger)
 
 const champions = [
   {
@@ -14,56 +10,56 @@ const champions = [
     lastName: "ACEVEDO",
     weightClass: "Super-Bantamweight",
     championship: "SBC Champion",
-    image: "/champions/ARTURO_ACEVEDO_121_SBC_CHAMPION.png",
+    image: "/champions/ARTURO_ACEVEDO_121_SBC_CHAMPION.webp",
   },
   {
     firstName: "XAVIER",
     lastName: "WILCHER",
     weightClass: "Cruiserweight",
     championship: "SBC Champion",
-    image: "/champions/XAVIER_WILCHER_198_SBC_CHAMPION.png",
+    image: "/champions/XAVIER_WILCHER_198_SBC_CHAMPION.webp",
   },
   {
     firstName: "JADEN",
     lastName: "HARVEY",
     weightClass: "Super-Middleweight",
     championship: "DAWG Champion",
-    image: "/champions/JADEN_HARVEY_165_DAWG_CHAMPION.png",
+    image: "/champions/JADEN_HARVEY_165_DAWG_CHAMPION.webp",
   },
   {
     firstName: "BRADLEY",
     lastName: "BELT",
     weightClass: "Cruiserweight",
     championship: "ADC Champion",
-    image: "/champions/BRADLEY_BELT_198_ADC_CHAMPION.png",
+    image: "/champions/BRADLEY_BELT_198_ADC_CHAMPION.webp",
   },
   {
     firstName: "NAIJALIE",
     lastName: "RODRIGUEZ",
     weightClass: "Women's Light-Flyweight",
     championship: "Women's SBC Champion",
-    image: "/champions/NAIJALIE_RODRIGUEZ_106_WOMENS_SBC_CHAMPION.png",
+    image: "/champions/NAIJALIE_RODRIGUEZ_106_WOMENS_SBC_CHAMPION.webp",
   }, 
    {
     firstName: "KEVIN",
     lastName: "TORRES",
     weightClass: "Super-Middleweight",
     championship: "SBC Champion",
-    image: "/champions/KEVIN_TORRES_165_SBC_CHAMPION.png",
+    image: "/champions/KEVIN_TORRES_165_SBC_CHAMPION.webp",
   },
   {
     firstName: "KIAMAL",
     lastName: "EVELYN",
     weightClass: "Super-Featherweight",
     championship: "SBC Champion",
-    image: "/champions/KIAMAL_EVELYN_132_SBC_CHAMPION.png",
+    image: "/champions/KIAMAL_EVELYN_132_SBC_CHAMPION.webp",
   },
   {
     firstName: "REESE",
     lastName: "MISTRETTA",
     weightClass: "Light-Heavyweight",
     championship: "SBC Champion",
-    image: "/champions/REESE_MISTRETTA_176_SBC_CHAMPION.png",
+    image: "/champions/REESE_MISTRETTA_176_SBC_CHAMPION.webp",
   },
 ]
 
@@ -85,146 +81,167 @@ export function ChampionsSection() {
   const dotsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Header animation
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, scale: 1.15, filter: "blur(8px)" },
-        {
-          opacity: 1,
-          scale: 1,
-          filter: "blur(0px)",
-          duration: 1,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      )
+    let ctx: any = null
+    let cancelled = false
 
-      // Lines animation
-      gsap.fromTo(
-        ".champ-line-left",
-        { scaleX: 0, transformOrigin: "right center" },
-        {
-          scaleX: 1,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      )
+    async function initGsap() {
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ])
 
-      gsap.fromTo(
-        ".champ-line-right",
-        { scaleX: 0, transformOrigin: "left center" },
-        {
-          scaleX: 1,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      )
-
-      // Cards animation
-      const cards = cardsRef.current?.querySelectorAll<HTMLElement>(".champ-card")
-
-      if (cards && cards.length) {
-        gsap.fromTo(
-          cards,
-          {
-            opacity: 0,
-            y: 80,
-            clipPath: "inset(100% 0% 0% 0%)",
-          },
-          {
-            opacity: 1,
-            y: 0,
-            clipPath: "inset(0% 0% 0% 0%)",
-            duration: 0.75,
-            stagger: 0.08,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: cardsRef.current,
-              start: "top 78%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        )
-
+      if (cancelled) {
+        return
       }
 
-      // Dots animation
-      if (dotsRef.current) {
+      gsap.registerPlugin(ScrollTrigger)
+
+      ctx = gsap.context(() => {
+        // Header animation
         gsap.fromTo(
-          dotsRef.current.children,
-          { scale: 0, opacity: 0 },
-          {
-            scale: 1,
-            opacity: 1,
-            duration: 0.4,
-            stagger: 0.12,
-            ease: "back.out(2)",
-            scrollTrigger: {
-              trigger: dotsRef.current,
-              start: "top 90%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        )
-      }
-
-      // Banner animation
-      gsap.fromTo(
-        bannerRef.current,
-        { opacity: 0, y: 60 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: bannerRef.current,
-            start: "top 88%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      )
-
-      const bannerItems =
-        bannerRef.current?.querySelectorAll<HTMLElement>(".banner-fighter")
-
-      if (bannerItems && bannerItems.length) {
-        gsap.fromTo(
-          bannerItems,
-          { opacity: 0, y: 40, scale: 0.9 },
+          headerRef.current,
+          { opacity: 0, scale: 1.15, filter: "blur(8px)" },
           {
             opacity: 1,
-            y: 0,
             scale: 1,
-            duration: 0.55,
-            stagger: 0.07,
-            ease: "power3.out",
+            filter: "blur(0px)",
+            duration: 1,
+            ease: "power4.out",
             scrollTrigger: {
-              trigger: bannerRef.current,
+              trigger: headerRef.current,
               start: "top 85%",
               toggleActions: "play none none reverse",
             },
           }
         )
-      }
-    }, sectionRef)
 
-    return () => ctx.revert()
+        // Lines animation
+        gsap.fromTo(
+          ".champ-line-left",
+          { scaleX: 0, transformOrigin: "right center" },
+          {
+            scaleX: 1,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        )
+
+        gsap.fromTo(
+          ".champ-line-right",
+          { scaleX: 0, transformOrigin: "left center" },
+          {
+            scaleX: 1,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        )
+
+        // Cards animation
+        const cards = cardsRef.current?.querySelectorAll<HTMLElement>(".champ-card")
+
+        if (cards && cards.length) {
+          gsap.fromTo(
+            cards,
+            {
+              opacity: 0,
+              y: 80,
+              clipPath: "inset(100% 0% 0% 0%)",
+            },
+            {
+              opacity: 1,
+              y: 0,
+              clipPath: "inset(0% 0% 0% 0%)",
+              duration: 0.75,
+              stagger: 0.08,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: cardsRef.current,
+                start: "top 78%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          )
+
+        }
+
+        // Dots animation
+        if (dotsRef.current) {
+          gsap.fromTo(
+            dotsRef.current.children,
+            { scale: 0, opacity: 0 },
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 0.4,
+              stagger: 0.12,
+              ease: "back.out(2)",
+              scrollTrigger: {
+                trigger: dotsRef.current,
+                start: "top 90%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          )
+        }
+
+        // Banner animation
+        gsap.fromTo(
+          bannerRef.current,
+          { opacity: 0, y: 60 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: bannerRef.current,
+              start: "top 88%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        )
+
+        const bannerItems =
+          bannerRef.current?.querySelectorAll<HTMLElement>(".banner-fighter")
+
+        if (bannerItems && bannerItems.length) {
+          gsap.fromTo(
+            bannerItems,
+            { opacity: 0, y: 40, scale: 0.9 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.55,
+              stagger: 0.07,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: bannerRef.current,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          )
+        }
+      }, sectionRef)
+    }
+
+    initGsap()
+
+    return () => {
+      cancelled = true
+      ctx?.revert?.()
+    }
   }, [])
 
   return (
