@@ -1,7 +1,3 @@
-"use client"
-
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
 import Image from "next/image"
 import { Users } from "lucide-react"
 
@@ -69,22 +65,41 @@ function getFighterNumberFromImage(imagePath: string) {
   return match?.[1] ?? ""
 }
 
-const bannerFighters = champions.map((fighter) => ({
-  name: fighter.lastName,
-  image: fighter.image,
-}))
+function BoxerSilhouette() {
+  return (
+    <div className="relative flex h-[220px] w-[220px] items-center justify-center rounded-[2rem] border border-[#b8962e]/15 bg-gradient-to-br from-[#101623] via-[#0b1121] to-[#05070f] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.45)] sm:h-[240px] sm:w-[240px]">
+      <svg viewBox="0 0 240 240" className="h-full w-full">
+        <defs>
+          <linearGradient id="silhouette-gradient" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stopColor="#b8962e" stopOpacity="0.28" />
+            <stop offset="100%" stopColor="#ffffff" stopOpacity="0.08" />
+          </linearGradient>
+        </defs>
+
+        <circle cx="120" cy="44" r="30" fill="url(#silhouette-gradient)" />
+        <path
+          d="M70 94C70 64 90 48 120 48s50 16 50 46v16c0 14-8 28-23 34-5 2-11 2-17 0-15-6-22-20-22-34V94z"
+          fill="url(#silhouette-gradient)"
+        />
+        <path
+          d="M54 118c-18 12-16 40 4 52l20-15c-6-18-4-30-2-35-6-2-13 0-22-2zM186 118c18 12 16 40-4 52l-20-15c6-18 4-30 2-35 6-2 13 0 22-2z"
+          fill="url(#silhouette-gradient)"
+        />
+        <path
+          d="M90 148c6 24 22 50 30 70 8-20 24-46 30-70 16-4 34-12 36-32 6 0 18 8 18 24 0 24-16 44-38 56-22 12-48 12-70 0-22-12-38-32-38-56 0-16 12-24 18-24 2 20 20 28 36 32z"
+          fill="url(#silhouette-gradient)"
+        />
+      </svg>
+    </div>
+  )
+}
 
 export function ChampionsSection() {
-  const sectionRef = useRef<HTMLDivElement | null>(null)
-  const isInView = useInView(sectionRef, { once: true, margin: "-120px" })
-
   return (
     <section className="bg-gradient-to-br from-[#0a1628] via-[#0d1e3a] to-[#0a1628] py-12 sm:py-16 w-full overflow-hidden border-t border-[#b8962e]/20">
-      <div ref={sectionRef} className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-          transition={{ duration: 0.9, ease: "easeOut" }}
+        <div
           className="relative mb-8 sm:mb-12 flex flex-col items-center justify-center text-center"
         >
           <div className="champ-line-left absolute top-1/2 left-0 right-1/2 h-px bg-[#b8962e] opacity-40 z-0 mr-14 sm:mr-20" />
@@ -95,10 +110,9 @@ export function ChampionsSection() {
             <Image
               src="/logo-footer.png"
               alt="Logo"
-              width={120}
-              height={60}
-              className="object-contain"
-              priority
+              width={220}
+              height={110}
+              className="max-w-[260px] object-contain"
             />
 
             <h2
@@ -108,20 +122,10 @@ export function ChampionsSection() {
               <span className="text-[#b8962e]">Current Champions</span>
             </h2>
           </div>
-        </motion.div>
+        </div>
 
         {/* Cards */}
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.08,
-              },
-            },
-          }}
+        <div
           className="relative mx-auto grid w-full max-w-[60rem] grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4"
         >
   
@@ -129,11 +133,8 @@ export function ChampionsSection() {
             const fighterNumber = getFighterNumberFromImage(fighter.image)
 
             return (
-              <motion.div
+              <div
                 key={fighter.image}
-                initial={{ opacity: 0, y: 80 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.75, ease: "easeOut" }}
                 className="champ-card w-full transform overflow-hidden rounded-[1.6rem] border border-[#b8962e]/65 bg-gradient-to-b from-[#21190c] via-[#070b14] to-[#050912] p-1 shadow-[0_18px_45px_rgba(0,0,0,0.45),0_0_28px_rgba(184,150,46,0.12)] transition-transform hover:-translate-y-1 hover:border-[#d4ae44]/85 hover:shadow-2xl sm:rounded-[2rem] sm:p-1.5"
               >
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.25rem] bg-[#050912] sm:rounded-[1.6rem]">
@@ -141,7 +142,7 @@ export function ChampionsSection() {
                     src={fighter.image}
                     alt={`${fighter.firstName} ${fighter.lastName}`}
                     fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 50vw"
                     className="scale-[1.015] object-cover"
                   />
                 </div>
@@ -159,27 +160,21 @@ export function ChampionsSection() {
                     {fighterNumber ? `${fighterNumber} ${fighter.championship}` : fighter.championship}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             )
           })}
-        </motion.div>
+        </div>
 
         {/* Dots */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+        <div
           className="mt-8 flex justify-center gap-2"
         >
           <div className="h-2 w-2 rounded-full bg-white shadow-sm" />
           <div className="h-2 w-2 rounded-full border border-white bg-transparent" />
-        </motion.div>
+        </div>
 
         {/* Bottom Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
+        <div
           className="mt-10 sm:mt-12 relative w-full overflow-hidden bg-[#050912] px-4 sm:px-6 py-4 flex flex-col items-center justify-center shadow-[0_15px_30px_rgba(0,0,0,0.4)]"
         >
           <div
@@ -204,42 +199,19 @@ export function ChampionsSection() {
 
           </div>
 
-          <div className="relative z-10 flex w-full flex-wrap items-end justify-center gap-4 pb-1 sm:gap-6 md:gap-8">
-            {bannerFighters.map((bf) => {
-              const fighterNumber = getFighterNumberFromImage(bf.image)
+          <div className="relative z-10 flex w-full flex-col items-center justify-center gap-4 pb-1">
+            <BoxerSilhouette />
 
-              return (
-                <div
-                  key={bf.image}
-                  className="banner-fighter flex w-[72px] flex-col items-center sm:w-[88px] md:w-[110px]"
-                >
-                  <div className="relative mb-1 h-[82px] w-full sm:h-[100px] md:h-[120px]">
-                    <Image
-                      src={bf.image}
-                      alt={bf.name}
-                      fill
-                      className="object-contain object-bottom drop-shadow-lg"
-                    />
-                  </div>
-
-                  <div className="w-full border-t-2 border-black/30 pt-1.5 text-center">
-                    {fighterNumber ? (
-                      <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#b8962e] md:text-xs">
-                        #{fighterNumber}
-                      </div>
-                    ) : null}
-                    <span
-                      className="text-[12px] font-bold uppercase tracking-wider text-white md:text-[14px]"
-                      style={{ fontFamily: "var(--font-bebas), sans-serif" }}
-                    >
-                      {bf.name}
-                    </span>
-                  </div>
-                </div>
-              )
-            })}
+            <div className="max-w-[24rem] text-center">
+              <p className="text-xs uppercase tracking-[0.3em] text-[#b8962e] sm:text-sm">
+                The next wave of talent
+              </p>
+              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.2em] text-white/80 sm:text-base">
+                Rising Stars &amp; Contenders
+              </p>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

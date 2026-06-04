@@ -133,7 +133,7 @@ function LiveStreamPlayer({ liveStream, isVisible }: { liveStream: YoutubeLiveSt
       <div className="aspect-video w-full bg-black pt-10">
         <iframe
           loading="lazy"
-          src={`https://www.youtube.com/embed/${liveStream.id}?autoplay=1&rel=0&modestbranding=1`}
+          src={`https://www.youtube-nocookie.com/embed/${liveStream.id}?autoplay=1&mute=1&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1`}
           title={liveStream.title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
@@ -163,10 +163,10 @@ function FeaturedVideoPlayer({
 }) {
   const embedUrl = activeVideo
     ? playlistId
-      ? `https://www.youtube.com/embed/videoseries?list=${playlistId}&index=${Math.max(activeIndex, 0)}&rel=0`
-      : `https://www.youtube.com/embed/${activeVideo.id}?rel=0&modestbranding=1`
+      ? `https://www.youtube-nocookie.com/embed/videoseries?list=${playlistId}&index=${Math.max(activeIndex, 0)}&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1`
+      : `https://www.youtube-nocookie.com/embed/${activeVideo.id}?rel=0&modestbranding=1&iv_load_policy=3&playsinline=1`
     : playlistId
-      ? `https://www.youtube.com/embed/videoseries?list=${playlistId}&rel=0`
+      ? `https://www.youtube-nocookie.com/embed/videoseries?list=${playlistId}&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1`
       : null
 
   return (

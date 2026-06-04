@@ -1,8 +1,3 @@
-"use client"
-
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
-
 const sponsors = [
   { name: "BULOVAS RESTORATIONS", url: "https://www.bulovasrestorations.com/index.html" },
   { name: "M&T STRONG CONCRETE", url: "https://mbstrongconcrete.com/" },
@@ -12,19 +7,13 @@ const sponsorTickerItems = Array.from({ length: 6 }, () => sponsors).flat()
 const sponsorTickerTrack = [...sponsorTickerItems, ...sponsorTickerItems]
 
 export function SponsorsStrip() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-50px" })
-
   return (
-    <section ref={ref} className="relative overflow-hidden bg-[#080c18] py-0">
+    <section className="relative overflow-hidden bg-[#080c18] py-0">
 
 
       <div className="h-[3px] bg-gradient-to-r from-[#1e2d5e] via-[#b8962e] to-[#c5203a]" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
+      <div
         className="flex items-center justify-center gap-4 px-4 py-8 text-center sm:px-0"
       >
         <span className="hidden h-px w-16 bg-[#b8962e]/25 sm:block" />
@@ -32,12 +21,9 @@ export function SponsorsStrip() {
           Official Partners and Sponsors
         </span>
         <span className="hidden h-px w-16 bg-[#b8962e]/25 sm:block" />
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.1 }}
+      <div
         className="relative mb-8 overflow-hidden"
       >
         <div className="sponsor-ticker-wrap" aria-label="Official sponsor ticker">
@@ -59,7 +45,7 @@ export function SponsorsStrip() {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
 
       <div className="h-px bg-gradient-to-r from-transparent via-[#b8962e]/30 to-transparent" />
     </section>

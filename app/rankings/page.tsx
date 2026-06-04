@@ -49,7 +49,7 @@ export default function RankingsPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-sm font-bold uppercase tracking-[0.35em] text-[#c5203a]"
           >
-            Official Pound For Pound Standings
+            Official NextUp Boxing League
           </motion.span>
 
           {/* Title and Coming Soon Badge */}

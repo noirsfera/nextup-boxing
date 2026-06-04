@@ -1,25 +1,8 @@
-"use client"
-
-import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
 
 export function HeroSection() {
-  const ref = useRef<HTMLElement | null>(null)
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  })
-
-  const y = useTransform(scrollYProgress, [0, 1], [20, -20])
-  const opacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 1, 0.6])
-  const scale = useTransform(scrollYProgress, [0, 0.3], [1.04, 1])
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, 30])
-
   return (
     <section
-      ref={ref}
       id="hero"
       className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-[#0d1124] sm:h-[100dvh] sm:min-h-[700px]"
     >
@@ -50,11 +33,7 @@ export function HeroSection() {
 
       {/* Main content */}
       <div className="relative z-20 mx-auto flex min-h-[100dvh] w-full max-w-7xl items-center justify-center px-4 pb-8 pt-28 sm:block sm:h-full sm:min-h-0 sm:px-8 sm:pb-0 sm:pt-0 lg:px-16">
-        <motion.div
-          style={{ y, opacity }}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+        <div
           className="relative z-30 flex w-full max-w-[calc(100vw-2rem)] flex-col items-start gap-4 text-left sm:absolute sm:inset-x-auto sm:left-[6%] sm:bottom-10 sm:w-auto sm:max-w-[36rem] sm:gap-7 md:left-[7%] md:max-w-[40rem] lg:left-[8%] lg:bottom-16 xl:left-[9%]"
         >
             {/* Event details */}
@@ -80,7 +59,7 @@ export function HeroSection() {
                 className="text-[1.1rem] font-extrabold uppercase tracking-[0.22em] text-[#b8962e] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] min-[380px]:text-[1.25rem] sm:text-[1.5rem] md:text-[1.7rem]"
                 style={{ fontFamily: "var(--font-oswald), sans-serif" }}
               >
-                Next up boxing
+                Next up boxing league
               </span>
 
               {/* Event Title */}
@@ -132,12 +111,11 @@ export function HeroSection() {
                 <div className="absolute inset-0 translate-x-[-100%] bg-white/10 transition-transform duration-300 group-hover:translate-x-0" />
               </a>
             </div>
-          </motion.div>
+          </div>
       </div>
 
       {/* Full Background Cover Image */}
-      <motion.div
-        style={{ y: imageY }}
+      <div
         className="pointer-events-none absolute inset-0 z-[1]"
       >
         {/* HUD Frame */}
@@ -161,8 +139,7 @@ export function HeroSection() {
         </div>
 
         {/* Image container - full cover */}
-        <motion.div
-          style={{ scale }}
+        <div
           className="relative h-full w-full"
         >
           <Image
@@ -176,8 +153,8 @@ export function HeroSection() {
           {/* overlays */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0d1124]/45 via-[#0d1124]/20 to-[#0d1124]/10 sm:from-[#0d1124]/70 sm:via-[#0d1124]/40 sm:to-[#0d1124]/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0d1124]/95 via-[#0d1124]/55 to-transparent sm:from-[#0d1124]/50 sm:via-transparent" />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* Noise texture overlay */}
       <div
