@@ -345,7 +345,7 @@ export function YoutubeSection() {
     <section
       id="youtube"
       ref={ref}
-      className="relative overflow-hidden py-16 sm:py-24"
+      className="relative overflow-hidden py-16 sm:py-24 scroll-mt-28"
       style={{ background: "linear-gradient(180deg, #0a1628 0%, #0d1e3a 50%, #0a1628 100%)" }}
     >
       {/* Background grid pattern */}

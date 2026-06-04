@@ -320,7 +320,7 @@ export default function BoxersPage() {
                   className="text-5xl lg:text-7xl font-black uppercase text-outline-white-heavy"
                   style={{ fontFamily: "var(--font-bebas)" }}
                 >
-                  WORLD<br />CHAMPIONS
+                  NEXTUP<br />CHAMPIONS
                 </h2>
               </div>
             </div>
@@ -523,12 +523,11 @@ function BoxerCard({ boxer }: { boxer: BoxerData }) {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <Link href={`/boxers/${boxer.id}`}>
-      <div 
-        className="boxer-card relative aspect-[3/4] bg-[#f5f5f5] overflow-hidden group cursor-pointer"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+    <div 
+      className="boxer-card relative aspect-[3/4] bg-[#f5f5f5] overflow-hidden group cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
         {boxer.image ? (
           <div className="absolute inset-0">
             <Image
@@ -566,7 +565,6 @@ function BoxerCard({ boxer }: { boxer: BoxerData }) {
             isHovered ? "bg-[#c5203a]/20" : ""
           }`}
         />
-      </div>
-    </Link>
+    </div>
   )
 }
