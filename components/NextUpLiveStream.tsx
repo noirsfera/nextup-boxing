@@ -119,7 +119,7 @@ export function NextUpLiveStream() {
             {sectionLabel}
           </span>
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
-            NextUp Live Stream
+            Next Up Live Stream
           </h2>
         </div>
 

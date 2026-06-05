@@ -285,12 +285,6 @@ export default function BoxersPage() {
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-8">
-          <span 
-            className="block text-xl md:text-2xl font-semibold tracking-[0.1em] text-[#d4ae44] mb-2"
-            style={{ fontFamily: "var(--font-bebas)" }}
-          >
-            Ordinary People.
-          </span>
           <h1 
             className="text-5xl md:text-7xl lg:text-8xl font-black uppercase text-white leading-[0.95]"
             style={{ fontFamily: "var(--font-bebas)" }}
