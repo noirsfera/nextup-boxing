@@ -30,7 +30,7 @@ export function SponsorsStrip() {
           <div className="sponsor-ticker-fade sponsor-ticker-fade--l" aria-hidden="true" />
           <div className="sponsor-ticker-fade sponsor-ticker-fade--r" aria-hidden="true" />
 
-          <div className="sponsor-ticker-track">
+          <div className="sponsor-ticker-track" style={{ willChange: "transform" }}>
             {sponsorTickerTrack.map((sponsor, i) => (
               <a
                 key={`${sponsor.name}-${i}`}

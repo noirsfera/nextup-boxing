@@ -73,6 +73,7 @@ function BoxerSilhouette() {
           src="/boxer-shadow.png"
           alt="Boxers silhouette"
           fill
+          sizes="(min-width: 640px) 240px, 220px"
           className="object-cover object-center opacity-95"
         />
       </div>

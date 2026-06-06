@@ -57,13 +57,20 @@ export function Navbar() {
 
   useEffect(() => {
     setActiveSection(normalizePathname(pathname))
-    const handleScroll = () => {
+    let scrollTicking = false
+    const updateScrollState = () => {
       const scrollTop = window.scrollY
       const maxScroll =
         document.documentElement.scrollHeight - window.innerHeight
 
       setScrolled(scrollTop > 50)
       setScrollProgress(maxScroll > 0 ? scrollTop / maxScroll : 0)
+      scrollTicking = false
+    }
+    const handleScroll = () => {
+      if (scrollTicking) return
+      scrollTicking = true
+      window.requestAnimationFrame(updateScrollState)
     }
 
     const sections = navLinks

@@ -27,8 +27,8 @@ export function HeroSection() {
         <div className="absolute inset-0 futuristic-grid opacity-20" />
 
         {/* Glow effects */}
-        <div className="absolute top-1/4 right-0 h-[500px] w-[500px] rounded-full bg-[#c5203a]/10 blur-[150px]" />
-        <div className="absolute bottom-0 left-1/4 h-[400px] w-[400px] rounded-full bg-[#b8962e]/10 blur-[100px]" />
+        <div className="absolute top-1/4 right-0 h-[500px] w-[500px] rounded-full bg-[#c5203a]/10 blur-[150px] [transform:translateZ(0)]" />
+        <div className="absolute bottom-0 left-1/4 h-[400px] w-[400px] rounded-full bg-[#b8962e]/10 blur-[100px] [transform:translateZ(0)]" />
       </div>
 
       {/* Main content */}
