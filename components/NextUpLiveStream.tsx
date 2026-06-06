@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { AlertCircle, ArrowUpRight, Play } from "lucide-react"
+import { AlertCircle, ArrowUpRight, Play, Radio, ShieldCheck } from "lucide-react"
 
 type YoutubeFeedVideo = {
   id: string
@@ -178,6 +178,7 @@ export function NextUpLiveStream() {
   const [playlistId, setPlaylistId] = useState<string | null>(null)
   const [videos, setVideos] = useState<YoutubeFeedVideo[]>([])
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null)
+  const [isStreamLive, setIsStreamLive] = useState(false)
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading")
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -209,9 +210,11 @@ export function NextUpLiveStream() {
 
           setVideos([liveAsVideo, ...(data.videos || [])])
           setActiveVideoId(liveAsVideo.id)
+          setIsStreamLive(true)
         } else {
           setVideos(data.videos)
           setActiveVideoId((currentVideoId) => currentVideoId ?? data.videos[0]?.id ?? null)
+          setIsStreamLive(false)
         }
         setErrorMessage(data.error || "")
         setStatus(response.ok ? "ready" : "error")
@@ -235,11 +238,7 @@ export function NextUpLiveStream() {
   const activeIndex = activeVideo ? videos.findIndex((video) => video.id === activeVideo.id) : 0
 
   return (
-    <section
-      id="youtube"
-      className="relative overflow-hidden py-16 sm:py-24 scroll-mt-28"
-      style={{ background: "linear-gradient(180deg, #0a1628 0%, #0d1e3a 50%, #0a1628 100%)" }}
-    >
+    <section id="youtube" className="relative overflow-hidden bg-white py-16 sm:py-24 scroll-mt-28">
       {/* Background grid pattern */}
       <div
         className="pointer-events-none absolute inset-0 opacity-5"
@@ -269,12 +268,17 @@ export function NextUpLiveStream() {
         {/* Section Header */}
         <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <span className="mb-2 inline-block text-sm font-semibold uppercase tracking-widest text-[#c5203a]">
-              On YouTube
-            </span>
-            <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-              Next Up Official Stream
-            </h2>
+            <div className="mb-2 flex items-center gap-3">
+              <div className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold ${isStreamLive ? 'bg-[#c5203a] text-white' : 'bg-gray-200 text-gray-800'}`}>
+                <Radio className="h-4 w-4" />
+                <span>{isStreamLive ? 'Live Now' : 'Scheduled'}</span>
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/50 px-3 py-1 text-sm font-semibold text-gray-700">
+                <ShieldCheck className="h-4 w-4 text-gray-700" />
+                <span>Official Broadcast</span>
+              </div>
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">Next Up Official Stream</h2>
           </div>
         </div>
 
@@ -289,7 +293,7 @@ export function NextUpLiveStream() {
             />
 
             {status === "error" && errorMessage ? (
-              <div className="mt-4 flex items-center gap-2 rounded-lg border border-[#c5203a]/20 bg-[#c5203a]/10 px-4 py-3 text-sm text-white/70">
+              <div className="mt-4 flex items-center gap-2 rounded-lg border border-[#c5203a]/20 bg-[#fff1f2] px-4 py-3 text-sm text-gray-700">
                 <AlertCircle className="h-4 w-4 flex-shrink-0 text-[#c5203a]" />
                 {errorMessage}
               </div>
