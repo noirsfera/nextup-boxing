@@ -167,7 +167,7 @@ async function fetchLiveStream(channelId: string): Promise<{ liveStream: Youtube
     })
 
     if (!response.ok) {
-      return null
+      return { liveStream: null }
     }
 
     const html = await response.text()

@@ -10,11 +10,20 @@ type YoutubeFeedVideo = {
   url: string
 }
 
+type YoutubeLiveStream = {
+  id: string
+  title: string
+  isLive: boolean
+  url: string
+  thumbnailUrl: string
+}
+
 type YoutubeApiPayload = {
   channelUrl: string
   channelId: string | null
   playlistId: string | null
   videos: YoutubeFeedVideo[]
+  liveStream?: YoutubeLiveStream | null
   error?: string
 }
 
@@ -188,8 +197,22 @@ export function YoutubeSection() {
 
         setChannelUrl(data.channelUrl || DEFAULT_CHANNEL_URL)
         setPlaylistId(data.playlistId)
-        setVideos(data.videos)
-        setActiveVideoId((currentVideoId) => currentVideoId ?? data.videos[0]?.id ?? null)
+
+        // If the API provides a live stream, prefer that as the active video and show it first
+        if (data.liveStream?.id) {
+          const liveAsVideo: YoutubeFeedVideo = {
+            id: data.liveStream.id,
+            title: data.liveStream.title,
+            publishedAt: new Date().toISOString(),
+            url: data.liveStream.url,
+          }
+
+          setVideos([liveAsVideo, ...(data.videos || [])])
+          setActiveVideoId(liveAsVideo.id)
+        } else {
+          setVideos(data.videos)
+          setActiveVideoId((currentVideoId) => currentVideoId ?? data.videos[0]?.id ?? null)
+        }
         setErrorMessage(data.error || "")
         setStatus(response.ok ? "ready" : "error")
       } catch (err: unknown) {
