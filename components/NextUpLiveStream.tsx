@@ -24,6 +24,8 @@ type LiveStreamApiPayload = {
   videos: YoutubeFeedVideo[]
   isNewYorkUser: boolean
   hasRestrictedLiveStream: boolean
+  blockedBySignInGate?: boolean
+  ticketPurchaseUrl?: string
   error?: string
 }
 
@@ -31,6 +33,10 @@ export function NextUpLiveStream() {
   const [liveStream, setLiveStream] = useState<YoutubeLiveStream | null>(null)
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading")
   const [isMuted, setIsMuted] = useState(true)
+  const [isNewYorkUser, setIsNewYorkUser] = useState(false)
+  const [hasRestrictedLiveStream, setHasRestrictedLiveStream] = useState(false)
+  const [blockedBySignInGate, setBlockedBySignInGate] = useState(false)
+  const [ticketPurchaseUrl, setTicketPurchaseUrl] = useState<string | null>(null)
   const [viewerCount] = useState(Math.floor(Math.random() * 5000) + 2000)
 
   useEffect(() => {
@@ -48,6 +54,10 @@ export function NextUpLiveStream() {
         if (!isMounted) return
 
         setLiveStream(data.liveStream)
+        setIsNewYorkUser(Boolean(data.isNewYorkUser))
+        setHasRestrictedLiveStream(Boolean(data.hasRestrictedLiveStream))
+        setBlockedBySignInGate(Boolean((data as any).blockedBySignInGate))
+        setTicketPurchaseUrl((data as any).ticketPurchaseUrl || null)
         setStatus(response.ok ? "ready" : "error")
       } catch (err: unknown) {
         if (err instanceof Error && err.name === "AbortError") return
@@ -80,6 +90,7 @@ export function NextUpLiveStream() {
   }
 
   const isStreamLive = Boolean(liveStream?.isLive)
+  const isRestricted = Boolean((hasRestrictedLiveStream && isNewYorkUser) || blockedBySignInGate)
   const videoLabel = isStreamLive ? "Live Now" : "Scheduled"
   const sectionLabel = isStreamLive ? "Broadcasting Now" : "Scheduled Live Stream"
   const badgeText = isStreamLive ? "Live Now" : "Scheduled"
@@ -188,7 +199,52 @@ export function NextUpLiveStream() {
           </div>
 
           <div className="relative aspect-video w-full overflow-hidden bg-black">
-            {isStreamLive ? (
+              {isRestricted ? (
+                <div className="relative flex h-full w-full flex-col items-center justify-center gap-6 bg-gradient-to-br from-[#0a1628] via-[#07101f] to-[#050912] px-6 text-center">
+                  <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white/10 p-4 shadow-xl shadow-black/30">
+                    <Image
+                      src="/logo.png"
+                      alt="NextUp Boxing"
+                      width={96}
+                      height={96}
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="space-y-3 max-w-xl">
+                    <p className="text-sm uppercase tracking-[0.3em] text-white/60">
+                      Live stream unavailable
+                    </p>
+                    <h3 className="text-2xl font-bold text-white sm:text-3xl">
+                      {blockedBySignInGate ? "This broadcast requires signing in on YouTube." : "This broadcast isn't available in your location."}
+                    </h3>
+                    <p className="max-w-xl text-sm text-white/70">
+                      {blockedBySignInGate
+                        ? "YouTube is asking viewers to sign in before viewing this content. You can open the stream on YouTube if you'd like to sign in there."
+                        : "Due to distribution restrictions the live stream cannot be shown in your area. You can still view event details or purchase tickets below."}
+                    </p>
+                    <div className="flex items-center justify-center gap-3 pt-2">
+                      {ticketPurchaseUrl ? (
+                        <a
+                          href={ticketPurchaseUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 rounded-md bg-[#c5203a] px-4 py-2 text-sm font-semibold text-white shadow-sm"
+                        >
+                          Purchase Tickets
+                        </a>
+                      ) : null}
+                      <a
+                        href={liveStream?.url || "https://www.youtube.com"}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white"
+                      >
+                        View on YouTube
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ) : isStreamLive ? (
               <>
                 <iframe
                   loading="lazy"

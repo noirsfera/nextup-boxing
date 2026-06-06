@@ -21,6 +21,7 @@ export type YoutubeFeedPayload = {
   playlistId: string | null
   videos: YoutubeFeedVideo[]
   liveStream: YoutubeLiveStream | null
+  blockedBySignInGate?: boolean
 }
 
 // Use Strong Island Fight Night YouTube channel by default for this event
@@ -142,18 +143,18 @@ export async function fetchYoutubeFeed(limit = 5): Promise<YoutubeFeedPayload> {
   const feedXml = await feedResponse.text()
   
   // Check for live stream
-  const liveStream = await fetchLiveStream(channelId)
+  const liveResult = await fetchLiveStream(channelId)
 
   return {
     channelUrl,
     channelId,
     playlistId,
     videos: parseFeed(feedXml).slice(0, limit),
-    liveStream,
+    liveStream: liveResult.liveStream,
+    blockedBySignInGate: liveResult.blockedBySignInGate,
   }
 }
-
-async function fetchLiveStream(channelId: string): Promise<YoutubeLiveStream | null> {
+async function fetchLiveStream(channelId: string): Promise<{ liveStream: YoutubeLiveStream | null; blockedBySignInGate?: boolean }> {
   try {
     // Fetch the channel's live page to check for active streams
     const livePageUrl = `https://www.youtube.com/channel/${channelId}/live`
@@ -170,34 +171,51 @@ async function fetchLiveStream(channelId: string): Promise<YoutubeLiveStream | n
     }
 
     const html = await response.text()
-    
-    // Check if there's an active live stream
-    const isLive = html.includes('"isLive":true') || html.includes('"isLiveNow":true')
-    
-    if (!isLive) {
-      return null
+    // Detect YouTube sign-in / bot-check gate which sometimes replaces the channel page.
+    const signInGatePatterns = [
+      /Sign in to confirm you're not a bot/i,
+      /to confirm you're not a bot/i,
+      /sign in to continue/i,
+      /verify you are human/i,
+    ]
+
+    const blockedBySignInGate = signInGatePatterns.some((p) => p.test(html))
+    if (blockedBySignInGate) {
+      return { liveStream: null, blockedBySignInGate: true }
     }
 
-    // Extract video ID from the live page
-    const videoIdMatch = html.match(/"videoId":"([\w-]+)"/)
-    const titleMatch = html.match(/"title":\{"runs":\[\{"text":"([^"]+)"\}/)
-    
+    // More robust live detection: check several indicators that a stream exists.
+    const isLive = /"isLive(?:Now)?"\s*:\s*true/.test(html) || /"liveBroadcastContent"\s*:\s*"live"/.test(html) || html.includes('LIVE_STREAMING')
+
+    if (!isLive) {
+      return { liveStream: null }
+    }
+
+    // Extract video ID from multiple possible patterns (JSON or hrefs)
+    const videoIdMatch = html.match(/"videoId":"([A-Za-z0-9_-]{11})"/) || html.match(/\/watch\?v=([A-Za-z0-9_-]{11})/) || html.match(/"externalVideoId":"([A-Za-z0-9_-]{11})"/)
+
     if (!videoIdMatch?.[1]) {
-      return null
+      return { liveStream: null }
     }
 
     const videoId = videoIdMatch[1]
+
+    // Try multiple ways to get a human-friendly title
+    const titleMatch = html.match(/"title"\s*:\s*\{\s*"runs"\s*:\s*\[\s*\{\s*"text"\s*:\s*"([^"]+)"/) || html.match(/<meta\s+property="og:title"\s+content="([^"]+)"/i) || html.match(/"title"\s*:\s*"([^"]+)"/)
+
     const title = titleMatch?.[1] ? decodeXml(titleMatch[1]) : "Live Stream"
 
     return {
-      id: videoId,
-      title,
-      isLive: true,
-      url: `https://www.youtube.com/watch?v=${videoId}`,
-      thumbnailUrl: `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
+      liveStream: {
+        id: videoId,
+        title,
+        isLive: true,
+        url: `https://www.youtube.com/watch?v=${videoId}`,
+        thumbnailUrl: `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
+      },
     }
   } catch (error) {
     console.error("Failed to fetch live stream:", error)
-    return null
+    return { liveStream: null }
   }
 }

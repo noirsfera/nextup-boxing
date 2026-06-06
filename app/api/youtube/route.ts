@@ -48,12 +48,13 @@ export async function GET(request: NextRequest) {
     const payload = await fetchYoutubeFeed()
     const isNY = isUserInNewYork(request)
     const hasRestrictedLiveStream = isNY && Boolean(payload.liveStream)
-    
+
     return NextResponse.json({
       ...payload,
-      liveStream: isNY ? null : payload.liveStream,
+      liveStream: isNY || Boolean(payload.blockedBySignInGate) ? null : payload.liveStream,
       isNewYorkUser: isNY,
       hasRestrictedLiveStream,
+      blockedBySignInGate: Boolean(payload.blockedBySignInGate),
       ticketPurchaseUrl: process.env.TICKET_PURCHASE_URL || DEFAULT_TICKET_PURCHASE_URL,
     })
   } catch (error) {
@@ -71,6 +72,7 @@ export async function GET(request: NextRequest) {
         liveStream: null,
         isNewYorkUser: isUserInNewYork(request),
         hasRestrictedLiveStream: false,
+        blockedBySignInGate: false,
         ticketPurchaseUrl: process.env.TICKET_PURCHASE_URL || DEFAULT_TICKET_PURCHASE_URL,
         error: "We couldn't load the latest uploads right now.",
       },
